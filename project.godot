@@ -42,6 +42,10 @@ dash={
 ]
 }
 
+[physics]
+
+common/physics_ticks_per_second=240
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
