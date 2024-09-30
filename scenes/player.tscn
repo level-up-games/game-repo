@@ -24,12 +24,12 @@ size = Vector2(8, 39)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_e41gs")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 z_index = 5
 position = Vector2(-2.84217e-14, 1.90735e-06)
 scale = Vector2(0.0607143, 0.0607143)
 sprite_frames = SubResource("SpriteFrames_2wi05")
 animation = &"idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8b1ip")
