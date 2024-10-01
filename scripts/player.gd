@@ -4,10 +4,10 @@ const SPEED = 180.0
 const JUMP_VELOCITY = -300.0
 const DASH_SPEED = 400.0
 const DASH_TIME = 0.2
-const MAX_JUMPS = 2
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var max_jumps = 2
 var dash_timer = 0.0
 var is_dashing = false
 var jump_counter = 0
@@ -17,16 +17,17 @@ func _physics_process(delta):
 	handle_jump()
 	handle_dash(delta)
 	handle_movement(delta)
-	move_and_slide()
 	handle_facing_direction()
 	handle_counter()
+	handle_crouch()
+	move_and_slide()
 
 func handle_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
 func handle_jump(): # Responsible for the jump mechanic (including double jumps).
-	if Input.is_action_just_pressed("Jump") and (is_on_floor() or jump_counter < MAX_JUMPS - 1):
+	if Input.is_action_just_pressed("Jump") and (is_on_floor() or jump_counter < max_jumps - 1):
 		velocity.y = JUMP_VELOCITY
 		
 		if is_on_floor():
@@ -61,8 +62,8 @@ func handle_movement(delta): # Responsible for movement left and right.
 		velocity.x = direction * SPEED if direction != 0 else move_toward(velocity.x, 0, SPEED)
 
 func handle_facing_direction(): # Responsible for the direction the player faces.
-	var facing_direction = 0
-	if Input.get_connected_joypads().size() == 0: # This ensures that if a controller is detected, the cursor does not dictate direction.
+	var facing_direction = Input.get_axis("Move_Left", "Move_Right")
+	if Input.get_connected_joypads().size() == 0 and Input.is_action_pressed("Attack_1"): # This ensures that if a controller is not detected, the cursor dictates direction when attacking.
 		facing_direction = get_local_mouse_position().x
 	var facing_direction_controller = Input.get_axis("Face_Left", "Face_Right")
 	if facing_direction_controller == 0 and Input.get_connected_joypads().size() != 0:
@@ -79,8 +80,16 @@ func handle_facing_direction(): # Responsible for the direction the player faces
 	else:
 		pass
 
-func handle_counter(): # A very basic placeholder for the counter. A time between counters will later be added, dependent on whether it is succesfull or not.
+func handle_counter(): # A very basic placeholder for the counter. A time between counters will later be added, dependent on whether it is succesful or not.
 	if Input.is_action_just_pressed("Counter"):
 		$Sprite.modulate = Color(1, 0, 0)
 		await get_tree().create_timer(0.3).timeout
 		$Sprite.modulate = Color(1, 1, 1)
+
+func handle_crouch(): # A placeholder for the crouch feature, currently just scales the player down.
+	if Input.is_action_just_pressed("Crouch"):
+		scale.y = 0.5
+		position.y += 8
+	elif Input.is_action_just_released("Crouch"):
+		scale.y = 1.0
+		position.y -= 8
