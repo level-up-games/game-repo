@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://blkhox6268x7f"]
 
-[ext_resource type="Texture2D" uid="uid://82c0o6xe0s87" path="res://assets/Sprites/14-TileSets/Decorations (32x32).png" id="1_nw6ch"]
+[ext_resource type="Texture2D" uid="uid://82c0o6xe0s87" path="res://placeholder stuff/Sprites/14-TileSets/Decorations (32x32).png" id="1_nw6ch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1jrw"]
 size = Vector2(69, 5)

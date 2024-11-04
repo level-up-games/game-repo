@@ -11,7 +11,7 @@ const DASH_TIME = 0.2
 var jump_counter: int = 0
 var jump_buffer_countdown: float
 var coyote_countdown: float
-@export var coyote_time: float = 0.1
+@export var coyote_time: float = 0.85
 @export var jump_buffer: float = 0.05
 @export var jump_height: float = 210
 @export var jump_peak_time: float = 0.35
