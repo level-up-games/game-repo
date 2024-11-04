@@ -1,30 +1,43 @@
 extends CharacterBody2D
 
 
-const JUMP_VELOCITY = -300.0
 const DASH_SPEED = 1400.0
 const DASH_TIME = 0.2
 
 @export var speed = 650.0
-var max_jumps = 2
-var dash_timer = 0.0
-var is_dashing = false
-var jump_counter = 0
+
 
 ##### Jump variables #####
-var jump_input_time: float
+var jump_counter: int = 0
+var jump_buffer_countdown: float
+var coyote_countdown: float
+@export var coyote_time: float = 0.1
+@export var jump_buffer: float = 0.05
 @export var jump_height: float = 210
 @export var jump_peak_time: float = 0.35
 @export var jump_descend_time: float = 0.3
 @export var max_fall_speed: float = 1500
+@export var max_jumps: int = 2
 @onready var jump_velocity: float = -2.0 * jump_height / jump_peak_time
 @onready var jump_gravity: float = 2.0 * jump_height / (jump_peak_time * jump_peak_time)
 @onready var descend_gravity: float = 2.0 * jump_height / (jump_descend_time * jump_descend_time)
 
+##### Dash variables ##### (not yet final)
+var dash_timer = 0.0
+var is_dashing = false
+
 
 
 func _process(delta):
-	jump_last_pressed()
+	if Input.is_action_just_pressed("Jump"):
+		jump_buffer_countdown = jump_buffer
+	else:
+		jump_buffer_countdown -= delta
+	
+	if is_on_floor():
+		coyote_countdown = coyote_time
+	else:
+		coyote_countdown -= delta
 
 func _physics_process(delta): 
 	handle_gravity(delta)
@@ -38,50 +51,43 @@ func _physics_process(delta):
 
 
 
-##### Jump Processes #####
-func jump_last_pressed() -> float: # Calculates how long ago jump was pressed.
-	if Input.is_action_just_pressed("Jump"):
-		jump_input_time = Time.get_unix_time_from_system()
-	return jump_input_time - Time.get_unix_time_from_system()
+##### Jump processes #####
 func handle_jump(): # Responsible for jump and double jump mechanics.
 	if is_on_floor():
 		jump_counter = 0
 		
-	if is_on_floor() and Input.is_action_just_pressed("Jump"):
+	if coyote_countdown > 0 and jump_buffer_countdown > 0:
 		velocity.y = jump_velocity
-		jump_counter = 1
-	elif is_on_floor() and jump_last_pressed() > -0.075:
-		velocity.y = jump_velocity
-		jump_counter = 1
-	elif not is_on_floor() and Input.is_action_just_pressed("Jump") and jump_counter < max_jumps:
+		jump_buffer_countdown = 0
+	elif not coyote_countdown > 0 and Input.is_action_just_pressed("Jump") and jump_counter < max_jumps - 1:
 		velocity.y = jump_velocity
 		jump_counter += 1
+		jump_buffer_countdown = 0
 		$Sprite.modulate = Color(0, 1, 0,) #Below 3 lines are to see when double jump occurs (as we dont have anim yet)
 		await get_tree().create_timer(0.3).timeout
 		$Sprite.modulate = Color(1, 1, 1)
 		
 	if not Input.is_action_pressed("Jump") and velocity.y < 0:
-		velocity.y = lerp(velocity.y, 0.0, 0.9)
+		velocity.y = lerp(velocity.y, 0.0, 0.3)
+		
+	if Input.is_action_just_released("Jump"):
+		coyote_countdown = 0
 func handle_gravity(delta): # Controls gravities.
 	if velocity.y < 0:
 		velocity.y += jump_gravity * delta
 	elif velocity.y >= 0 and velocity.y < max_fall_speed:
 		velocity.y += descend_gravity * delta
 
-
+##### Dash processes #####  (not yet final)
 func handle_dash(delta): # Responsible for the dash mechanic.
 	if Input.is_action_just_pressed("Dash") and not is_dashing:
 		start_dash()
 
 	if is_dashing:
 		perform_dash(delta)
-
-
 func start_dash(): # Starts dashing when called.
 	is_dashing = true
 	dash_timer = DASH_TIME
-
-
 func perform_dash(delta): # Performs the dash when called.
 	var direction = Input.get_axis("Move_Left", "Move_Right")
 	velocity.x = direction * DASH_SPEED if direction != 0 else DASH_SPEED * sign(velocity.x)
