@@ -32,6 +32,19 @@ var is_dashing: bool = false
 @onready var dash_velocity: float = dash_distance / dash_time
 
 
+##### Attack variables #####
+@export var attack_damage: int = 10
+@export var punch_speed: float = 0.2  # Time for punch to complete
+var can_attack: bool = true
+var attack_active: bool = false
+var attack_timer: float = 0
+
+##### Parry/Counter variables #####
+@export var parry_window: float = 0.2  # Time window for successful parry
+@export var counter_window: float = 0.2  # Time window for successful counter
+var parry_active: bool = false
+var counter_active: bool = false
+
 
 func _physics_process(delta): 
 	##### Normal functions #####
@@ -49,6 +62,8 @@ func _physics_process(delta):
 	countdown_coyote(delta)
 	countdown_dash(delta)
 
+	handle_attack(delta)
+	handle_parry_counter(delta)
 
 
 ##### Jump functions #####
@@ -57,11 +72,15 @@ func countdown_jump_buffer(delta): # Counts down the jump_buffer_countdown varia
 		jump_buffer_countdown = jump_buffer
 	else:
 		jump_buffer_countdown -= delta
+
+
 func countdown_coyote(delta): # Counts down the coyote_countdown variable.
 	if is_on_floor():
 		coyote_countdown = coyote_time
 	else:
 		coyote_countdown -= delta
+
+
 func handle_jump(): # Responsible for jump and double jump mechanics.
 	if is_on_floor():
 		jump_counter = 0
@@ -82,6 +101,8 @@ func handle_jump(): # Responsible for jump and double jump mechanics.
 		
 	if Input.is_action_just_released("Jump"):
 		coyote_countdown = 0
+
+
 func handle_gravity(delta): # Controls gravities.
 	if velocity.y < 0:
 		velocity.y += jump_gravity * delta
@@ -97,6 +118,8 @@ func countdown_dash(delta): # Counts down the dash_countdown variable.
 	else:
 		dash_countdown -= delta
 		dash_cooldown_countdown -= delta
+
+
 func handle_dash(): # Responsible for the dash mechanic.
 	if is_dashing == true and get_movement_direction() != 0:
 		velocity.x = dash_velocity * sign(get_movement_direction())
@@ -113,6 +136,8 @@ func get_movement_direction() -> float: # Gets the movement direction (not the f
 	var movement_direction = Input.get_axis("Move_Left", "Move_Right")
 	
 	return movement_direction
+
+
 func handle_facing_direction() -> float: # Responsible for the direction the player faces, and also returns this direction when called.
 	var facing_direction = Input.get_axis("Move_Left", "Move_Right")
 	var facing_direction_controller = Input.get_axis("Face_Left", "Face_Right")
@@ -138,6 +163,8 @@ func handle_facing_direction() -> float: # Responsible for the direction the pla
 		return 1
 	else:
 		return 0
+
+
 func handle_movement(delta): # Responsible for movement left and right.
 	if not is_dashing:
 		velocity.x = sign(get_movement_direction()) * speed if get_movement_direction() != 0 else move_toward(velocity.x, 0, speed)
@@ -157,3 +184,52 @@ func handle_crouch(): # A placeholder for the crouch feature, currently just sca
 	elif Input.is_action_just_released("Crouch"):
 		scale.y = 1.0
 		position.y -= 8
+
+
+##### Attack Function #####
+func handle_attack(delta):
+	if can_attack and Input.is_action_just_pressed("Attack_1"):
+		# Start punch
+		attack_active = true
+		can_attack = false
+		attack_timer = punch_speed
+		$Sprite.modulate = Color(1, 0, 0)  # Visual indicator of attack
+
+	if attack_active:
+		attack_timer -= delta
+		if attack_timer <= 0:
+			# End punch
+			attack_active = false
+			$Sprite.modulate = Color(1, 1, 1)  # Reset color
+			can_attack = true
+
+
+##### Parry and Counter Functions #####
+func handle_parry_counter(delta):
+	if Input.is_action_just_pressed("Attack_1") and not parry_active:
+		parry_active = true
+		$Sprite.modulate = Color(0, 1, 1)  # Visual indicator of parry
+		await get_tree().create_timer(parry_window).timeout
+		parry_active = false
+		$Sprite.modulate = Color(1, 1, 1)  # Reset color after parry window ends
+
+	if Input.is_action_just_pressed("Counter") and not counter_active:
+		counter_active = true
+		$Sprite.modulate = Color(1, 1, 0)  # Visual indicator of counter
+		await get_tree().create_timer(counter_window).timeout
+		counter_active = false
+		$Sprite.modulate = Color(1, 1, 1)  # Reset color after counter window ends
+
+
+##### Attack-Detection Function #####
+func detect_attack():
+	# Check if player successfully parried
+	if parry_active:
+		# Add logic to prevent attack damage and refresh attacks
+		print("Parry successful!")
+		can_attack = true
+
+	elif counter_active:
+		# Add logic to prevent damage, refresh dashes, and unlock powerful moves
+		print("Counter successful!")
+		can_attack = true
