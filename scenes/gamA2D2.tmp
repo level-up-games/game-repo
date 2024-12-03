@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://1ntos480ge5v"]
+[gd_scene load_steps=27 format=3 uid="uid://1ntos480ge5v"]
 
 [ext_resource type="PackedScene" uid="uid://r802u2g0c73d" path="res://0. Player/Scenes/player.tscn" id="1_rdul0"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_t3cph"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://blkhox6268x7f" path="res://scenes/platform.tscn" id="4_2y0b4"]
 [ext_resource type="PackedScene" uid="uid://bnfmjbelqtkn7" path="res://scenes/killzone.tscn" id="5_vlrut"]
 [ext_resource type="Texture2D" uid="uid://brduuwtutrg5n" path="res://placeholder stuff/Tilemap/tilemap-backgrounds.png" id="6_h8pwa"]
+[ext_resource type="Script" path="res://scripts/open_inventory.gd" id="6_s874t"]
 [ext_resource type="PackedScene" uid="uid://c5r1x6nflgr8b" path="res://scenes/enemy.tscn" id="8_nge0w"]
 [ext_resource type="PackedScene" uid="uid://dvhe3e4lmatkj" path="res://scenes/item-test.tscn" id="12_20vam"]
 
@@ -1630,6 +1631,7 @@ position = Vector2(0, -97)
 limit_bottom = 100000000
 limit_smoothed = true
 position_smoothing_enabled = true
+script = ExtResource("6_s874t")
 
 [node name="Hotbar" parent="Player/Player Camera" instance=ExtResource("2_2d8y0")]
 offset_left = -951.0

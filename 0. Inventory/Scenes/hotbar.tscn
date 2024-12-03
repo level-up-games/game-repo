@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://qh8pafqg3aet"]
+
+[ext_resource type="Script" path="res://0. Inventory/Scripts/hotbar.gd" id="1_kywiy"]
+
+[node name="Hotbar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_kywiy")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 50.0
+columns = 5
+
+[node name="Slot1" type="Button" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Slot2" type="Button" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Slot3" type="Button" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Slot4" type="Button" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Slot5" type="Button" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

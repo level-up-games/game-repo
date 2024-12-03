@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://1ntos480ge5v"]
+[gd_scene load_steps=27 format=3 uid="uid://1ntos480ge5v"]
 
 [ext_resource type="PackedScene" uid="uid://r802u2g0c73d" path="res://0. Player/Scenes/player.tscn" id="1_rdul0"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_t3cph"]
@@ -1090,6 +1090,20 @@ sources/0 = SubResource("TileSetAtlasSource_ajt8g")
 sources/1 = SubResource("TileSetAtlasSource_ca8u3")
 sources/2 = SubResource("TileSetAtlasSource_onxpc")
 
+[sub_resource type="GDScript" id="GDScript_xbv5e"]
+script/source = "extends Camera2D
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(\"Open_Inventory\"):
+		if $Inventory.visible:
+			$Inventory.hide_inventory()
+			# $CraftingMenu.visible = false
+		else:
+			$Inventory.show_inventory()
+			# $CraftingMenu.visible = true
+"
+
 [sub_resource type="Animation" id="Animation_il6xo"]
 length = 0.001
 tracks/0/type = "value"
@@ -1630,6 +1644,7 @@ position = Vector2(0, -97)
 limit_bottom = 100000000
 limit_smoothed = true
 position_smoothing_enabled = true
+script = SubResource("GDScript_xbv5e")
 
 [node name="Hotbar" parent="Player/Player Camera" instance=ExtResource("2_2d8y0")]
 offset_left = -951.0
