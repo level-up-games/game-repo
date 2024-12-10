@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvhe3e4lmatkj"]
+
+[ext_resource type="Script" path="res://scripts/item_test.gd" id="1_o5jq0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iu4ll"]
+size = Vector2(75, 74)
+
+[sub_resource type="Gradient" id="Gradient_3u0cc"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wbxbv"]
+gradient = SubResource("Gradient_3u0cc")
+fill_from = Vector2(0.47561, 0.536585)
+
+[node name="Item-test" type="Area2D"]
+script = ExtResource("1_o5jq0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 26)
+shape = SubResource("RectangleShape2D_iu4ll")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.76837e-07, 26)
+scale = Vector2(1.13281, 1.10938)
+texture = SubResource("GradientTexture2D_wbxbv")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -47.0
+offset_top = -34.0
+offset_right = 50.0
+offset_bottom = -11.0
+text = "Default Item"
