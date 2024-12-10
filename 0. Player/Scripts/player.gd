@@ -6,6 +6,8 @@ const DASH_TIME = 0.2
 
 @export var speed = 650.0
 
+@onready var player_sprite = $Sprite
+
 
 ##### Jump variables #####
 var jump_counter: int = 0
@@ -92,9 +94,9 @@ func handle_jump(): # Responsible for jump and double jump mechanics.
 		velocity.y = jump_velocity
 		jump_counter += 1
 		jump_buffer_countdown = 0
-		$Sprite.modulate = Color(0, 1, 0,) #Below 3 lines are to see when double jump occurs (as we dont have anim yet)
+		player_sprite.modulate = Color(0, 1, 0,) #Below 3 lines are to see when double jump occurs (as we dont have anim yet)
 		await get_tree().create_timer(0.3).timeout
-		$Sprite.modulate = Color(1, 1, 1)
+		player_sprite.modulate = Color(1, 1, 1)
 		
 	if not Input.is_action_pressed("Jump") and velocity.y < 0:
 		velocity.y = lerp(velocity.y, 0.0, 0.3)
@@ -148,18 +150,18 @@ func handle_facing_direction() -> float: # Responsible for the direction the pla
 	if facing_direction_controller == 0 and Input.get_connected_joypads().size() != 0:
 		facing_direction_controller = Input.get_axis("Move_Left", "Move_Right")
 	
-	if facing_direction_controller < 0:
-		$Sprite.flip_h = false
-	elif facing_direction_controller > 0:
-		$Sprite.flip_h = true
-	elif facing_direction < 0:
-		$Sprite.flip_h = false
+	if facing_direction_controller > 0:
+		player_sprite.flip_h = false
+	elif facing_direction_controller < 0:
+		player_sprite.flip_h = true
 	elif facing_direction > 0:
-		$Sprite.flip_h = true
+		player_sprite.flip_h = false
+	elif facing_direction < 0:
+		player_sprite.flip_h = true
 
-	if $Sprite.flip_h == false:
+	if player_sprite.flip_h == false:
 		return -1
-	if $Sprite.flip_h == true:
+	if player_sprite.flip_h == true:
 		return 1
 	else:
 		return 0
@@ -167,14 +169,20 @@ func handle_facing_direction() -> float: # Responsible for the direction the pla
 
 func handle_movement(delta): # Responsible for movement left and right.
 	if not is_dashing:
-		velocity.x = sign(get_movement_direction()) * speed if get_movement_direction() != 0 else move_toward(velocity.x, 0, speed)
+		if get_movement_direction() != 0:
+			velocity.x = sign(get_movement_direction()) * speed
+			$AnimationPlayer.play("Run")
+		else: 
+			velocity.x = 0
+			$AnimationPlayer.play("Idle")
+			
 
 
 func handle_counter(): # A very basic placeholder for the counter. A time between counters will later be added, dependent on whether it is succesful or not.
 	if Input.is_action_just_pressed("Counter"):
-		$Sprite.modulate = Color(1, 1, 1, 0.5)
+		player_sprite.modulate = Color(1, 1, 1, 0.5)
 		await get_tree().create_timer(0.3).timeout
-		$Sprite.modulate = Color(1, 1, 1)
+		player_sprite.modulate = Color(1, 1, 1)
 
 
 func handle_crouch(): # A placeholder for the crouch feature, currently just scales the player down.
@@ -193,14 +201,14 @@ func handle_attack(delta):
 		attack_active = true
 		can_attack = false
 		attack_timer = punch_speed
-		$Sprite.modulate = Color(1, 0, 0)  # Visual indicator of attack
+		player_sprite.modulate = Color(1, 0, 0)  # Visual indicator of attack
 
 	if attack_active:
 		attack_timer -= delta
 		if attack_timer <= 0:
 			# End punch
 			attack_active = false
-			$Sprite.modulate = Color(1, 1, 1)  # Reset color
+			player_sprite.modulate = Color(1, 1, 1)  # Reset color
 			can_attack = true
 
 
@@ -208,17 +216,17 @@ func handle_attack(delta):
 func handle_parry_counter(delta):
 	if Input.is_action_just_pressed("Attack_1") and not parry_active:
 		parry_active = true
-		$Sprite.modulate = Color(0, 1, 1)  # Visual indicator of parry
+		player_sprite.modulate = Color(0, 1, 1)  # Visual indicator of parry
 		await get_tree().create_timer(parry_window).timeout
 		parry_active = false
-		$Sprite.modulate = Color(1, 1, 1)  # Reset color after parry window ends
+		player_sprite.modulate = Color(1, 1, 1)  # Reset color after parry window ends
 
 	if Input.is_action_just_pressed("Counter") and not counter_active:
 		counter_active = true
-		$Sprite.modulate = Color(1, 1, 0)  # Visual indicator of counter
+		player_sprite.modulate = Color(1, 1, 0)  # Visual indicator of counter
 		await get_tree().create_timer(counter_window).timeout
 		counter_active = false
-		$Sprite.modulate = Color(1, 1, 1)  # Reset color after counter window ends
+		player_sprite.modulate = Color(1, 1, 1)  # Reset color after counter window ends
 
 
 ##### Attack-Detection Function #####
