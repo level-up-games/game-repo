@@ -7,11 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://ic2k7gouo7ms" path="res://placeholder stuff/Tilemap/tilemap.png" id="3_macc8"]
 [ext_resource type="PackedScene" uid="uid://7e70lbduvm22" path="res://0. Inventory/Scenes/inventory.tscn" id="3_tsb3i"]
 [ext_resource type="Texture2D" uid="uid://82c0o6xe0s87" path="res://placeholder stuff/Sprites/14-TileSets/Decorations (32x32).png" id="3_ul4yw"]
-[ext_resource type="PackedScene" uid="uid://blkhox6268x7f" path="res://scenes/platform.tscn" id="4_2y0b4"]
-[ext_resource type="PackedScene" uid="uid://bnfmjbelqtkn7" path="res://scenes/killzone.tscn" id="5_vlrut"]
+[ext_resource type="PackedScene" uid="uid://blkhox6268x7f" path="res://Scenes/platform.tscn" id="4_2y0b4"]
+[ext_resource type="PackedScene" uid="uid://bnfmjbelqtkn7" path="res://Scenes/killzone.tscn" id="5_vlrut"]
 [ext_resource type="Texture2D" uid="uid://brduuwtutrg5n" path="res://placeholder stuff/Tilemap/tilemap-backgrounds.png" id="6_h8pwa"]
-[ext_resource type="PackedScene" uid="uid://c5r1x6nflgr8b" path="res://scenes/enemy.tscn" id="8_nge0w"]
-[ext_resource type="PackedScene" uid="uid://dvhe3e4lmatkj" path="res://scenes/item-test.tscn" id="12_20vam"]
+[ext_resource type="PackedScene" uid="uid://c5r1x6nflgr8b" path="res://Scenes/enemy.tscn" id="8_nge0w"]
+[ext_resource type="PackedScene" uid="uid://dvhe3e4lmatkj" path="res://Scenes/item-test.tscn" id="12_20vam"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ajt8g"]
 texture = ExtResource("2_qaovq")
