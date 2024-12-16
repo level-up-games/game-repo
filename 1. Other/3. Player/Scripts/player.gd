@@ -18,8 +18,10 @@ var invinc_timer = 1
 @onready var player_hurtbox_collision = $Hurtbox/HurtboxCollision
 
 ##### Movement variables #####
+var bump_timer: float
 @export var speed = 650.0
-#var Bump
+@onready var bump_ray_left = $BumpRayLeft
+@onready var bump_ray_right = $BumpRayRight
 
 ##### Jump variables #####
 var jump_counter: int = 0
@@ -74,11 +76,14 @@ func _physics_process(delta):
 	countdown_jump_buffer(delta)
 	countdown_coyote(delta)
 	countdown_dash(delta)
+	countdown_bump(delta)
 
 	handle_attack(delta)
 	handle_parry_counter(delta)
 
 	invinc_timer -= delta
+
+
 
 ##### Jump functions #####
 func countdown_jump_buffer(delta): # Counts down the jump_buffer_countdown variable.
@@ -124,6 +129,7 @@ func handle_gravity(delta): # Controls gravities.
 		velocity.y += descend_gravity * delta
 
 
+
 ##### Dash functions #####
 func countdown_dash(delta): # Counts down the dash_countdown variable.
 	if Input.is_action_just_pressed("Dash") and is_dashing == false and dash_cooldown_countdown < 0:
@@ -143,6 +149,7 @@ func handle_dash(): # Responsible for the dash mechanic.
 	if is_dashing == true and dash_countdown < 0:
 		is_dashing = false
 		dash_cooldown_countdown = dash_cooldown
+
 
 
 ##### Movement functions #####
@@ -191,6 +198,17 @@ func handle_facing_direction() -> float: # Responsible for the direction the pla
 
 
 func handle_movement(delta): # Responsible for movement left and right.
+	if Input.is_action_just_pressed("Move_Left") or Input.is_action_just_pressed("Move_Right"):
+		bump_timer = 0.05
+	if get_movement_direction() < 0:
+		if velocity.x == 0 and bump_timer < 0 and is_on_floor():
+			if bump_ray_left.is_colliding() == false:
+				position.y -= 35
+	elif get_movement_direction() > 0:
+		if velocity.x == 0 and bump_timer < 0 and is_on_floor():
+			if bump_ray_right.is_colliding() == false:
+				position.y -= 35
+	
 	if not is_dashing:
 		if get_movement_direction() != 0:
 			velocity.x = sign(get_movement_direction()) * speed
@@ -198,9 +216,11 @@ func handle_movement(delta): # Responsible for movement left and right.
 		else: 
 			velocity.x = 0
 			$AnimationPlayer.play("Idle")
-		
-		#if get_movement_direction() != 0 and velocity.x == 0:
-			#if 
+
+
+func countdown_bump(delta):
+	if bump_timer > -1:
+		bump_timer -= delta
 
 
 

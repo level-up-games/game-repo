@@ -465,12 +465,14 @@ collision_mask = 256
 collide_with_areas = true
 
 [node name="BumpRayRight" type="RayCast2D" parent="."]
-position = Vector2(15, -18)
+position = Vector2(15, -35)
 rotation = -1.5708
+target_position = Vector2(0, 60)
 
 [node name="BumpRayLeft" type="RayCast2D" parent="."]
-position = Vector2(15, -18)
+position = Vector2(15, -35)
 rotation = 1.5708
+target_position = Vector2(0, 60)
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 128
