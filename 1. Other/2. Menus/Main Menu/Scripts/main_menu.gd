@@ -19,4 +19,4 @@ func _on_menu_music_finished():
 
 
 func _on_start_pressed():
-	get_tree().change_scene_to_file("res://Scenes/game.tscn")
+	get_tree().change_scene_to_file("res://2. Areas/1. Abandoned City/Scenes/abandoned_city_1.tscn")

@@ -13,11 +13,13 @@ const DASH_TIME = 0.2
 var invinc_timer = 1
 
 
-@export var speed = 650.0
-
 @onready var player_sprite = $Sprite
 @onready var player_world_collision = $WorldCollision
 @onready var player_hurtbox_collision = $Hurtbox/HurtboxCollision
+
+##### Movement variables #####
+@export var speed = 650.0
+#var Bump
 
 ##### Jump variables #####
 var jump_counter: int = 0
@@ -197,6 +199,9 @@ func handle_movement(delta): # Responsible for movement left and right.
 		else: 
 			velocity.x = 0
 			$AnimationPlayer.play("Idle")
+		
+		#if get_movement_direction() != 0 and velocity.x == 0:
+			#if 
 
 
 
