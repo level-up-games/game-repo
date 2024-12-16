@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://r802u2g0c73d"]
+[gd_scene load_steps=49 format=3 uid="uid://r802u2g0c73d"]
 
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/player.gd" id="1_e41gs"]
 [ext_resource type="Resource" uid="uid://btmuvbcapffjk" path="res://1. Other/1. Inventory/PlayerInventory.tres" id="2_jsln8"]
@@ -42,7 +42,6 @@
 [ext_resource type="Script" path="res://PlayerHurtbox.gd" id="40_idlto"]
 [ext_resource type="Texture2D" uid="uid://b0lsktbjhv4nn" path="res://1. Other/3. Player/Assets/Run Animation/frame0019.png" id="40_uq2ui"]
 [ext_resource type="PackedScene" uid="uid://d3ndp0r41pqda" path="res://3. Weapons/2. Sword/Test Sword/test_sword.tscn" id="41_cl2f0"]
-[ext_resource type="PackedScene" uid="uid://cd3s4245dg6f1" path="res://1. Other/1. Inventory/Assets/InventoryUI.tscn" id="43_0ffn6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2wi05"]
 animations = [{
@@ -482,5 +481,3 @@ script = ExtResource("40_idlto")
 
 [node name="HurtboxCollision" type="CollisionPolygon2D" parent="Hurtbox"]
 polygon = PackedVector2Array(4, 1, -10, 2, -11, -7, -9, -13, -10, -19, -21, -32, -22, -36, -21, -40, -18, -43, -17, -55, -12, -64, -24, -70, -26, -73, -22, -83, -19, -102, -26, -102, -28, -106, -18, -121, -14, -134, -4, -139, -4, -143, 2, -146, 3, -149, -2, -154, -5, -163, -1, -174, 12, -179, 34, -177, 37, -169, 35, -157, 32, -149, 34, -145, 35, -139, 41, -137, 49, -120, 54, -113, 54, -105, 47, -101, 50, -83, 53, -82, 55, -68, 47, -64, 37, -64, 40, -55, 41, -46, 44, -42, 43, -37, 41, -29, 41, -23, 36, -18, 38, -8, 46, -6, 50, -1, 48, 1, 22, 1, 24, -13, 25, -18, 11, -28, 4, -19)
-
-[node name="InventoryUI" parent="." instance=ExtResource("43_0ffn6")]
