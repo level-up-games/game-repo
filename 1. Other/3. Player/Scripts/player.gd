@@ -56,7 +56,8 @@ var attack_timer: float = 0
 var parry_active: bool = false
 var counter_active: bool = false
 
-
+##### Inventory Variables #####
+@export var inventory: Inventory
 
 func _physics_process(delta): 
 	##### Normal functions #####
