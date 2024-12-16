@@ -64,4 +64,4 @@ func _process(delta):
 		if info_opacity <= 0 and change_scene_once == true:
 			change_scene_once = false
 			await get_tree().create_timer(1.5).timeout
-			get_tree().change_scene_to_file("res://0. Menus/Main Menu/Scenes/main_menu.tscn")
+			get_tree().change_scene_to_file("res://1. Other/2. Menus/Main Menu/Scenes/main_menu.tscn")
