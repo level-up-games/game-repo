@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvl13fdtqpewt"]
+
+[ext_resource type="Texture2D" uid="uid://xgo8diw2x2jp" path="res://4. Items/Assets/gold-coin.png" id="1_1iya2"]
+[ext_resource type="Script" path="res://4. Items/Scripts/item.gd" id="1_ppnlq"]
+[ext_resource type="Resource" uid="uid://dd10myfk5u0p" path="res://4. Items/Assets/coin.tres" id="2_3oowa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ulr3d"]
+radius = 15.0
+
+[node name="Item" type="StaticBody2D"]
+script = ExtResource("1_ppnlq")
+item = ExtResource("2_3oowa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1iya2")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ulr3d")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

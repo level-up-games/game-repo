@@ -12,3 +12,5 @@ var player_movement_direction: float = 0.0
 func player_take_damage(damage):
 	player_health -= damage
 	print(player_health)
+
+# TODO: change inventory to global file

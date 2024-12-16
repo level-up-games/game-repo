@@ -61,6 +61,8 @@ var counter_active: bool = false
 ##### Inventory Variables #####
 @export var inventory: Inventory
 
+
+
 func _physics_process(delta): 
 	##### Normal functions #####
 	handle_jump()
@@ -279,3 +281,8 @@ func take_damage(damage):
 		invinc_timer = 1
 	else:
 		pass
+
+
+##### Collect Function #####
+func collect(item: InventoryItem) -> void:
+	inventory.insert(item)

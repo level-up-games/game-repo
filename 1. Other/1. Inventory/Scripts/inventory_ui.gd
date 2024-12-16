@@ -7,13 +7,14 @@ var is_open: bool = false
 
 
 func _ready() -> void:
+	inventory.update.connect(update_slots)
 	update_slots()
 	visible = false
 
 
 func update_slots() -> void:
-	for i in range(min(inventory.items.size(), slots.size())):
-		slots[i].update(inventory.items[i])
+	for i in range(min(inventory.slots.size(), slots.size())):
+		slots[i].update(inventory.slots[i])
 
 
 func _process(delta: float) -> void:

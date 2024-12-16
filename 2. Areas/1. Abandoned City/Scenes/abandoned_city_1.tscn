@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://cjwnd5fmbi3ir"]
+[gd_scene load_steps=12 format=4 uid="uid://cjwnd5fmbi3ir"]
 
 [ext_resource type="Texture2D" uid="uid://bb5o74ccm0g3j" path="res://Black Pixel.jpg" id="1_acocg"]
 [ext_resource type="PackedScene" uid="uid://r802u2g0c73d" path="res://1. Other/3. Player/Scenes/player.tscn" id="2_w5sf4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cd3s4245dg6f1" path="res://1. Other/1. Inventory/Scenes/InventoryUI.tscn" id="5_gpmfd"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/progress_bar.gd" id="6_3l82o"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/player_camera.gd" id="7_m1v1x"]
+[ext_resource type="PackedScene" uid="uid://bvl13fdtqpewt" path="res://4. Items/Scenes/item.tscn" id="8_h5w7s"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/camera_bottom.gd" id="9_kowsf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4d2j8"]
@@ -74,3 +75,9 @@ player = NodePath("../Player")
 [node name="Collision" type="CollisionPolygon2D" parent="CameraBottom"]
 visible = false
 polygon = PackedVector2Array(2606, -1644, 3887, -1646, 3888, -1680, 4169, -1681, 4172, -1716, 4330, -1716, 4330, -1749, 6213, -1747, 6212, -1717, 6718, -1719, 6718, -1689, 6967, -1690, 6962, -1658, 7006, -1658, 7008, -1624, 7213, -1623, 7213, -1589, 7252, -1587, 7250, -1555, 7352, -1551, 7352, -1523, 7498, -1525, 7496, -1493, 7539, -1493, 7537, -1460, 8022, -1460, 8022, -1434, 8059, -1432, 8058, -1405, 8296, -1400, 8293, -1330, 8729, -1330, 8729, -1304, 10522, -1304, 10522, -1227, 2573, -1237, 2512, -1234, 2514, -1713, 2567, -1714, 2568, -1680, 2605, -1679)
+
+[node name="Item" parent="." instance=ExtResource("8_h5w7s")]
+position = Vector2(2777, -1927)
+
+[node name="Item2" parent="." instance=ExtResource("8_h5w7s")]
+position = Vector2(4013, -1717)
