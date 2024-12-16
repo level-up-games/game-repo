@@ -1,6 +1,7 @@
-[gd_scene load_steps=48 format=3 uid="uid://r802u2g0c73d"]
+[gd_scene load_steps=49 format=3 uid="uid://r802u2g0c73d"]
 
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/player.gd" id="1_e41gs"]
+[ext_resource type="Resource" uid="uid://btmuvbcapffjk" path="res://1. Other/1. Inventory/PlayerInventory.tres" id="2_jsln8"]
 [ext_resource type="Texture2D" uid="uid://cy874165sbcc7" path="res://1. Other/3. Player/Assets/Idle Animation/frame0000.png" id="3_2n0p3"]
 [ext_resource type="Texture2D" uid="uid://bvgbi2a5dd5v5" path="res://1. Other/3. Player/Assets/Idle Animation/frame0001.png" id="4_uj3qn"]
 [ext_resource type="Texture2D" uid="uid://mlesr3b1ckw3" path="res://1. Other/3. Player/Assets/Idle Animation/frame0002.png" id="5_7mj3r"]
@@ -436,6 +437,7 @@ height = 180.0
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_e41gs")
+inventory = ExtResource("2_jsln8")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 z_index = 5

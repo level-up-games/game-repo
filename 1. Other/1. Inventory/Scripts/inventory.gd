@@ -1,20 +1,19 @@
-extends Control
+extends Resource
 
-func _ready():
-	hide_inventory()
+class_name Inventory
 
+signal update
 
-func populate_inventory() -> void:
-	for i in range(Global.inventory.size()):
-		var slot = $GridContainer.get_child(i)
-		var item = Global.inventory[i]
-		slot.text = "%s (x%d)" % [item.name, item.amount]
+@export var slots: Array[InventorySlot]
 
 
-func show_inventory() -> void:
-	visible = true
-	populate_inventory()
-
-
-func hide_inventory() -> void:
-	visible = false
+func insert(item: InventoryItem) -> void:
+	var itemslots = slots.filter(func(slot): return slot.item == item)
+	if !itemslots.is_empty():
+		itemslots[0].amount += 1
+	else:
+		var emptyslots = slots.filter(func(slot): return slot.item == null)
+		if !emptyslots.is_empty():
+			emptyslots[0].item = item
+			emptyslots[0].amount = 1
+	update.emit()

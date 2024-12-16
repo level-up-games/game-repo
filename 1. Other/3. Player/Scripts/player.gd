@@ -60,6 +60,9 @@ var attack_timer: float = 0
 var parry_active: bool = false
 var counter_active: bool = false
 
+##### Inventory Variables #####
+@export var inventory: Inventory
+
 
 
 func _physics_process(delta): 
@@ -298,3 +301,8 @@ func take_damage(damage):
 		invinc_timer = 1
 	else:
 		pass
+
+
+##### Collect Function #####
+func collect(item: InventoryItem) -> void:
+	inventory.insert(item)
