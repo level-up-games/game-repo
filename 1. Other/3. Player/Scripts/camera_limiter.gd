@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@export var camera: Camera2D #= get_node("/root/Abandoned City 1/Player/Player Camera")
+@export var camera: Camera2D
 
 @export var left_limit: float
 @export var right_limit: float
