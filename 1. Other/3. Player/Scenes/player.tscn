@@ -444,9 +444,7 @@ z_index = 5
 position = Vector2(-16, -108)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_2wi05")
-animation = &"Run"
-frame = 18
-frame_progress = 0.74888
+animation = &"Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -460,21 +458,33 @@ shape = SubResource("CapsuleShape2D_kbple")
 [node name="Test Sword" parent="." instance=ExtResource("41_cl2f0")]
 position = Vector2(3, 1)
 
-[node name="GroundRay" type="RayCast2D" parent="."]
+[node name="Rays" type="Node2D" parent="."]
+
+[node name="GroundRay" type="RayCast2D" parent="Rays"]
 position = Vector2(0, -30)
 target_position = Vector2(0, 5000)
 collision_mask = 256
 collide_with_areas = true
 
-[node name="BumpRayRight" type="RayCast2D" parent="."]
+[node name="BumpRayRight" type="RayCast2D" parent="Rays"]
 position = Vector2(15, -35)
 rotation = -1.5708
-target_position = Vector2(0, 60)
+target_position = Vector2(0, 55)
 
-[node name="BumpRayLeft" type="RayCast2D" parent="."]
+[node name="BumpRayRightLower" type="RayCast2D" parent="Rays"]
+position = Vector2(15, -16)
+rotation = -1.5708
+target_position = Vector2(0, 55)
+
+[node name="BumpRayLeft" type="RayCast2D" parent="Rays"]
 position = Vector2(15, -35)
 rotation = 1.5708
-target_position = Vector2(0, 60)
+target_position = Vector2(0, 55)
+
+[node name="BumpRayLeftLower" type="RayCast2D" parent="Rays"]
+position = Vector2(15, -16)
+rotation = 1.5708
+target_position = Vector2(0, 55)
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 128

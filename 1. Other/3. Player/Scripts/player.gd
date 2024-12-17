@@ -18,10 +18,15 @@ var invinc_timer = 1
 @onready var player_hurtbox_collision = $Hurtbox/HurtboxCollision
 
 ##### Movement variables #####
-var bump_timer: float
-@export var speed = 650.0
-@onready var bump_ray_left = $BumpRayLeft
-@onready var bump_ray_right = $BumpRayRight
+@export var acceleration_time: float = 0.09
+@export var decceleration_time: float = 0.05
+@export var max_speed: float = 650.0
+@onready var acceleration: float = max_speed / acceleration_time
+@onready var decceleration: float = max_speed / decceleration_time
+@onready var bump_ray_left = $Rays/BumpRayLeft
+@onready var bump_ray_right = $Rays/BumpRayRight
+@onready var bump_ray_left_lower = $Rays/BumpRayLeftLower
+@onready var bump_ray_right_lower = $Rays/BumpRayRightLower
 
 ##### Jump variables #####
 var jump_counter: int = 0
@@ -79,12 +84,13 @@ func _physics_process(delta):
 	countdown_jump_buffer(delta)
 	countdown_coyote(delta)
 	countdown_dash(delta)
-	countdown_bump(delta)
 
 	handle_attack(delta)
 	handle_parry_counter(delta)
 
 	invinc_timer -= delta
+	#print(get_movement_direction())
+	print(velocity.x)
 
 
 
@@ -146,8 +152,10 @@ func countdown_dash(delta): # Counts down the dash_countdown variable.
 func handle_dash(): # Responsible for the dash mechanic.
 	if is_dashing == true and get_movement_direction() != 0:
 		velocity.x = dash_velocity * sign(get_movement_direction())
+		$AnimationPlayer.play("Run")
 	elif is_dashing == true and get_movement_direction() == 0:
-		velocity.x = dash_velocity * sign(handle_facing_direction())
+		velocity.x = dash_velocity * -sign(handle_facing_direction())
+		$AnimationPlayer.play("Run")
 	
 	if is_dashing == true and dash_countdown < 0:
 		is_dashing = false
@@ -201,29 +209,42 @@ func handle_facing_direction() -> float: # Responsible for the direction the pla
 
 
 func handle_movement(delta): # Responsible for movement left and right.
-	if Input.is_action_just_pressed("Move_Left") or Input.is_action_just_pressed("Move_Right"):
-		bump_timer = 0.05
 	if get_movement_direction() < 0:
-		if velocity.x == 0 and bump_timer < 0 and is_on_floor():
-			if bump_ray_left.is_colliding() == false:
-				position.y -= 35
+		if (bump_ray_left.is_colliding() == false) and (bump_ray_left_lower.is_colliding() == true) and is_on_floor():
+			position.y -= 35
 	elif get_movement_direction() > 0:
-		if velocity.x == 0 and bump_timer < 0 and is_on_floor():
-			if bump_ray_right.is_colliding() == false:
-				position.y -= 35
+		if (bump_ray_right.is_colliding() == false) and (bump_ray_right_lower.is_colliding() == true) and is_on_floor():
+			position.y -= 35
 	
 	if not is_dashing:
-		if get_movement_direction() != 0:
-			velocity.x = sign(get_movement_direction()) * speed
+		if get_movement_direction() > 0:
 			$AnimationPlayer.play("Run")
-		else: 
-			velocity.x = 0
-			$AnimationPlayer.play("Idle")
+			if velocity.x < max_speed:
+				velocity.x += acceleration * delta
+				
+		if get_movement_direction() < 0:
+			$AnimationPlayer.play("Run")
+			if velocity.x > -max_speed:
+				velocity.x -= acceleration * delta
+				
+		if get_movement_direction() == 0:
+			if velocity.x > 0:
+				velocity.x -= decceleration * delta
+				if velocity.x < 0:
+					velocity.x = 0
+			elif velocity.x < 0:
+				velocity.x += decceleration * delta
+				if velocity.x > 0:
+					velocity.x = 0
+			else:
+				velocity.x = 0
+				$AnimationPlayer.play("Idle")
+				
+		elif -max_speed > velocity.x:
+			velocity.x = -max_speed
+		elif velocity.x > max_speed:
+			velocity.x = max_speed
 
-
-func countdown_bump(delta):
-	if bump_timer > -1:
-		bump_timer -= delta
 
 
 
@@ -294,11 +315,12 @@ func detect_attack():
 		can_attack = true
 
 
-##### Health/combat functions #####
+##### Health functions #####
 func take_damage(damage):
 	if invinc_timer <= 0:
 		Global.player_take_damage(damage)
 		invinc_timer = 1
+		
 	else:
 		pass
 

@@ -2,7 +2,7 @@ extends Area2D
 class_name CameraBottom
 
 
-@onready var player_ground_ray = get_node("../Player/GroundRay")
+@onready var player_ground_ray = get_node("../Player/Rays/GroundRay")
 
 @export var camera: Camera2D
 @export var player: CharacterBody2D

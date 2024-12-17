@@ -370,6 +370,7 @@ _data = {
 script = ExtResource("1_ya6ci")
 
 [node name="Player Reference" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-1, -109)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_8hnqk")
