@@ -34,9 +34,9 @@ var jump_buffer_countdown: float
 var coyote_countdown: float
 @export var coyote_time: float = 0.085
 @export var jump_buffer: float = 0.05
-@export var jump_height: float = 210
-@export var jump_peak_time: float = 0.35
-@export var jump_descend_time: float = 0.3
+@export var jump_height: float = 340 #210
+@export var jump_peak_time: float = 0.45 #0.35
+@export var jump_descend_time: float = 0.35 #0.3
 @export var max_fall_speed: float = 1500
 @export var max_jumps: int = 2
 @onready var jump_velocity: float = -2.0 * jump_height / jump_peak_time
@@ -89,9 +89,6 @@ func _physics_process(delta):
 	handle_parry_counter(delta)
 
 	invinc_timer -= delta
-	#print(get_movement_direction())
-	print(velocity.x)
-
 
 
 ##### Jump functions #####
@@ -288,7 +285,7 @@ func handle_attack(delta):
 func handle_parry_counter(delta):
 	if Input.is_action_just_pressed("Attack_1") and not parry_active:
 		parry_active = true
-		player_sprite.modulate = Color(0, 1, 1)  # Visual indicator of parry
+		#player_sprite.modulate = Color(0, 1, 1)  # Visual indicator of parry
 		await get_tree().create_timer(parry_window).timeout
 		parry_active = false
 		player_sprite.modulate = Color(1, 1, 1)  # Reset color after parry window ends

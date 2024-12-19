@@ -434,7 +434,7 @@ _data = {
 radius = 35.0
 height = 180.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 8
 script = ExtResource("1_e41gs")
 inventory = ExtResource("2_jsln8")
@@ -462,8 +462,26 @@ position = Vector2(3, 1)
 
 [node name="GroundRay" type="RayCast2D" parent="Rays"]
 position = Vector2(0, -30)
-target_position = Vector2(0, 5000)
+target_position = Vector2(0, 800)
 collision_mask = 256
+collide_with_areas = true
+
+[node name="CeilingRay" type="RayCast2D" parent="Rays"]
+position = Vector2(0, -160)
+target_position = Vector2(0, -800)
+collision_mask = 256
+collide_with_areas = true
+
+[node name="WallRayLeft" type="RayCast2D" parent="Rays"]
+position = Vector2(0, -90)
+rotation = 1.5708
+target_position = Vector2(0, 1000)
+collide_with_areas = true
+
+[node name="WallRayRight" type="RayCast2D" parent="Rays"]
+position = Vector2(0, -90)
+rotation = -1.5708
+target_position = Vector2(0, 1000)
 collide_with_areas = true
 
 [node name="BumpRayRight" type="RayCast2D" parent="Rays"]
