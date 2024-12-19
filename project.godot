@@ -167,6 +167,9 @@ Attack_4={
 2d_physics/layer_7="Player Hitboxes"
 2d_physics/layer_8="Player Hurtboxes"
 2d_physics/layer_9="Camera Bottom"
+2d_physics/layer_10="Camera Top"
+2d_physics/layer_11="Camera Left"
+2d_physics/layer_12="Camera Right"
 
 [physics]
 

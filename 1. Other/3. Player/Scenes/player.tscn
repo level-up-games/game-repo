@@ -469,19 +469,21 @@ collide_with_areas = true
 [node name="CeilingRay" type="RayCast2D" parent="Rays"]
 position = Vector2(0, -160)
 target_position = Vector2(0, -800)
-collision_mask = 256
+collision_mask = 512
 collide_with_areas = true
 
 [node name="WallRayLeft" type="RayCast2D" parent="Rays"]
 position = Vector2(0, -90)
 rotation = 1.5708
 target_position = Vector2(0, 1000)
+collision_mask = 1024
 collide_with_areas = true
 
 [node name="WallRayRight" type="RayCast2D" parent="Rays"]
 position = Vector2(0, -90)
 rotation = -1.5708
 target_position = Vector2(0, 1000)
+collision_mask = 2048
 collide_with_areas = true
 
 [node name="BumpRayRight" type="RayCast2D" parent="Rays"]
