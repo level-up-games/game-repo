@@ -18,6 +18,8 @@ var invinc_timer = 1
 @onready var player_hurtbox_collision = $Hurtbox/HurtboxCollision
 
 ##### Movement variables #####
+var suspend_movement: bool = false
+var suspend_movement_timer: float = 0.0
 @export var acceleration_time: float = 0.09
 @export var decceleration_time: float = 0.05
 @export var max_speed: float = 650.0
@@ -84,11 +86,13 @@ func _physics_process(delta):
 	countdown_jump_buffer(delta)
 	countdown_coyote(delta)
 	countdown_dash(delta)
+	handle_damage_timers(delta)
 
 	handle_attack(delta)
 	handle_parry_counter(delta)
 
-	invinc_timer -= delta
+	
+	
 
 
 ##### Jump functions #####
@@ -107,25 +111,26 @@ func countdown_coyote(delta): # Counts down the coyote_countdown variable.
 
 
 func handle_jump(): # Responsible for jump and double jump mechanics.
-	if is_on_floor():
-		jump_counter = 0
-		
-	if coyote_countdown > 0 and jump_buffer_countdown > 0:
-		velocity.y = jump_velocity
-		jump_buffer_countdown = 0
-	elif coyote_countdown < 0 and Input.is_action_just_pressed("Jump") and jump_counter < max_jumps - 1:
-		velocity.y = jump_velocity
-		jump_counter += 1
-		jump_buffer_countdown = 0
-		player_sprite.modulate = Color(0, 1, 0,) #Below 3 lines are to see when double jump occurs (as we dont have anim yet)
-		await get_tree().create_timer(0.3).timeout
-		player_sprite.modulate = Color(1, 1, 1)
-		
-	if not Input.is_action_pressed("Jump") and velocity.y < 0:
-		velocity.y = lerp(velocity.y, 0.0, 0.3)
-		
-	if Input.is_action_just_released("Jump"):
-		coyote_countdown = 0
+	if suspend_movement == false:
+		if is_on_floor():
+			jump_counter = 0
+			
+		if coyote_countdown > 0 and jump_buffer_countdown > 0:
+			velocity.y = jump_velocity
+			jump_buffer_countdown = 0
+		elif coyote_countdown < 0 and Input.is_action_just_pressed("Jump") and jump_counter < max_jumps - 1:
+			velocity.y = jump_velocity
+			jump_counter += 1
+			jump_buffer_countdown = 0
+			player_sprite.modulate = Color(0, 1, 0,) #Below 3 lines are to see when double jump occurs (as we dont have anim yet)
+			await get_tree().create_timer(0.3).timeout
+			player_sprite.modulate = Color(1, 1, 1)
+			
+		if not Input.is_action_pressed("Jump") and velocity.y < 0:
+			velocity.y = lerp(velocity.y, 0.0, 0.3)
+			
+		if Input.is_action_just_released("Jump"):
+			coyote_countdown = 0
 
 
 func handle_gravity(delta): # Controls gravities.
@@ -213,34 +218,37 @@ func handle_movement(delta): # Responsible for movement left and right.
 		if (bump_ray_right.is_colliding() == false) and (bump_ray_right_lower.is_colliding() == true) and is_on_floor():
 			position.y -= 35
 	
-	if not is_dashing:
-		if get_movement_direction() > 0:
-			$AnimationPlayer.play("Run")
-			if velocity.x < max_speed:
-				velocity.x += acceleration * delta
-				
-		if get_movement_direction() < 0:
-			$AnimationPlayer.play("Run")
-			if velocity.x > -max_speed:
-				velocity.x -= acceleration * delta
-				
-		if get_movement_direction() == 0:
-			if velocity.x > 0:
-				velocity.x -= decceleration * delta
-				if velocity.x < 0:
-					velocity.x = 0
-			elif velocity.x < 0:
-				velocity.x += decceleration * delta
+	if suspend_movement == false:
+		if not is_dashing:
+			if get_movement_direction() > 0:
+				$AnimationPlayer.play("Run")
+				if velocity.x < max_speed:
+					velocity.x += acceleration * delta
+					
+			if get_movement_direction() < 0:
+				$AnimationPlayer.play("Run")
+				if velocity.x > -max_speed:
+					velocity.x -= acceleration * delta
+					
+			if get_movement_direction() == 0:
 				if velocity.x > 0:
+					velocity.x -= decceleration * delta
+					if velocity.x < 0:
+						velocity.x = 0
+				elif velocity.x < 0:
+					velocity.x += decceleration * delta
+					if velocity.x > 0:
+						velocity.x = 0
+				else:
 					velocity.x = 0
-			else:
-				velocity.x = 0
-				$AnimationPlayer.play("Idle")
-				
-		elif -max_speed > velocity.x:
-			velocity.x = -max_speed
-		elif velocity.x > max_speed:
-			velocity.x = max_speed
+					$AnimationPlayer.play("Idle")
+					
+			elif -max_speed > velocity.x:
+				velocity.x = -max_speed
+			elif velocity.x > max_speed:
+				velocity.x = max_speed
+	else:
+		pass
 
 
 
@@ -313,13 +321,31 @@ func detect_attack():
 
 
 ##### Health functions #####
-func take_damage(damage):
+func take_damage(damage, hitbox_position, knockback_speed):
 	if invinc_timer <= 0:
 		Global.player_take_damage(damage)
-		invinc_timer = 1
+		invinc_timer = 0.5
+		suspend_movement_timer = 0.1
+		suspend_movement = true
 		
+		var knockback_direction: Vector2 = (global_position - Vector2(0, 90)) - hitbox_position
+		velocity = Vector2(0, 0)
+		velocity = knockback_direction.normalized() * knockback_speed
+		
+		for i in range(3):
+			player_sprite.modulate = Color(0.8, 0.8, 0.8, 0.5)
+			await get_tree().create_timer(0.083334).timeout
+			player_sprite.modulate = Color(1, 1, 1, 1)
+			await get_tree().create_timer(0.083334).timeout
 	else:
 		pass
+
+
+func handle_damage_timers(delta):
+	invinc_timer -= delta
+	suspend_movement_timer -= delta
+	if suspend_movement_timer <= 0:
+			suspend_movement = false
 
 
 ##### Collect Function #####

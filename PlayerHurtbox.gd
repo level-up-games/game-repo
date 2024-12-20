@@ -17,4 +17,4 @@ func _on_area_entered(hitbox: HostileHitbox):
 		return
 	
 	if owner.has_method("take_damage"):
-		owner.take_damage(hitbox.damage_dealt)
+		owner.take_damage(hitbox.damage_dealt, hitbox.hitbox_position, hitbox.knockback_speed)

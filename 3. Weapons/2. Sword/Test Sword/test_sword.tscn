@@ -384,6 +384,7 @@ offset = Vector2(0, 117.34)
 
 [node name="Hitbox" type="Area2D" parent="Sprite"]
 script = ExtResource("3_e0vqf")
+knockback_speed = 300.0
 damage_dealt = 5
 
 [node name="Collision" type="CollisionShape2D" parent="Sprite/Hitbox"]
