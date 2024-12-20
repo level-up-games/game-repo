@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cjwnd5fmbi3ir"]
+[gd_scene load_steps=16 format=4 uid="uid://cjwnd5fmbi3ir"]
 
 [ext_resource type="Texture2D" uid="uid://bb5o74ccm0g3j" path="res://Black Pixel.jpg" id="1_acocg"]
 [ext_resource type="PackedScene" uid="uid://r802u2g0c73d" path="res://1. Other/3. Player/Scenes/player.tscn" id="2_w5sf4"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dsj0a7gm164a8" path="res://1. Other/3. Player/Scenes/camera_limiter.tscn" id="9_covws"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/camera_right.gd" id="9_j65h0"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/camera_bottom.gd" id="9_kowsf"]
+[ext_resource type="PackedScene" uid="uid://cyu8s2y7qoiru" path="res://2. Areas/1. Abandoned City/Scenes/test_crawler.tscn" id="12_ebbjf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0bcbp"]
 texture = ExtResource("1_acocg")
@@ -36,7 +37,7 @@ tile_set = SubResource("TileSet_m8fq3")
 script = ExtResource("3_8xnue")
 
 [node name="Player" parent="." instance=ExtResource("2_w5sf4")]
-position = Vector2(3139, -1635)
+position = Vector2(9627, -1635)
 
 [node name="User Interface" type="CanvasLayer" parent="Player"]
 offset = Vector2(-250, 65)
@@ -91,7 +92,6 @@ polygon = PackedVector2Array(21216, 150, 24384, 147, 24383, 172, 21210, 177)
 polygon = PackedVector2Array(6906, 853, 8587, 854, 8586, 883, 8816, 883, 8814, 916, 8941, 918, 8940, 946, 9456, 949, 9457, 978, 9873, 980, 9873, 1042, 11945, 1042, 11946, 1076, 16899, 1080, 16899, 1103, 6906, 1120)
 
 [node name="CameraLeft" type="Area2D" parent="." node_paths=PackedStringArray("camera", "player")]
-visible = false
 script = ExtResource("8_wo47i")
 camera = NodePath("../Player/Player Camera")
 player = NodePath("../Player")
@@ -104,7 +104,6 @@ position = Vector2(1071, 0)
 polygon = PackedVector2Array(11576, -1085, 11576, 3, 11538, 3, 11544, -1090)
 
 [node name="CameraRight" type="Area2D" parent="." node_paths=PackedStringArray("camera", "player")]
-visible = false
 script = ExtResource("9_j65h0")
 camera = NodePath("../Player/Player Camera")
 player = NodePath("../Player")
@@ -126,6 +125,17 @@ left_limit = -5000.0
 right_limit = 50000.0
 top_limit = -5000.0
 bottom_limit = 1000.0
+change_left = true
+change_right = true
+change_top = true
+change_bottom = true
+
+[node name="Camera Limiter 2" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("9_covws")]
+position = Vector2(14848, 676)
+scale = Vector2(1, 4.075)
+camera = NodePath("../Player/Player Camera")
+left_limit = -5000.0
+change_left = true
 
 [node name="Item" parent="." instance=ExtResource("8_h5w7s")]
 position = Vector2(2777, -1927)
@@ -138,3 +148,12 @@ position = Vector2(11124, -104)
 
 [node name="Item4" parent="." instance=ExtResource("8_h5w7s")]
 position = Vector2(12731, -62)
+
+[node name="Test Crawler" parent="." instance=ExtResource("12_ebbjf")]
+position = Vector2(13920, 151)
+
+[node name="Test Crawler2" parent="." instance=ExtResource("12_ebbjf")]
+position = Vector2(10231, 1015)
+
+[node name="Test Crawler3" parent="." instance=ExtResource("12_ebbjf")]
+position = Vector2(7511, 824)

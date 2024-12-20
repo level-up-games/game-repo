@@ -15,8 +15,3 @@ func handle_camera_bias():
 		position.x = 35
 	elif Global.player_movement_direction < 0:
 		position.x = -35
-	else:
-		if Global.player_facing_direction == -1:
-			position.x = 35
-		else:
-			position.x = -35
