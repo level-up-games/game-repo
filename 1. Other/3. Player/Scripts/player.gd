@@ -223,7 +223,8 @@ func handle_jump(): # Responsible for jump and double jump mechanics.
 		if coyote_countdown > 0 and jump_buffer_countdown > 0:
 			velocity.y = jump_velocity
 			jump_buffer_countdown = 0
-		elif coyote_countdown < 0 and Input.is_action_just_pressed("Jump") and jump_counter < max_jumps - 1:
+			jump_counter += 1
+		elif coyote_countdown < 0 and Input.is_action_just_pressed("Jump") and jump_counter < max_jumps:
 			velocity.y = jump_velocity
 			jump_counter += 1
 			jump_buffer_countdown = 0

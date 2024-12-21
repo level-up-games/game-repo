@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cxhqqkxyi2hqk"
+path="res://.godot/imported/Step2.wav-9f8b02ae10b21b8e670eaf14063574c7.sample"
+
+[deps]
+
+source_file="res://1. Other/3. Player/Assets/SFX/Step2.wav"
+dest_files=["res://.godot/imported/Step2.wav-9f8b02ae10b21b8e670eaf14063574c7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -109,7 +109,7 @@ polygon = PackedVector2Array(6318, -1126, 6323, 868, 6275, 868, 6273, -1130)
 
 [node name="Collision2" type="CollisionPolygon2D" parent="CameraLeft"]
 position = Vector2(1071, 0)
-polygon = PackedVector2Array(11576, -1085, 11575, 219, 11546, 218, 11544, -1090)
+polygon = PackedVector2Array(11576, -1085, 11576, 3, 11538, 3, 11544, -1090)
 
 [node name="CameraRight" type="Area2D" parent="." node_paths=PackedStringArray("camera", "player")]
 visible = false

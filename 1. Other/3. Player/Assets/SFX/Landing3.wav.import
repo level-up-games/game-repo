@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c8bafmltihbbf"
+path="res://.godot/imported/Landing3.wav-812d243ba934e04c8d7ae3e7d91837a2.sample"
+
+[deps]
+
+source_file="res://1. Other/3. Player/Assets/SFX/Landing3.wav"
+dest_files=["res://.godot/imported/Landing3.wav-812d243ba934e04c8d7ae3e7d91837a2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
