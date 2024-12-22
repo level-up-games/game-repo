@@ -691,11 +691,12 @@ libraries = {
 
 [node name="RunningSounds" type="AudioStreamPlayer2D" parent="AudioPlayers"]
 stream = SubResource("AudioStream_c0akd")
+volume_db = 10.0
 script = ExtResource("43_6ddxp")
 footstep_sounds = Array[AudioStream]([ExtResource("44_uxqxd"), ExtResource("46_tlosv")])
 
 [node name="LandingSounds" type="AudioStreamPlayer2D" parent="AudioPlayers"]
 stream = SubResource("AudioStream_c0akd")
-volume_db = 3.0
+volume_db = 10.0
 script = ExtResource("46_8etsk")
 landing_sounds = Array[AudioStream]([ExtResource("46_snufl"), ExtResource("47_ftw4n"), ExtResource("48_nmcet")])

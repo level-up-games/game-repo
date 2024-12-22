@@ -32,6 +32,7 @@ func _physics_process(delta):
 	handle_damage_timers(delta)
 	handle_direction()
 
+
 func handle_direction():
 	if GroundRay.is_colliding() == false:
 		GroundRay.position.x = -GroundRay.position.x

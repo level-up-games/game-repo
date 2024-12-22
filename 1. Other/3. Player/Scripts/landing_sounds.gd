@@ -23,7 +23,7 @@ func _process(delta):
 
 func handle_landing():
 	if was_on_floor == false and player.is_on_floor() == true and previous_jump_velocity > 1000:
-		volume_db = 3
+		volume_db = 10
 		stream = landing_sounds[randi() % len(landing_sounds)]
 		play()
 	was_on_floor = player.is_on_floor()

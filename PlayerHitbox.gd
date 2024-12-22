@@ -7,6 +7,7 @@ class_name PlayerHitbox
 var hitbox_position: Vector2
 
 
+
 func _init():
 	collision_layer = 64
 	collision_mask = 0
