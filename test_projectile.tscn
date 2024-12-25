@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpink31toh6uh"]
+
+[ext_resource type="Script" path="res://HostileHitbox.gd" id="1_jptfm"]
+[ext_resource type="Script" path="res://test_projectile.gd" id="1_l28wr"]
+
+[sub_resource type="Gradient" id="Gradient_bjauu"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s2v6k"]
+gradient = SubResource("Gradient_bjauu")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2pls"]
+size = Vector2(65, 21)
+
+[node name="Test Projectile" type="CharacterBody2D"]
+script = ExtResource("1_l28wr")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -0.5)
+scale = Vector2(1, 0.328125)
+texture = SubResource("GradientTexture2D_s2v6k")
+
+[node name="HostileHitbox" type="Area2D" parent="."]
+script = ExtResource("1_jptfm")
+can_be_parried = true
+
+[node name="Collision" type="CollisionShape2D" parent="HostileHitbox"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_y2pls")

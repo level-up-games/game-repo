@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bium2x1v0e8f"]
+
+[ext_resource type="Script" path="res://test_projectiler.gd" id="1_toavc"]
+
+[sub_resource type="Gradient" id="Gradient_4q6ig"]
+colors = PackedColorArray(0.550696, 0.0764247, 0.604194, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dg73v"]
+gradient = SubResource("Gradient_4q6ig")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21pen"]
+size = Vector2(65, 66)
+
+[node name="Test Projectiler" type="StaticBody2D"]
+script = ExtResource("1_toavc")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_dg73v")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_21pen")

@@ -250,7 +250,7 @@ func handle_gravity(delta): # Controls gravities.
 ##### Health functions #####
 func take_damage(damage, hitbox_position, knockback_speed):
 	if invinc_timer <= 0:
-		if is_countering == false:
+		if is_countering == false and damage != 0:
 			Global.player_take_damage(damage)
 			invinc_timer = 0.5
 			suspend_movement_timer = 0.1
