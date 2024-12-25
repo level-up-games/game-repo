@@ -1,17 +1,20 @@
-[gd_scene load_steps=15 format=4 uid="uid://cjwnd5fmbi3ir"]
+[gd_scene load_steps=18 format=4 uid="uid://cjwnd5fmbi3ir"]
 
-[ext_resource type="TileSet" uid="uid://bduu33qijulsf" path="res://2. Areas/world_tileset.tres" id="1_64n2v"]
+[ext_resource type="TileSet" uid="uid://r4hvwuq4btws" path="res://2. Areas/world_tileset.tres" id="1_64n2v"]
 [ext_resource type="PackedScene" uid="uid://r802u2g0c73d" path="res://1. Other/3. Player/Scenes/player.tscn" id="2_w5sf4"]
 [ext_resource type="Script" path="res://2. Areas/1. Abandoned City/Scripts/world_collision_breakables.gd" id="3_8s68i"]
 [ext_resource type="Script" path="res://2. Areas/world_hurtbox.gd" id="4_lufo7"]
+[ext_resource type="Script" path="res://2. Areas/1. Abandoned City/Scripts/user_interface.gd" id="5_ocrpi"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/progress_bar.gd" id="6_3l82o"]
+[ext_resource type="PackedScene" uid="uid://by31ctaq45chn" path="res://1. Other/1. Inventory/Scenes/Hotbar.tscn" id="6_kbn6r"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/player_camera.gd" id="7_m1v1x"]
+[ext_resource type="PackedScene" uid="uid://bjthtkra8x2fr" path="res://1. Other/1. Inventory/Scenes/Inventory.tscn" id="7_remg3"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/camera_left.gd" id="8_wo47i"]
 [ext_resource type="PackedScene" uid="uid://dsj0a7gm164a8" path="res://1. Other/3. Player/Scenes/camera_limiter.tscn" id="9_covws"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/camera_right.gd" id="9_j65h0"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/camera_bottom.gd" id="9_kowsf"]
 [ext_resource type="PackedScene" uid="uid://cyu8s2y7qoiru" path="res://2. Areas/1. Abandoned City/Scenes/test_crawler.tscn" id="12_ebbjf"]
-[ext_resource type="PackedScene" uid="uid://bium2x1v0e8f" path="res://test_projectiler.tscn" id="14_akqu5"]
+[ext_resource type="PackedScene" path="res://test_projectiler.tscn" id="14_akqu5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h650h"]
 size = Vector2(262.5, 224.5)
@@ -46,15 +49,23 @@ position = Vector2(3213, -1730)
 [node name="User Interface" type="CanvasLayer" parent="Player"]
 offset = Vector2(-250, 65)
 transform = Transform2D(1, 0, 0, 1, -250, 65)
+script = ExtResource("5_ocrpi")
 
 [node name="Healthbar" type="ProgressBar" parent="Player/User Interface"]
 offset_left = 275.0
 offset_top = -41.0
-offset_right = 561.0
+offset_right = 750.0
 offset_bottom = -14.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_ty1ux")
 value = 100.0
 script = ExtResource("6_3l82o")
+
+[node name="Hotbar" parent="Player/User Interface" instance=ExtResource("6_kbn6r")]
+position = Vector2(275, -3)
+
+[node name="Inventory" parent="Player/User Interface" instance=ExtResource("7_remg3")]
+visible = false
+position = Vector2(275, 87)
 
 [node name="Player Camera" type="Camera2D" parent="Player"]
 position = Vector2(0, -190)
@@ -151,3 +162,5 @@ position = Vector2(7511, 824)
 
 [node name="Test Projectiler" parent="Enemies" instance=ExtResource("14_akqu5")]
 position = Vector2(9549, 916)
+
+[node name="Items" type="Node2D" parent="."]

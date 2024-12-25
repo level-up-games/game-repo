@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://xrtxbamoacug"]
+
+[ext_resource type="Texture2D" uid="uid://bodkkg43oqvko" path="res://4. Items/Assets/gold-coin.png" id="1_1yn1v"]
+[ext_resource type="Script" path="res://4. Items/Scripts/item_drop.gd" id="1_8ptq6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lu7ue"]
+radius = 17.0294
+
+[sub_resource type="Animation" id="Animation_dca8j"]
+resource_name = "Float"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.25, 1.25)]
+}
+
+[sub_resource type="Animation" id="Animation_ala4g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xd31b"]
+_data = {
+"Float": SubResource("Animation_dca8j"),
+"RESET": SubResource("Animation_ala4g")
+}
+
+[node name="ItemDrop" type="CharacterBody2D"]
+z_index = 1000
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_8ptq6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.76837e-07, 2.38419e-07)
+texture = ExtResource("1_1yn1v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lu7ue")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xd31b")
+}
+autoplay = "Float"

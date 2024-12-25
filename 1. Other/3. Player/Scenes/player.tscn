@@ -1,7 +1,6 @@
-[gd_scene load_steps=57 format=3 uid="uid://r802u2g0c73d"]
+[gd_scene load_steps=58 format=3 uid="uid://r802u2g0c73d"]
 
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/player.gd" id="1_e41gs"]
-[ext_resource type="Resource" uid="uid://btmuvbcapffjk" path="res://1. Other/1. Inventory/PlayerInventory.tres" id="2_jsln8"]
 [ext_resource type="Texture2D" uid="uid://cy874165sbcc7" path="res://1. Other/3. Player/Assets/Idle Animation/frame0000.png" id="3_2n0p3"]
 [ext_resource type="Texture2D" uid="uid://bvgbi2a5dd5v5" path="res://1. Other/3. Player/Assets/Idle Animation/frame0001.png" id="4_uj3qn"]
 [ext_resource type="Texture2D" uid="uid://mlesr3b1ckw3" path="res://1. Other/3. Player/Assets/Idle Animation/frame0002.png" id="5_7mj3r"]
@@ -49,6 +48,7 @@
 [ext_resource type="AudioStream" uid="uid://cxhqqkxyi2hqk" path="res://1. Other/3. Player/Assets/SFX/Step2.wav" id="46_tlosv"]
 [ext_resource type="AudioStream" uid="uid://bv2rlqhn8ryli" path="res://1. Other/3. Player/Assets/SFX/Landing2.wav" id="47_ftw4n"]
 [ext_resource type="AudioStream" uid="uid://c8bafmltihbbf" path="res://1. Other/3. Player/Assets/SFX/Landing3.wav" id="48_nmcet"]
+[ext_resource type="Script" path="res://1. Other/3. Player/Scripts/pickup_zone.gd" id="49_yuxgk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2wi05"]
 animations = [{
@@ -586,10 +586,12 @@ _data = {
 
 [sub_resource type="AudioStream" id="AudioStream_c0akd"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2benh"]
+size = Vector2(174, 215)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 8
 script = ExtResource("1_e41gs")
-inventory = ExtResource("2_jsln8")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 modulate = Color(0.529067, 0.529067, 0.529067, 1)
@@ -700,3 +702,15 @@ stream = SubResource("AudioStream_c0akd")
 volume_db = 10.0
 script = ExtResource("46_8etsk")
 landing_sounds = Array[AudioStream]([ExtResource("46_snufl"), ExtResource("47_ftw4n"), ExtResource("48_nmcet")])
+
+[node name="PickupZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("49_yuxgk")
+
+[node name="PickupZoneCollision" type="CollisionShape2D" parent="PickupZone"]
+position = Vector2(13, -97.5)
+shape = SubResource("RectangleShape2D_2benh")
+
+[connection signal="body_entered" from="PickupZone" to="PickupZone" method="_on_body_entered"]
+[connection signal="body_exited" from="PickupZone" to="PickupZone" method="_on_body_exited"]

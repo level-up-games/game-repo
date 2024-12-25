@@ -64,11 +64,6 @@ var counter_active_timer: float = 0.0
 @export var counter_duration: float = 0.05 # THIS MAY CHANGE DUE TO DIFFICULT BOSS ATTACK REACTION TIMES
 
 
-##### Inventory Variables #####
-@export var inventory: Inventory
-
-
-
 func _physics_process(delta): 
 	##### Normal functions #####
 	handle_jump()
@@ -86,6 +81,7 @@ func _physics_process(delta):
 	countdown_dash(delta)
 	handle_damage_timers(delta)
 	handle_counter_cooldowns(delta)
+	pickup()
 
 
 
@@ -338,7 +334,10 @@ func handle_counter():
 		is_countering = false
 
 
-
-##### Collect Function #####
-func collect(item: InventoryItem) -> void:
-	inventory.insert(item)
+##### Items/Inventory functions #####
+func pickup() -> void:
+	if Input.is_action_pressed("Interact"):
+		if $PickupZone.items_in_range.size() > 0:
+			var pickup_item = $PickupZone.items_in_range.values()[0]
+			pickup_item.pick_up_item(self)
+			$PickupZone.items_in_range.erase(pickup_item)
