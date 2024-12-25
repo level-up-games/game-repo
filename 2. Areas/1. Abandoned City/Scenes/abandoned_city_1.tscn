@@ -1,13 +1,11 @@
-[gd_scene load_steps=17 format=4 uid="uid://cjwnd5fmbi3ir"]
+[gd_scene load_steps=15 format=4 uid="uid://cjwnd5fmbi3ir"]
 
 [ext_resource type="TileSet" uid="uid://bduu33qijulsf" path="res://2. Areas/world_tileset.tres" id="1_64n2v"]
 [ext_resource type="PackedScene" uid="uid://r802u2g0c73d" path="res://1. Other/3. Player/Scenes/player.tscn" id="2_w5sf4"]
 [ext_resource type="Script" path="res://2. Areas/1. Abandoned City/Scripts/world_collision_breakables.gd" id="3_8s68i"]
 [ext_resource type="Script" path="res://2. Areas/world_hurtbox.gd" id="4_lufo7"]
-[ext_resource type="PackedScene" uid="uid://cd3s4245dg6f1" path="res://1. Other/1. Inventory/Scenes/InventoryUI.tscn" id="5_gpmfd"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/progress_bar.gd" id="6_3l82o"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/player_camera.gd" id="7_m1v1x"]
-[ext_resource type="PackedScene" uid="uid://bvl13fdtqpewt" path="res://4. Items/Scenes/item.tscn" id="8_h5w7s"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/camera_left.gd" id="8_wo47i"]
 [ext_resource type="PackedScene" uid="uid://dsj0a7gm164a8" path="res://1. Other/3. Player/Scenes/camera_limiter.tscn" id="9_covws"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/camera_right.gd" id="9_j65h0"]
@@ -57,12 +55,6 @@ offset_bottom = -14.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_ty1ux")
 value = 100.0
 script = ExtResource("6_3l82o")
-
-[node name="InventoryUI" parent="Player/User Interface" instance=ExtResource("5_gpmfd")]
-offset_left = 275.0
-offset_top = -5.0
-offset_right = 562.0
-offset_bottom = 227.0
 
 [node name="Player Camera" type="Camera2D" parent="Player"]
 position = Vector2(0, -190)
@@ -145,18 +137,6 @@ scale = Vector2(1, 4.075)
 camera = NodePath("../Player/Player Camera")
 left_limit = -5000.0
 change_left = true
-
-[node name="Item" parent="." instance=ExtResource("8_h5w7s")]
-position = Vector2(2777, -1927)
-
-[node name="Item2" parent="." instance=ExtResource("8_h5w7s")]
-position = Vector2(4013, -1717)
-
-[node name="Item3" parent="." instance=ExtResource("8_h5w7s")]
-position = Vector2(11124, -104)
-
-[node name="Item4" parent="." instance=ExtResource("8_h5w7s")]
-position = Vector2(12731, -62)
 
 [node name="Enemies" type="Node2D" parent="."]
 

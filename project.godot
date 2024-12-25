@@ -33,9 +33,6 @@ version_control/autoload_on_startup=true
 [file_customization]
 
 folder_colors={
-"res://1. Other/1. Inventory/Assets/": "red",
-"res://1. Other/1. Inventory/Scenes/": "green",
-"res://1. Other/1. Inventory/Scripts/": "yellow",
 "res://1. Other/2. Menus/Intoduction Sequence/Assets/": "red",
 "res://1. Other/2. Menus/Intoduction Sequence/Scenes/": "green",
 "res://1. Other/2. Menus/Intoduction Sequence/Scripts/": "yellow",
@@ -48,9 +45,6 @@ folder_colors={
 "res://2. Areas/1. Abandoned City/Assets/": "red",
 "res://2. Areas/1. Abandoned City/Scenes/": "green",
 "res://2. Areas/1. Abandoned City/Scripts/": "yellow",
-"res://4. Items/Assets/": "red",
-"res://4. Items/Scenes/": "green",
-"res://4. Items/Scripts/": "yellow",
 "res://Copy and Paste/Assets/": "red",
 "res://Copy and Paste/Scenes/": "green",
 "res://Copy and Paste/Scripts/": "yellow",
