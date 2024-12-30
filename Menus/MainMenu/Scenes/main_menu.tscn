@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://ubi57j0kkq07"]
+
+[ext_resource type="Script" path="res://Menus/MainMenu/Scripts/main_menu.gd" id="1_5s0r7"]
+[ext_resource type="Texture2D" uid="uid://c84al2tqtll81" path="res://Menus/MainMenu/Assets/Echoes of Bliss Logo.png" id="1_v6w3d"]
+[ext_resource type="AudioStream" uid="uid://dqup10ouabkbs" path="res://Menus/MainMenu/Assets/Menu Music.wav" id="2_g5wm8"]
+[ext_resource type="Script" path="res://Menus/MainMenu/Scripts/fade_screen.gd" id="4_h7bav"]
+[ext_resource type="Texture2D" uid="uid://d3yg2s6k5j6wx" path="res://Menus/MainMenu/Assets/Studio LEVEL UP.png" id="5_xtv71"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_5s0r7")
+
+[node name="BackgroundColour" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.498032, 0.502697, 0.501545, 1)
+
+[node name="GameLogo" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(915, 224)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("1_v6w3d")
+
+[node name="FadeScreen" type="ColorRect" parent="."]
+z_index = 5
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("4_h7bav")
+
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_g5wm8")
+autoplay = true
+
+[node name="MenuButtons" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 770.0
+offset_top = 467.0
+offset_right = 1150.0
+offset_bottom = 942.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="Start" type="Button" parent="MenuButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Start"
+
+[node name="Options" type="Button" parent="MenuButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Options"
+
+[node name="Achievements" type="Button" parent="MenuButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Achievements"
+
+[node name="Credits" type="Button" parent="MenuButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Credits"
+
+[node name="Quit" type="Button" parent="MenuButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Quit"
+
+[node name="VersionNumber" type="Label" parent="."]
+offset_left = 50.0
+offset_top = 1005.0
+offset_right = 150.0
+offset_bottom = 1030.0
+text = "Version: dev"
+
+[node name="StudioLogo" type="Sprite2D" parent="."]
+position = Vector2(1781, 1005)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("5_xtv71")
+
+[connection signal="finished" from="MenuMusic" to="." method="_on_menu_music_finished"]
+[connection signal="pressed" from="MenuButtons/Start" to="." method="_on_start_pressed"]

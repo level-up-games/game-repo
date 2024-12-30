@@ -1,0 +1,100 @@
+[gd_scene load_steps=18 format=3 uid="uid://2xp07ty0gwhv"]
+
+[ext_resource type="Script" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Scripts/mutated_bat.gd" id="1_3v0kn"]
+[ext_resource type="Texture2D" uid="uid://b4wqttvojhe1t" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0000.png" id="2_x14k6"]
+[ext_resource type="Texture2D" uid="uid://c2iat0o6bpm81" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0001.png" id="3_flyxh"]
+[ext_resource type="Texture2D" uid="uid://cyr3onktspdr3" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0002.png" id="4_c2y5j"]
+[ext_resource type="Texture2D" uid="uid://bhk17yhqc6mmu" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0003.png" id="5_whnet"]
+[ext_resource type="Texture2D" uid="uid://bq2mnho7hnu2s" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0004.png" id="6_35adr"]
+[ext_resource type="Texture2D" uid="uid://bb0c7dqqnqu3g" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0005.png" id="7_g4df0"]
+[ext_resource type="Texture2D" uid="uid://2g6iwdoc4rib" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0006.png" id="8_bc8tm"]
+[ext_resource type="Texture2D" uid="uid://da224ncipcwuh" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0007.png" id="9_uc8ya"]
+[ext_resource type="Texture2D" uid="uid://70qbyh4r5jwg" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0008.png" id="10_wu0u0"]
+[ext_resource type="Script" path="res://Enemies/HostileHurtbox.gd" id="11_wkg8d"]
+[ext_resource type="Script" path="res://Enemies/HostileHitbox.gd" id="12_tar4e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_utw0e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_x14k6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_flyxh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_c2y5j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_whnet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_35adr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_g4df0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bc8tm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uc8ya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_wu0u0")
+}],
+"loop": true,
+"name": &"Patrol",
+"speed": 24.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dhqhw"]
+radius = 77.026
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wb0gx"]
+radius = 37.7668
+height = 142.546
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dcwfu"]
+radius = 24.8235
+height = 123.539
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kpflk"]
+height = 37.6773
+
+[node name="MutatedBat" type="CharacterBody2D"]
+collision_layer = 16
+script = ExtResource("1_3v0kn")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_utw0e")
+animation = &"Patrol"
+frame_progress = 0.00500858
+
+[node name="WorldCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dhqhw")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("11_wkg8d")
+
+[node name="Collision" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(1, 6)
+rotation = -0.959931
+shape = SubResource("CapsuleShape2D_wb0gx")
+debug_color = Color(0.29672, 0.628836, 5.77569e-07, 0.42)
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("12_tar4e")
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 6)
+rotation = -0.959931
+shape = SubResource("CapsuleShape2D_dcwfu")
+debug_color = Color(0.973459, 0, 0.433837, 0.42)
+
+[node name="CollisionTalons" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(2, 62)
+rotation = -0.959931
+shape = SubResource("CapsuleShape2D_kpflk")
+debug_color = Color(0.999475, 0, 0.111879, 0.42)

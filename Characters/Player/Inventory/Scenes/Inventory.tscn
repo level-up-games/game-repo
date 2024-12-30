@@ -1,0 +1,197 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjthtkra8x2fr"]
+
+[ext_resource type="Script" path="res://Characters/Player/Inventory/Scripts/inventory.gd" id="1_ea27d"]
+[ext_resource type="Texture2D" uid="uid://dmgw43wcdmjk7" path="res://Characters/Player/Inventory/Assets/inv-bg.png" id="1_ybvvj"]
+[ext_resource type="Texture2D" uid="uid://bko0i35j4ci6u" path="res://Characters/Player/Inventory/Assets/inv-slot.png" id="2_roqnd"]
+[ext_resource type="Script" path="res://Characters/Player/Inventory/Scripts/slot.gd" id="3_1o67j"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ukonu"]
+texture = ExtResource("2_roqnd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ooefo"]
+texture = ExtResource("2_roqnd")
+
+[node name="Inventory" type="Node2D"]
+script = ExtResource("1_ea27d")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 950.0
+offset_bottom = 540.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ybvvj")
+
+[node name="GridContainer" type="GridContainer" parent="TextureRect"]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 31.0
+offset_right = 895.0
+offset_bottom = 491.0
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 25
+columns = 5
+
+[node name="Slot1" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot2" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot3" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot4" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot5" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot6" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot7" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot8" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot9" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot10" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot11" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot12" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot13" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot14" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot15" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot16" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot17" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot18" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot19" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="Slot20" type="Panel" parent="TextureRect/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ukonu")
+script = ExtResource("3_1o67j")
+
+[node name="AccessorySlots" type="GridContainer" parent="TextureRect"]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 100.0
+offset_right = 198.0
+offset_bottom = 450.0
+theme_override_constants/v_separation = 25
+
+[node name="AccessorySlot1" type="Panel" parent="TextureRect/AccessorySlots"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ooefo")
+script = ExtResource("3_1o67j")
+
+[node name="AccessorySlot2" type="Panel" parent="TextureRect/AccessorySlots"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ooefo")
+script = ExtResource("3_1o67j")
+
+[node name="AccessorySlot3" type="Panel" parent="TextureRect/AccessorySlots"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ooefo")
+script = ExtResource("3_1o67j")
