@@ -15,7 +15,7 @@
 [ext_resource type="Script" path="res://Characters/Player/Camera/Scripts/camera_bottom.gd" id="9_kowsf"]
 [ext_resource type="PackedScene" uid="uid://cyu8s2y7qoiru" path="res://Enemies/Non-bosses/AbandonedCity/Testers/Scenes/test_crawler.tscn" id="12_ebbjf"]
 [ext_resource type="PackedScene" uid="uid://bium2x1v0e8f" path="res://Enemies/Non-bosses/AbandonedCity/Testers/Scenes/test_projectiler.tscn" id="14_akqu5"]
-[ext_resource type="PackedScene" uid="uid://xrtxbamoacug" path="res://4. Items/Scenes/ItemDrop.tscn" id="17_cvp6c"]
+[ext_resource type="PackedScene" uid="uid://kox5caaxhy55" path="res://4. Items/Scenes/ItemDrop.tscn" id="17_cvp6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h650h"]
 size = Vector2(262.5, 224.5)
@@ -23,7 +23,7 @@ size = Vector2(262.5, 224.5)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ty1ux"]
 bg_color = Color(1, 0.353694, 0.401166, 1)
 
-[node name="Abandoned City 1" type="Node2D"]
+[node name="AbandonedCity1" type="Node2D"]
 
 [node name="WorldCollision" type="TileMapLayer" parent="."]
 position = Vector2(0, -1)
@@ -97,7 +97,10 @@ position = Vector2(6366, -662)
 [node name="Items" type="Node2D" parent="."]
 
 [node name="ItemDrop" parent="Items" instance=ExtResource("17_cvp6c")]
-position = Vector2(4785, -1961)
+position = Vector2(2782, -1727)
+
+[node name="ItemDrop2" parent="Items" instance=ExtResource("17_cvp6c")]
+position = Vector2(4077, -1872)
 
 [node name="Camera" type="Node2D" parent="."]
 

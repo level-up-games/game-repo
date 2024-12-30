@@ -69,7 +69,7 @@ func add_item(item_name: String, item_quantity: int) -> void:
 
 
 func update_slot_visual(slot_index, item_name, new_quantity) -> void:
-	var slot = get_tree().root.get_node("/root/Abandoned City 1/Player/User Interface/Inventory/TextureRect/GridContainer/Slot" + str(slot_index + 1))
+	var slot = get_tree().root.get_node("/root/AbandonedCity1/Player/UserInterface/Inventory/TextureRect/GridContainer/Slot" + str(slot_index + 1))
 	slot.initialize_item(item_name, new_quantity)
 
 

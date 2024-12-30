@@ -37,7 +37,7 @@ func refresh_style():
 func pick_from_slot() -> void:
 	if item:
 		remove_child(item)
-		var inventory_node: Node = find_parent("User Interface")
+		var inventory_node: Node = find_parent("UserInterface")
 		inventory_node.add_child(item)
 		item = null
 
@@ -45,7 +45,7 @@ func pick_from_slot() -> void:
 func put_into_slot(new_item: Node2D) -> void:
 	item = new_item
 	item.position = Vector2(0, 0)
-	var inventory_node: Node = find_parent("User Interface")
+	var inventory_node: Node = find_parent("UserInterface")
 	inventory_node.remove_child(item)
 	add_child(item)
 
