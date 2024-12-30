@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://4jnd1bdud08w"]
+[gd_scene load_steps=9 format=4 uid="uid://4jnd1bdud08w"]
 
 [ext_resource type="Texture2D" uid="uid://bb5o74ccm0g3j" path="res://Black Pixel.jpg" id="1_ede2y"]
 [ext_resource type="PackedScene" uid="uid://r802u2g0c73d" path="res://1. Other/3. Player/Scenes/player.tscn" id="3_kg8i5"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/progress_bar.gd" id="4_w444s"]
-[ext_resource type="PackedScene" uid="uid://cd3s4245dg6f1" path="res://1. Other/1. Inventory/Scenes/InventoryUI.tscn" id="5_ex5p0"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/player_camera.gd" id="6_wg6ex"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/camera_bottom.gd" id="7_7stnj"]
 
@@ -44,12 +43,6 @@ offset_bottom = -14.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_mkpa7")
 value = 100.0
 script = ExtResource("4_w444s")
-
-[node name="InventoryUI" parent="Player/User Interface" instance=ExtResource("5_ex5p0")]
-offset_left = 275.0
-offset_top = -5.0
-offset_right = 562.0
-offset_bottom = 227.0
 
 [node name="Player Camera" type="Camera2D" parent="Player"]
 position = Vector2(0, -190)

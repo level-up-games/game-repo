@@ -23,9 +23,11 @@ var accessories = {}  #--> slot_index: [item_name, item_quantity]
 @export var player_health: int = 100
 
 
+
 ##### Regular functions #####
 func _ready() -> void:
 	item_data = load_data("res://4. Items/Data/item_data.json")
+
 
 
 ##### Hotbar functions #####
@@ -40,6 +42,7 @@ func active_item_scroll_up() -> void:
 	else:
 		active_item_slot -= 1
 	emit_signal("active_item_updated")
+
 
 
 ##### Inventory functions #####
@@ -96,6 +99,7 @@ func add_item_quantity(slot: SlotClass, quantity_to_add: int) -> void:
 		target_dict[slot.slot_index][1] += quantity_to_add
 
 
+
 ##### Item functions #####
 func load_data(file_path: String) -> Dictionary:
 	var json_data: Dictionary = {}
@@ -109,6 +113,7 @@ func load_data(file_path: String) -> Dictionary:
 		push_error("File does not exist or cannot be opened: %s".format(file_path))
 
 	return json_data
+
 
 
 ##### Player health/combat functions #####

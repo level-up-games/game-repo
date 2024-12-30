@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cjwnd5fmbi3ir"]
+[gd_scene load_steps=20 format=4 uid="uid://cjwnd5fmbi3ir"]
 
 [ext_resource type="TileSet" uid="uid://r4hvwuq4btws" path="res://2. Areas/world_tileset.tres" id="1_64n2v"]
 [ext_resource type="PackedScene" uid="uid://r802u2g0c73d" path="res://1. Other/3. Player/Scenes/player.tscn" id="2_w5sf4"]
@@ -14,7 +14,9 @@
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/camera_right.gd" id="9_j65h0"]
 [ext_resource type="Script" path="res://1. Other/3. Player/Scripts/camera_bottom.gd" id="9_kowsf"]
 [ext_resource type="PackedScene" uid="uid://cyu8s2y7qoiru" path="res://2. Areas/1. Abandoned City/Scenes/test_crawler.tscn" id="12_ebbjf"]
-[ext_resource type="PackedScene" path="res://test_projectiler.tscn" id="14_akqu5"]
+[ext_resource type="PackedScene" uid="uid://bium2x1v0e8f" path="res://test_projectiler.tscn" id="14_akqu5"]
+[ext_resource type="PackedScene" uid="uid://jpfu0mln7x6v" path="res://4. Items/Scenes/Item.tscn" id="16_wuuwr"]
+[ext_resource type="PackedScene" uid="uid://xrtxbamoacug" path="res://4. Items/Scenes/ItemDrop.tscn" id="17_cvp6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h650h"]
 size = Vector2(262.5, 224.5)
@@ -164,3 +166,12 @@ position = Vector2(7511, 824)
 position = Vector2(9549, 916)
 
 [node name="Items" type="Node2D" parent="."]
+
+[node name="Item" parent="." instance=ExtResource("16_wuuwr")]
+position = Vector2(3708, -1705)
+
+[node name="Item2" parent="." instance=ExtResource("16_wuuwr")]
+position = Vector2(2820, -1800)
+
+[node name="ItemDrop" parent="." instance=ExtResource("17_cvp6c")]
+position = Vector2(4785, -1961)
