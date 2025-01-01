@@ -3,7 +3,7 @@ extends "res://Characters/Player/Inventory/Scripts/base.gd"
 @onready var accessory_slots = $TextureRect/AccessorySlots.get_children()
 
 func _ready() -> void:
-	ui = find_parent("User Interface")
+	ui = find_parent("UserInterface")
 	type = SlotClass.SlotType.INVENTORY
 	super._ready()
 	initialize(Global.inventory)

@@ -40,7 +40,7 @@ var jump_buffer_countdown: float
 var coyote_countdown: float
 @export var coyote_time: float = 0.085
 @export var jump_buffer: float = 0.05
-@export var jump_height: float = 340 #210
+@export var jump_height: float = 290 #210
 @export var jump_peak_time: float = 0.45 #0.35
 @export var jump_descend_time: float = 0.35 #0.3
 @export var max_fall_speed: float = 1500

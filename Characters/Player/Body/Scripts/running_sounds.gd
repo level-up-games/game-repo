@@ -23,7 +23,6 @@ func _process(delta):
 func handle_running():
 	if sprite.animation == "Run":
 		if sprite.frame == 2 or sprite.frame == 3 or sprite.frame == 12 or sprite.frame == 13 and playing == false:
-			volume_db = 8
 			if player.is_on_floor() == false:
 				return
 		
