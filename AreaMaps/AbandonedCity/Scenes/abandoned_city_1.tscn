@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://r802u2g0c73d" path="res://Characters/Player/Body/Scenes/player.tscn" id="2_w5sf4"]
 [ext_resource type="Script" path="res://AreaMaps/world_collision_breakables.gd" id="3_8s68i"]
 [ext_resource type="Script" path="res://AreaMaps/world_hurtbox.gd" id="4_lufo7"]
-[ext_resource type="Script" path="res://AreaMaps/AbandonedCity/Scripts/user_interface.gd" id="5_ocrpi"]
+[ext_resource type="Script" path="res://Characters/Player/Inventory/Scripts/user_interface.gd" id="5_ocrpi"]
 [ext_resource type="Script" path="res://Characters/Player/Body/Scripts/progress_bar.gd" id="6_3l82o"]
 [ext_resource type="PackedScene" uid="uid://by31ctaq45chn" path="res://Characters/Player/Inventory/Scenes/Hotbar.tscn" id="6_kbn6r"]
 [ext_resource type="Script" path="res://Characters/Player/Camera/Scripts/player_camera.gd" id="7_m1v1x"]
@@ -62,11 +62,11 @@ value = 100.0
 script = ExtResource("6_3l82o")
 
 [node name="Hotbar" parent="Player/UserInterface" instance=ExtResource("6_kbn6r")]
-position = Vector2(275, -3)
+position = Vector2(1676, -48)
 
 [node name="Inventory" parent="Player/UserInterface" instance=ExtResource("7_remg3")]
 visible = false
-position = Vector2(275, 87)
+position = Vector2(1676, 42)
 
 [node name="PlayerCamera" type="Camera2D" parent="Player"]
 position = Vector2(0, -190)

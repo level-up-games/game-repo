@@ -25,3 +25,5 @@ func _process(delta):
 		var collision_point = player_wall_ray_left.get_collision_point()
 		var distance = origin.distance_to(collision_point)
 		camera.limit_left = player.position.x - (distance - 50) - left_limit
+	else:
+		camera.limit_left = player.position.x - 2000

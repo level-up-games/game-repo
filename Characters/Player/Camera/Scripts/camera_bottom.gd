@@ -25,3 +25,5 @@ func _process(delta):
 		var collision_point = player_ground_ray.get_collision_point()
 		var distance = origin.distance_to(collision_point)
 		camera.limit_bottom = player.position.y + (distance + 30) + bottom_limit
+	else:
+		camera.limit_bottom = player.position.y + 1500
