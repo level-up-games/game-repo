@@ -1,12 +1,18 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://r4hvwuq4btws"]
 
-[ext_resource type="Texture2D" uid="uid://bb5o74ccm0g3j" path="res://AreaMaps/BlackPixel.jpg" id="1_f56nl"]
+[ext_resource type="Texture2D" uid="uid://bjneaoko3mdle" path="res://AreaMaps/GreyPixel.jpg" id="1_drlrf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0bcbp"]
-texture = ExtResource("1_f56nl")
+texture = ExtResource("1_drlrf")
 texture_region_size = Vector2i(32, 32)
+0:0/next_alternative_id = 2
 0:0/0 = 0
+0:0/0/modulate = Color(0, 0, 0, 1)
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:0/1 = 1
+0:0/1/modulate = Color(0.428965, 0.581021, 0.924417, 1)
+0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:0/1/physics_layer_0/polygon_0/one_way = true
 
 [resource]
 tile_size = Vector2i(32, 32)

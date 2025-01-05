@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://clcjsxgqqv4os"]
+
+[ext_resource type="Script" path="res://Enemies/HostileHitbox.gd" id="1_ueveb"]
+
+[sub_resource type="Gradient" id="Gradient_ceqsf"]
+colors = PackedColorArray(0.811177, 0.38866, 0.351436, 1, 0.70258, 0.192273, 0.28127, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_11e82"]
+gradient = SubResource("Gradient_ceqsf")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5310h"]
+size = Vector2(254, 0.962025)
+
+[node name="TempSpikes" type="Sprite2D"]
+position = Vector2(0, 9.53674e-07)
+scale = Vector2(0.5, 39.5)
+texture = SubResource("GradientTexture1D_11e82")
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("1_ueveb")
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -4.22514e-08)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_5310h")

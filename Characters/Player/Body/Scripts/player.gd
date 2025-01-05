@@ -15,9 +15,9 @@ signal Attack4
 ##### Movement variables #####
 var suspend_movement: bool = false
 var suspend_movement_timer: float = 0.0
-@export var acceleration_time: float = 0.09
+@export var acceleration_time: float = 0.06
 @export var decceleration_time: float = 0.05
-@export var max_speed: float = 650.0
+@export var max_speed: float = 600.0
 @onready var acceleration: float = max_speed / acceleration_time
 @onready var decceleration: float = max_speed / decceleration_time
 @onready var bump_ray_left = $Rays/BumpRayLeft
@@ -40,9 +40,9 @@ var jump_buffer_countdown: float
 var coyote_countdown: float
 @export var coyote_time: float = 0.085
 @export var jump_buffer: float = 0.05
-@export var jump_height: float = 290 #210
-@export var jump_peak_time: float = 0.45 #0.35
-@export var jump_descend_time: float = 0.35 #0.3
+@export var jump_height: float = 290
+@export var jump_peak_time: float = 0.45
+@export var jump_descend_time: float = 0.35
 @export var max_fall_speed: float = 1500
 @export var max_jumps: int = 2
 @onready var jump_velocity: float = -2.0 * jump_height / jump_peak_time

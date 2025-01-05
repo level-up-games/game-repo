@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpsslblunvex0"]
+
+[ext_resource type="Script" path="res://AreaMaps/drop_enabler.gd" id="1_ovo6r"]
+
+[node name="DropEnabler" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_ovo6r")
