@@ -21,5 +21,4 @@ script = ExtResource("1_ueveb")
 
 [node name="Collision" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -4.22514e-08)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_5310h")

@@ -44,7 +44,7 @@ var coyote_countdown: float
 @export var jump_peak_time: float = 0.45
 @export var jump_descend_time: float = 0.35
 @export var max_fall_speed: float = 1500
-@export var max_jumps: int = 2
+@export var max_jumps: int = 1
 @onready var jump_velocity: float = -2.0 * jump_height / jump_peak_time
 @onready var jump_gravity: float = 2.0 * jump_height / (jump_peak_time * jump_peak_time)
 @onready var descend_gravity: float = 2.0 * jump_height / (jump_descend_time * jump_descend_time)
@@ -133,10 +133,10 @@ func handle_facing_direction() -> float: # Responsible for the direction the pla
 func handle_movement(delta): # Responsible for movement left and right.
 	if get_movement_direction() < 0:
 		if (bump_ray_left.is_colliding() == false) and (bump_ray_left_lower.is_colliding() == true) and is_on_floor():
-			position.y -= 35
+			position.y -= 36
 	elif get_movement_direction() > 0:
 		if (bump_ray_right.is_colliding() == false) and (bump_ray_right_lower.is_colliding() == true) and is_on_floor():
-			position.y -= 35
+			position.y -= 36
 	
 	if suspend_movement == false:
 		if not is_dashing:
@@ -219,7 +219,6 @@ func handle_jump(): # Responsible for jump and double jump mechanics.
 		if coyote_countdown > 0 and jump_buffer_countdown > 0:
 			velocity.y = jump_velocity
 			jump_buffer_countdown = 0
-			jump_counter += 1
 		elif coyote_countdown < 0 and Input.is_action_just_pressed("Jump") and jump_counter < max_jumps:
 			velocity.y = jump_velocity
 			jump_counter += 1
