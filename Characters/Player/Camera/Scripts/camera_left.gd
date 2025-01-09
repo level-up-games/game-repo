@@ -8,6 +8,7 @@ class_name CameraLeft
 @export var player: CharacterBody2D
 @export var left_limit: float = 150
 
+var get_limits: bool = true
 
 
 func _init():
@@ -20,10 +21,11 @@ func _ready():
 
 
 func _process(delta):
-	if player_wall_ray_left.is_colliding():
-		var origin = player_wall_ray_left.global_transform.origin
-		var collision_point = player_wall_ray_left.get_collision_point()
-		var distance = origin.distance_to(collision_point)
-		camera.limit_left = player.position.x - (distance - 50) - left_limit
-	else:
-		camera.limit_left = player.position.x - 2000
+	if get_limits == true:
+		if player_wall_ray_left.is_colliding():
+			var origin = player_wall_ray_left.global_transform.origin
+			var collision_point = player_wall_ray_left.get_collision_point()
+			var distance = origin.distance_to(collision_point)
+			camera.limit_left = player.position.x - (distance - 50) - left_limit
+		else:
+			camera.limit_left = player.position.x - 2000

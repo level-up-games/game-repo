@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://r802u2g0c73d"]
+[gd_scene load_steps=60 format=3 uid="uid://r802u2g0c73d"]
 
 [ext_resource type="Script" path="res://Characters/Player/Body/Scripts/player.gd" id="1_e41gs"]
 [ext_resource type="Texture2D" uid="uid://cy874165sbcc7" path="res://Characters/Player/Body/Assets/IdleAnimation/frame0000.png" id="3_2n0p3"]
@@ -49,6 +49,7 @@
 [ext_resource type="AudioStream" uid="uid://bv2rlqhn8ryli" path="res://Characters/Player/Body/Assets/SFX/Landing2.wav" id="47_ftw4n"]
 [ext_resource type="AudioStream" uid="uid://c8bafmltihbbf" path="res://Characters/Player/Body/Assets/SFX/Landing3.wav" id="48_nmcet"]
 [ext_resource type="Script" path="res://Characters/Player/Body/Scripts/pickup_zone.gd" id="49_yuxgk"]
+[ext_resource type="Script" path="res://Characters/Player/Body/Scripts/platform_handler.gd" id="50_s86sl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2wi05"]
 animations = [{
@@ -268,54 +269,6 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(79, 180)]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Rays/BumpRayLeftLower:target_position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 55)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Rays/BumpRayLeft:target_position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 55)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Rays/BumpRayRightLower:target_position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 55)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Rays/BumpRayRight:target_position")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 55)]
-}
 
 [sub_resource type="Animation" id="Animation_mqwj4"]
 length = 0.001
@@ -390,54 +343,6 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(79, 180)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Rays/BumpRayRight:target_position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 55)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Rays/BumpRayRightLower:target_position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 80)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Rays/BumpRayLeft:target_position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 80)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Rays/BumpRayLeftLower:target_position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 80)]
 }
 
 [sub_resource type="Animation" id="Animation_h8s3x"]
@@ -528,54 +433,6 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(120, 166)]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Rays/BumpRayRight:target_position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 80)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Rays/BumpRayRightLower:target_position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 80)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Rays/BumpRayLeft:target_position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 80)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Rays/BumpRayLeftLower:target_position")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 80)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_00qob"]
 _data = {
@@ -589,8 +446,13 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2benh"]
 size = Vector2(174, 215)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vm51"]
+size = Vector2(166.5, 57)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 8
+floor_constant_speed = true
+floor_max_angle = 1.22173
 script = ExtResource("1_e41gs")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
@@ -618,8 +480,7 @@ z_index = 5
 position = Vector2(-16, -108)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_2wi05")
-animation = &"Run"
-frame_progress = 0.255578
+animation = &"Idle"
 
 [node name="WorldCollision" type="CollisionShape2D" parent="."]
 position = Vector2(15, -90)
@@ -656,26 +517,6 @@ target_position = Vector2(0, 1000)
 collision_mask = 2048
 collide_with_areas = true
 
-[node name="BumpRayRight" type="RayCast2D" parent="Rays"]
-position = Vector2(15, -35)
-rotation = -1.5708
-target_position = Vector2(0, 55)
-
-[node name="BumpRayRightLower" type="RayCast2D" parent="Rays"]
-position = Vector2(15, -16)
-rotation = -1.5708
-target_position = Vector2(0, 80)
-
-[node name="BumpRayLeft" type="RayCast2D" parent="Rays"]
-position = Vector2(15, -35)
-rotation = 1.5708
-target_position = Vector2(0, 80)
-
-[node name="BumpRayLeftLower" type="RayCast2D" parent="Rays"]
-position = Vector2(15, -16)
-rotation = 1.5708
-target_position = Vector2(0, 80)
-
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 128
 collision_mask = 2
@@ -711,6 +552,16 @@ script = ExtResource("49_yuxgk")
 [node name="PickupZoneCollision" type="CollisionShape2D" parent="PickupZone"]
 position = Vector2(13, -97.5)
 shape = SubResource("RectangleShape2D_2benh")
+
+[node name="PlatformHandler" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8192
+script = ExtResource("50_s86sl")
+
+[node name="Collision" type="CollisionShape2D" parent="PlatformHandler"]
+position = Vector2(12.75, -22.5)
+shape = SubResource("RectangleShape2D_5vm51")
+debug_color = Color(0.647362, 0.51919, 0.122231, 0.42)
 
 [connection signal="body_entered" from="PickupZone" to="PickupZone" method="_on_body_entered"]
 [connection signal="body_exited" from="PickupZone" to="PickupZone" method="_on_body_exited"]

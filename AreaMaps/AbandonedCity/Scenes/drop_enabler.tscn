@@ -1,8 +1,45 @@
 [gd_scene load_steps=2 format=3 uid="uid://bpsslblunvex0"]
 
-[ext_resource type="Script" path="res://AreaMaps/drop_enabler.gd" id="1_ovo6r"]
+[sub_resource type="GDScript" id="GDScript_cm5jq"]
+script/source = "extends Area2D
+
+
+var can_drop: bool = false
+var player
+
+
+
+func _ready():
+	collision_layer = 0
+	collision_mask = 8
+
+	self.body_entered.connect(_on_body_entered)
+	self.body_exited.connect(_on_body_exited)
+
+
+func _process(delta):
+	if can_drop == true and Input.is_action_pressed(\"Down\") and player.velocity.y == 0: # TODO: fix diagonal dodgyness
+		player.position.y += 3
+	else:
+		pass
+
+
+func _on_body_entered(body):
+	if body.name == \"Player\":
+		can_drop = true
+		player = body
+	else:
+		pass
+
+
+func _on_body_exited(body):
+	if body.name == \"Player\":
+		can_drop = false
+	else:
+		pass
+"
 
 [node name="DropEnabler" type="Area2D"]
 collision_layer = 0
 collision_mask = 8
-script = ExtResource("1_ovo6r")
+script = SubResource("GDScript_cm5jq")

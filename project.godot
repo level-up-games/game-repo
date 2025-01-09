@@ -215,6 +215,8 @@ Down={
 2d_physics/layer_10="Camera Top"
 2d_physics/layer_11="Camera Left"
 2d_physics/layer_12="Camera Right"
+2d_physics/layer_13="Interactables"
+2d_physics/layer_14="Platforms"
 
 [physics]
 

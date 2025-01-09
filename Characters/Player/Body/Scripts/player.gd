@@ -20,10 +20,6 @@ var suspend_movement_timer: float = 0.0
 @export var max_speed: float = 600.0
 @onready var acceleration: float = max_speed / acceleration_time
 @onready var decceleration: float = max_speed / decceleration_time
-@onready var bump_ray_left = $Rays/BumpRayLeft
-@onready var bump_ray_right = $Rays/BumpRayRight
-@onready var bump_ray_left_lower = $Rays/BumpRayLeftLower
-@onready var bump_ray_right_lower = $Rays/BumpRayRightLower
 
 ##### Dash variables #####
 var dash_countdown: float
@@ -35,6 +31,7 @@ var is_dashing: bool = false
 @onready var dash_velocity: float = dash_distance / dash_time
 
 ##### Jump variables #####
+var suspend_gravity: bool = false
 var jump_counter: int = 0
 var jump_buffer_countdown: float
 var coyote_countdown: float
@@ -84,7 +81,6 @@ func _physics_process(delta):
 	pickup()
 
 
-
 ##### Movement functions #####
 func get_movement_direction() -> float: # Gets the movement direction (not the facing direction).
 	var movement_direction = Input.get_axis("Move_Left", "Move_Right")
@@ -131,13 +127,6 @@ func handle_facing_direction() -> float: # Responsible for the direction the pla
 
 
 func handle_movement(delta): # Responsible for movement left and right.
-	if get_movement_direction() < 0:
-		if (bump_ray_left.is_colliding() == false) and (bump_ray_left_lower.is_colliding() == true) and is_on_floor():
-			position.y -= 36
-	elif get_movement_direction() > 0:
-		if (bump_ray_right.is_colliding() == false) and (bump_ray_right_lower.is_colliding() == true) and is_on_floor():
-			position.y -= 36
-	
 	if suspend_movement == false:
 		if not is_dashing:
 			if get_movement_direction() > 0:
@@ -235,10 +224,11 @@ func handle_jump(): # Responsible for jump and double jump mechanics.
 
 
 func handle_gravity(delta): # Controls gravities.
-	if velocity.y < 0:
-		velocity.y += jump_gravity * delta
-	elif velocity.y >= 0 and velocity.y < max_fall_speed:
-		velocity.y += descend_gravity * delta
+	if suspend_gravity == false:
+		if velocity.y < 0:
+			velocity.y += jump_gravity * delta
+		elif velocity.y >= 0 and velocity.y < max_fall_speed:
+			velocity.y += descend_gravity * delta
 
 
 
