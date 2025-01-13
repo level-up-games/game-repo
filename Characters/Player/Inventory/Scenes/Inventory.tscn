@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjthtkra8x2fr"]
+[gd_scene load_steps=8 format=3 uid="uid://bjthtkra8x2fr"]
 
 [ext_resource type="Script" path="res://Characters/Player/Inventory/Scripts/inventory.gd" id="1_ea27d"]
 [ext_resource type="Texture2D" uid="uid://dmgw43wcdmjk7" path="res://Characters/Player/Inventory/Assets/inv-bg.png" id="1_ybvvj"]
 [ext_resource type="Texture2D" uid="uid://bko0i35j4ci6u" path="res://Characters/Player/Inventory/Assets/inv-slot.png" id="2_roqnd"]
 [ext_resource type="Script" path="res://Characters/Player/Inventory/Scripts/slot.gd" id="3_1o67j"]
+[ext_resource type="Texture2D" uid="uid://dlb2rysnkq116" path="res://Characters/Player/Inventory/Assets/accessory.png" id="5_yrnsu"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ukonu"]
 texture = ExtResource("2_roqnd")
@@ -184,14 +185,38 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ooefo")
 script = ExtResource("3_1o67j")
 
+[node name="TextureRect2" type="TextureRect" parent="TextureRect/AccessorySlots/AccessorySlot1"]
+modulate = Color(1, 1, 1, 0.27451)
+layout_mode = 0
+offset_right = 408.0
+offset_bottom = 400.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_yrnsu")
+
 [node name="AccessorySlot2" type="Panel" parent="TextureRect/AccessorySlots"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ooefo")
 script = ExtResource("3_1o67j")
 
+[node name="TextureRect2" type="TextureRect" parent="TextureRect/AccessorySlots/AccessorySlot2"]
+modulate = Color(1, 1, 1, 0.27451)
+layout_mode = 0
+offset_right = 408.0
+offset_bottom = 400.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_yrnsu")
+
 [node name="AccessorySlot3" type="Panel" parent="TextureRect/AccessorySlots"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ooefo")
 script = ExtResource("3_1o67j")
+
+[node name="TextureRect2" type="TextureRect" parent="TextureRect/AccessorySlots/AccessorySlot3"]
+modulate = Color(1, 1, 1, 0.27451)
+layout_mode = 0
+offset_right = 408.0
+offset_bottom = 400.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_yrnsu")

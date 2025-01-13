@@ -7,7 +7,7 @@ func _ready() -> void:
 	type = SlotClass.SlotType.INVENTORY
 	super._ready()
 	initialize(Global.inventory)
-	
+
 	for i in range(accessory_slots.size()):
 		accessory_slots[i].connect("gui_input", self.slot_gui_input.bind(accessory_slots[i]))
 		accessory_slots[i].slot_index = i
