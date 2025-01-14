@@ -1,5 +1,7 @@
 extends Node
 
+var player: CharacterBody2D = null
+
 var player_facing_direction: int = 1
 var player_movement_direction: float = 0.0
 
@@ -47,29 +49,58 @@ func active_item_scroll_up() -> void:
 
 ##### Inventory functions #####
 func add_item(item_name: String, item_quantity: int) -> void:
+	# Try adding to the hotbar first
+	for slot_index in range(NUM_HOTBAR_SLOTS):
+		if hotbar.has(slot_index) and hotbar[slot_index][0] == item_name:
+			var stack_size = int(item_data[item_name]["stack_size"])
+			var able_to_add = stack_size - hotbar[slot_index][1]
+			if able_to_add >= item_quantity:
+				hotbar[slot_index][1] += item_quantity
+				update_slot_visual(slot_index, hotbar[slot_index][0], hotbar[slot_index][1], SlotClass.SlotType.HOTBAR)
+				return
+			else:
+				hotbar[slot_index][1] += able_to_add
+				item_quantity -= able_to_add
+				update_slot_visual(slot_index, hotbar[slot_index][0], hotbar[slot_index][1], SlotClass.SlotType.HOTBAR)
+	
+	for slot_index in range(NUM_HOTBAR_SLOTS):
+		if not hotbar.has(slot_index):
+			hotbar[slot_index] = [item_name, item_quantity]
+			update_slot_visual(slot_index, hotbar[slot_index][0], hotbar[slot_index][1], SlotClass.SlotType.HOTBAR)
+			return
+	
+	# Add remaining quantity to the inventory
 	for item in inventory:
 		if inventory[item][0] == item_name:
 			var stack_size = int(item_data[item_name]["stack_size"])
 			var able_to_add = stack_size - inventory[item][1]
 			if able_to_add >= item_quantity:
 				inventory[item][1] += item_quantity
-				update_slot_visual(item, inventory[item][0], inventory[item][1])
+				update_slot_visual(item, inventory[item][0], inventory[item][1], SlotClass.SlotType.INVENTORY)
 				return
 			else:
 				inventory[item][1] += able_to_add
-				item_quantity = item_quantity - able_to_add
-				update_slot_visual(item, inventory[item][0], inventory[item][1])
-
+				item_quantity -= able_to_add
+				update_slot_visual(item, inventory[item][0], inventory[item][1], SlotClass.SlotType.INVENTORY)
+	
 	for i in range(NUM_INVENTORY_SLOTS):
-		if inventory.has(i) == false:
+		if not inventory.has(i):
 			inventory[i] = [item_name, item_quantity]
-			update_slot_visual(i, inventory[i][0], inventory[i][1])
+			update_slot_visual(i, inventory[i][0], inventory[i][1], SlotClass.SlotType.INVENTORY)
 			return
 
 
-func update_slot_visual(slot_index, item_name, new_quantity) -> void:
-	# TODO: how to find Slot node
-	var slot = get_tree().root.get_node("/root/AbandonedCity1/Player/UserInterface/Inventory/TextureRect/GridContainer/Slot" + str(slot_index + 1))
+func update_slot_visual(slot_index: int, item_name: String, new_quantity: int, slot_type: SlotClass.SlotType) -> void:
+	var path = ""
+	
+	if slot_type == SlotClass.SlotType.HOTBAR:
+		path = "UserInterface/Hotbar/TextureRect/GridContainer/HotbarSlot" + str(slot_index + 1)
+	elif slot_type == SlotClass.SlotType.INVENTORY:
+		path = "UserInterface/Inventory/TextureRect/GridContainer/Slot" + str(slot_index + 1)
+
+	print(player.get_children())
+	
+	var slot = player.get_node(path)
 	slot.initialize_item(item_name, new_quantity)
 
 

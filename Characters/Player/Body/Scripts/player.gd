@@ -62,7 +62,9 @@ var counter_active_timer: float = 0.0
 @export var counter_duration: float = 0.05 # THIS MAY CHANGE DUE TO DIFFICULT BOSS ATTACK REACTION TIMES
 
 
-func _physics_process(delta): 
+func _physics_process(delta):
+	Global.player = self
+	
 	##### Normal functions #####
 	handle_jump()
 	handle_gravity(delta)
