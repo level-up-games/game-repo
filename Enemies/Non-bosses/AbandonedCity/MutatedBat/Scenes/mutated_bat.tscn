@@ -51,16 +51,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_dhqhw"]
 radius = 77.026
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_le5vf"]
+radius = 827.01
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wb0gx"]
 radius = 37.7668
 height = 142.546
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dcwfu"]
-radius = 24.8235
-height = 123.539
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kpflk"]
-height = 37.6773
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_epguc"]
 
 [node name="MutatedBat" type="CharacterBody2D"]
 collision_layer = 16
@@ -70,12 +68,28 @@ script = ExtResource("1_3v0kn")
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_utw0e")
 animation = &"Patrol"
+autoplay = "Patrol"
 frame_progress = 0.00500858
 
 [node name="WorldCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dhqhw")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="FirstDetectionRay" type="RayCast2D" parent="."]
+target_position = Vector2(99999, 99999)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="Collision" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_le5vf")
+debug_color = Color(0.532838, 0.549606, 0.429555, 0.42)
+
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("11_wkg8d")
 
 [node name="Collision" type="CollisionShape2D" parent="Hurtbox"]
@@ -85,16 +99,14 @@ shape = SubResource("CapsuleShape2D_wb0gx")
 debug_color = Color(0.29672, 0.628836, 5.77569e-07, 0.42)
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 64
 script = ExtResource("12_tar4e")
 
-[node name="Collision" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, 6)
-rotation = -0.959931
-shape = SubResource("CapsuleShape2D_dcwfu")
-debug_color = Color(0.973459, 0, 0.433837, 0.42)
+[node name="Collision" type="CollisionPolygon2D" parent="Hitbox"]
+polygon = PackedVector2Array(-10, 55, -1, 69, 14, 71, 16, 64, 19, 57, 32, 52, 36, 49, 37, 41, 46, 43, 56, 43, 52, 28, 43, 18, 36, 8, 31, -4, 21, -10, 12, -15, -2, -19, -8, -20, -5, -32, -6, -42, -17, -37, -20, -31, -27, -37, -33, -35, -33, -24, -31, -18, -35, -13, -37, -5, -38, 4, -39, 8, -34, 12, -30, 13, -24, 19, -8, 28, -1, 30, 2, 41)
 
-[node name="CollisionTalons" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(2, 62)
-rotation = -0.959931
-shape = SubResource("CapsuleShape2D_kpflk")
-debug_color = Color(0.999475, 0, 0.111879, 0.42)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_epguc")
+}
