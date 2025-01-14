@@ -8,7 +8,7 @@ var current_state: State = State.IDLE
 ##### Node references #####
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var nav_agent: NavigationAgent2D = $NavigationAgent
 @onready var detection_area: Area2D = $DetectionArea
 @onready var detection_collision = $DetectionArea/Collision
 @onready var first_detection_ray = $FirstDetectionRay

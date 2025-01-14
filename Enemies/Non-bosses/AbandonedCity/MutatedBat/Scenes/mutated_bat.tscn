@@ -74,7 +74,7 @@ frame_progress = 0.00500858
 [node name="WorldCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dhqhw")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent" type="NavigationAgent2D" parent="."]
 
 [node name="FirstDetectionRay" type="RayCast2D" parent="."]
 target_position = Vector2(99999, 99999)
