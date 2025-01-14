@@ -128,7 +128,7 @@ left_limit = -5000.0
 change_left = true
 
 [node name="Player" parent="." instance=ExtResource("2_w5sf4")]
-position = Vector2(3189, -1677)
+position = Vector2(7109, -541)
 
 [node name="UserInterface" type="CanvasLayer" parent="Player"]
 offset = Vector2(-250, 65)
@@ -181,6 +181,7 @@ position = Vector2(7298, 496)
 position = Vector2(10163, -267)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Enemies"]
+visible = false
 position = Vector2(3370, 2156)
 navigation_polygon = SubResource("NavigationPolygon_2ntu5")
 

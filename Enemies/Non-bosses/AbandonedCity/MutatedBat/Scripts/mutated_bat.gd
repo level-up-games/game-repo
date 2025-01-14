@@ -205,6 +205,8 @@ func handle_wall_vision():
 			if first_detection_ray.is_colliding() == false:
 				player_seen = true
 				current_state = State.AGGRESSIVE
+	else:
+		first_detection_ray.target_position = Vector2(99999, 99999)
 
 
 func handle_swoop_cooldown(delta):
