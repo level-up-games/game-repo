@@ -1,10 +1,14 @@
 extends Node2D
 
 const SlotClass: Resource = preload("res://Characters/Player/Inventory/Scripts/slot.gd")
+const ItemClass: PackedScene = preload("res://4. Items/Scenes/Item.tscn")
+
 var ui
 var type
 
 @onready var slots = $TextureRect/GridContainer.get_children()
+var original_slot: SlotClass = null
+
 
 func _ready() -> void:
 	# Connect the input signal to the handler for each inventory slot
@@ -35,22 +39,63 @@ func able_to_put_into_slot(slot: SlotClass) -> bool:
 
 
 func slot_gui_input(event: InputEvent, slot: SlotClass) -> void:
-	# Handle left mouse click on inventory slots
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if ui == null:
-			ui = find_parent("UserInterface")
+	# Handle mouse clicks on inventory slots
+	original_slot = slot
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			handle_left_click(slot, event)
+		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			handle_right_click(slot)
 
-		if not able_to_put_into_slot(slot):
-			return
 
+func handle_left_click(slot: SlotClass, event: InputEvent) -> void:
+	# Handle left-click logic for item dragging or placement
+	if ui == null:
+		ui = find_parent("UserInterface")
+
+	if not able_to_put_into_slot(slot):
+		return
+
+	Global.remove_item(slot)
+	if ui.holding_item:
+		handle_item_drag(event, slot)
+	elif slot.item:
+		ui.holding_item = slot.item
+		slot.pick_from_slot()
+		ui.holding_item.global_position = get_global_mouse_position()
 		Global.remove_item(slot)
-		if ui.holding_item:
-			handle_item_drag(event, slot)
-		elif slot.item:
-			# Pick up the item from the slot if there is one
-			ui.holding_item = slot.item
-			slot.pick_from_slot()
-			ui.holding_item.global_position = get_global_mouse_position()
+
+
+func handle_right_click(slot: SlotClass) -> void:
+	# Handle right-click for splitting item stacks
+	if ui == null:
+		ui = find_parent("UserInterface")
+	
+	# Case 1: Splitting from the slot's item
+	if slot.item and slot.item.item_quantity > 1 and ui.holding_item == null:
+		var half_quantity = slot.item.item_quantity / 2
+		var remaining_quantity = slot.item.item_quantity - half_quantity
+
+		slot.item.set_item(slot.item.item_name, remaining_quantity)
+
+		var new_item = ItemClass.instantiate()
+		new_item.set_item(slot.item.item_name, half_quantity)
+		ui.add_child(new_item)
+
+		ui.holding_item = new_item
+		ui.holding_item.global_position = get_global_mouse_position()
+
+	# Case 2: Splitting the holding item
+	elif ui.holding_item and ui.holding_item.item_quantity > 1:
+		var half_quantity = ui.holding_item.item_quantity / 2
+		var remaining_quantity = ui.holding_item.item_quantity - half_quantity
+
+		ui.holding_item.set_item(ui.holding_item.item_name, remaining_quantity)
+
+		if original_slot and original_slot.item:
+			original_slot.item.add_item_quantity(half_quantity)
+		elif original_slot:
+			original_slot.initialize_item(ui.holding_item.item_name, half_quantity)
 
 
 func handle_item_drag(event: InputEvent, slot: SlotClass) -> void:

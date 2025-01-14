@@ -5,10 +5,10 @@ var item_quantity
 
 
 func _ready():
-	for item in Global.item_data:
-		item_name = item
+	if item_name != null:
 		$TextureRect.texture = load("res://4. Items/Assets/" + Global.item_data[item_name]["texture_path"])
 		show_label()
+
 
 
 func set_item(nm: String, qt: int) -> void:

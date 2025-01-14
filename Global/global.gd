@@ -47,9 +47,7 @@ func active_item_scroll_up() -> void:
 
 ##### Inventory functions #####
 func add_item(item_name: String, item_quantity: int) -> void:
-	# TODO: add to hotbar first
 	for item in inventory:
-		print(inventory[item])
 		if inventory[item][0] == item_name:
 			var stack_size = int(item_data[item_name]["stack_size"])
 			var able_to_add = stack_size - inventory[item][1]
@@ -70,6 +68,7 @@ func add_item(item_name: String, item_quantity: int) -> void:
 
 
 func update_slot_visual(slot_index, item_name, new_quantity) -> void:
+	# TODO: how to find Slot node
 	var slot = get_tree().root.get_node("/root/AbandonedCity1/Player/UserInterface/Inventory/TextureRect/GridContainer/Slot" + str(slot_index + 1))
 	slot.initialize_item(item_name, new_quantity)
 
@@ -77,13 +76,10 @@ func update_slot_visual(slot_index, item_name, new_quantity) -> void:
 func get_target_dict(slot: SlotClass) -> Dictionary:
 	match slot.slot_type:
 		SlotClass.SlotType.INVENTORY:
-			print("Slot type: INVENTORY")
 			return inventory
 		SlotClass.SlotType.HOTBAR:
-			print("Slot type: HOTBAR")
 			return hotbar
 		SlotClass.SlotType.ACCESSORY:
-			print("Slot type: ACCESSORY")
 			return accessories
 		_:
 			print("Unknown slot type: ", slot.slot_type)
@@ -91,21 +87,18 @@ func get_target_dict(slot: SlotClass) -> Dictionary:
 
 
 func add_item_to_empty_slot(item, slot: SlotClass) -> void:
-	print("add_empty")
 	var target_dict = get_target_dict(slot)
 	if target_dict:
 		target_dict[slot.slot_index] = [item.item_name, item.item_quantity]
 
 
 func remove_item(slot: SlotClass) -> void:
-	print("remove")
 	var target_dict = get_target_dict(slot)
 	if target_dict and slot.slot_index in target_dict:
 		target_dict.erase(slot.slot_index)
 
 
 func add_item_quantity(slot: SlotClass, quantity_to_add: int) -> void:
-	print("add_quant")
 	var target_dict = get_target_dict(slot)
 	if target_dict and slot.slot_index in target_dict:
 		target_dict[slot.slot_index][1] += quantity_to_add

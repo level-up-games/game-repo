@@ -13,7 +13,6 @@ func _ready() -> void:
 		accessory_slots[i].slot_index = i
 		accessory_slots[i].slot_type = SlotClass.SlotType.ACCESSORY
 	initialize_accessories(accessory_slots)
-	# TODO: why the fuck is the inventory weird again
 
 
 func initialize_accessories(accessory_slots) -> void:
