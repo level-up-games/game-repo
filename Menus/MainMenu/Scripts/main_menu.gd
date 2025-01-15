@@ -1,7 +1,6 @@
 extends Node2D
 
 
-
 @onready var bg_music = get_node("Menu Music")
 
 
@@ -19,4 +18,4 @@ func _on_menu_music_finished():
 
 
 func _on_start_pressed():
-	get_tree().change_scene_to_file("res://AreaMaps/AbandonedCity/Scenes/abandoned_city_1.tscn")
+	FadeScreen.fade_transition(1, 1, 2, "res://AreaMaps/AbandonedCity/Scenes/abandoned_city_1.tscn")

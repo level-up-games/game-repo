@@ -11,6 +11,7 @@ signal Attack4
 @onready var player_sprite = $Sprite
 @onready var player_world_collision = $WorldCollision
 @onready var player_hurtbox_collision = $Hurtbox/HurtboxCollision
+@onready var animation_player = $AnimationPlayer
 
 ##### Movement variables #####
 var suspend_movement: bool = false
@@ -130,12 +131,12 @@ func handle_movement(delta): # Responsible for movement left and right.
 	if suspend_movement == false:
 		if not is_dashing:
 			if get_movement_direction() > 0:
-				$AnimationPlayer.play("Run")
+				animation_player.play("Run")
 				if velocity.x < max_speed:
 					velocity.x += acceleration * delta
 					
 			if get_movement_direction() < 0:
-				$AnimationPlayer.play("Run")
+				animation_player.play("Run")
 				if velocity.x > -max_speed:
 					velocity.x -= acceleration * delta
 					
@@ -150,7 +151,7 @@ func handle_movement(delta): # Responsible for movement left and right.
 						velocity.x = 0
 				else:
 					velocity.x = 0
-					$AnimationPlayer.play("Idle")
+					animation_player.play("Idle")
 					
 			elif -max_speed > velocity.x:
 				velocity.x = -max_speed
@@ -172,17 +173,19 @@ func countdown_dash(delta): # Counts down the dash_countdown variable.
 
 
 func handle_dash(): # Responsible for the dash mechanic.
-	if is_dashing == true and get_movement_direction() != 0:
-		velocity.x = dash_velocity * sign(get_movement_direction())
-		$AnimationPlayer.play("Run")
-	elif is_dashing == true and get_movement_direction() == 0:
-		velocity.x = dash_velocity * -sign(handle_facing_direction())
-		$AnimationPlayer.play("Run")
-	
-	if is_dashing == true and dash_countdown < 0:
-		is_dashing = false
-		dash_cooldown_countdown = dash_cooldown
-
+	if suspend_movement == false:
+		if is_dashing == true and get_movement_direction() != 0:
+			velocity.x = dash_velocity * sign(get_movement_direction())
+			animation_player.play("Run")
+		elif is_dashing == true and get_movement_direction() == 0:
+			velocity.x = dash_velocity * -sign(handle_facing_direction())
+			animation_player.play("Run")
+		
+		if is_dashing == true and dash_countdown < 0:
+			is_dashing = false
+			dash_cooldown_countdown = dash_cooldown
+	else:
+		pass
 
 
 ##### Jump functions #####

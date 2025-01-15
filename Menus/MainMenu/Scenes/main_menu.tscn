@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ubi57j0kkq07"]
+[gd_scene load_steps=5 format=3 uid="uid://ubi57j0kkq07"]
 
 [ext_resource type="Script" path="res://Menus/MainMenu/Scripts/main_menu.gd" id="1_5s0r7"]
 [ext_resource type="Texture2D" uid="uid://c84al2tqtll81" path="res://Menus/MainMenu/Assets/Echoes of Bliss Logo.png" id="1_v6w3d"]
 [ext_resource type="AudioStream" uid="uid://dqup10ouabkbs" path="res://Menus/MainMenu/Assets/Menu Music.wav" id="2_g5wm8"]
-[ext_resource type="Script" path="res://Menus/MainMenu/Scripts/fade_screen.gd" id="4_h7bav"]
 [ext_resource type="Texture2D" uid="uid://d3yg2s6k5j6wx" path="res://Menus/MainMenu/Assets/Studio LEVEL UP.png" id="5_xtv71"]
 
 [node name="MainMenu" type="Node2D"]
@@ -19,13 +18,6 @@ z_index = 1
 position = Vector2(915, 224)
 scale = Vector2(0.65, 0.65)
 texture = ExtResource("1_v6w3d")
-
-[node name="FadeScreen" type="ColorRect" parent="."]
-z_index = 5
-offset_right = 1920.0
-offset_bottom = 1080.0
-color = Color(0, 0, 0, 1)
-script = ExtResource("4_h7bav")
 
 [node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_g5wm8")

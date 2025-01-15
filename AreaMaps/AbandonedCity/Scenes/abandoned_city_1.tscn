@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cjwnd5fmbi3ir"]
+[gd_scene load_steps=22 format=4 uid="uid://cjwnd5fmbi3ir"]
 
 [ext_resource type="TileSet" uid="uid://r4hvwuq4btws" path="res://AreaMaps/world_tileset.tres" id="1_64n2v"]
 [ext_resource type="PackedScene" uid="uid://r802u2g0c73d" path="res://Characters/Player/Body/Scenes/player.tscn" id="2_w5sf4"]
@@ -15,10 +15,14 @@
 [ext_resource type="Script" path="res://Characters/Player/Camera/Scripts/camera_bottom.gd" id="9_kowsf"]
 [ext_resource type="PackedScene" uid="uid://cyu8s2y7qoiru" path="res://Enemies/Non-bosses/AbandonedCity/Testers/Scenes/test_crawler.tscn" id="12_ebbjf"]
 [ext_resource type="PackedScene" uid="uid://kox5caaxhy55" path="res://4. Items/Scenes/ItemDrop.tscn" id="17_cvp6c"]
+[ext_resource type="PackedScene" uid="uid://crkliktsd2k4m" path="res://AreaMaps/scene_switcher.tscn" id="17_elmnf"]
 [ext_resource type="PackedScene" uid="uid://2xp07ty0gwhv" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Scenes/mutated_bat.tscn" id="17_tk3sp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h650h"]
 size = Vector2(262.5, 224.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwm7k"]
+size = Vector2(363, 1459)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ty1ux"]
 bg_color = Color(1, 0.353694, 0.401166, 1)
@@ -70,7 +74,7 @@ polygon = PackedVector2Array(10234, -1289, 16846, -1293, 16846, -1260, 17070, -1
 
 [node name="Collision3" type="CollisionPolygon2D" parent="Camera/CameraBottom"]
 position = Vector2(1054, 193)
-polygon = PackedVector2Array(21216, 150, 24384, 147, 24383, 172, 21210, 177)
+polygon = PackedVector2Array(21216, 150, 25493, 152, 25501, 168, 21210, 177)
 
 [node name="Collision4" type="CollisionPolygon2D" parent="Camera/CameraBottom"]
 polygon = PackedVector2Array(6906, 853, 8587, 854, 8586, 883, 8816, 883, 8814, 916, 8941, 918, 8940, 946, 9456, 949, 9457, 978, 9873, 980, 9873, 1042, 11945, 1042, 11946, 1076, 16899, 1080, 16899, 1103, 6906, 1120)
@@ -93,7 +97,6 @@ position = Vector2(34, 0)
 polygon = PackedVector2Array(2338, -2557, 2342, -1442, 2374, -1442, 2368, -2557)
 
 [node name="CameraRight" type="Area2D" parent="Camera" node_paths=PackedStringArray("camera", "player")]
-visible = false
 script = ExtResource("9_j65h0")
 camera = NodePath("../../Player/PlayerCamera")
 player = NodePath("../../Player")
@@ -105,6 +108,10 @@ polygon = PackedVector2Array(16092, -786, 16097, 1101, 16126, 1101, 16121, -786)
 [node name="Collision2" type="CollisionPolygon2D" parent="Camera/CameraRight"]
 position = Vector2(1319.2, 0)
 polygon = PackedVector2Array(16890, 719, 16890, 1114, 16927, 1114, 16927, 709)
+
+[node name="Collision3" type="CollisionPolygon2D" parent="Camera/CameraRight"]
+position = Vector2(-86, 0)
+polygon = PackedVector2Array(26386, 427, 26392, -1160, 26440, -1154, 26443, 424)
 
 [node name="CameraLimiter" parent="Camera" node_paths=PackedStringArray("camera") instance=ExtResource("9_covws")]
 position = Vector2(11104, -1265)
@@ -127,8 +134,16 @@ camera = NodePath("../../Player/PlayerCamera")
 left_limit = -5000.0
 change_left = true
 
+[node name="SceneSwitcher" parent="Camera" instance=ExtResource("17_elmnf")]
+position = Vector2(26340, -360)
+next_scene = "res://AreaMaps/AbandonedCity/Scenes/abandoned_city_2.tscn"
+
+[node name="Collision" type="CollisionShape2D" parent="Camera/SceneSwitcher"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_wwm7k")
+
 [node name="Player" parent="." instance=ExtResource("2_w5sf4")]
-position = Vector2(7109, -541)
+position = Vector2(25233, 232)
 
 [node name="UserInterface" type="CanvasLayer" parent="Player"]
 offset = Vector2(-250, 65)
@@ -155,7 +170,7 @@ position = Vector2(1676, 42)
 position = Vector2(0, -190)
 limit_left = 2340
 limit_top = -4900
-limit_right = 50000
+limit_right = 26520
 limit_bottom = -1440
 limit_smoothed = true
 position_smoothing_enabled = true
@@ -175,10 +190,16 @@ position = Vector2(10231, 1015)
 position = Vector2(7511, 824)
 
 [node name="MutatedBat" parent="Enemies" instance=ExtResource("17_tk3sp")]
-position = Vector2(7298, 496)
+position = Vector2(6682, 4)
 
 [node name="MutatedBat2" parent="Enemies" instance=ExtResource("17_tk3sp")]
 position = Vector2(10163, -267)
+
+[node name="MutatedBat3" parent="Enemies" instance=ExtResource("17_tk3sp")]
+position = Vector2(11863, 677)
+
+[node name="MutatedBat4" parent="Enemies" instance=ExtResource("17_tk3sp")]
+position = Vector2(14595, -139)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Enemies"]
 visible = false

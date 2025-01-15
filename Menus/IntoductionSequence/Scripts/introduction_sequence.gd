@@ -57,11 +57,5 @@ func _process(delta):
 			await get_tree().create_timer(3).timeout
 			info_fade_out = true
 			
-	if info_fade_out == true:
-		if info_opacity > 0:
-			info_opacity -= 0.5 * delta
-			info.modulate = Color(1, 1, 1, info_opacity)
-		if info_opacity <= 0 and change_scene_once == true:
-			change_scene_once = false
-			await get_tree().create_timer(1.5).timeout
-			get_tree().change_scene_to_file("res://Menus/MainMenu/Scenes/main_menu.tscn")
+	if info_fade_out == true and change_scene_once == true:
+		FadeScreen.fade_transition(1, 0.5, 2, "res://Menus/MainMenu/Scenes/main_menu.tscn")

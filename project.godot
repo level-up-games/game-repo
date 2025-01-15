@@ -18,6 +18,7 @@ run/vsync/vsync_mode=1
 [autoload]
 
 Global="*res://Global/global.gd"
+FadeScreen="*res://Global/fade_screen.tscn"
 
 [display]
 
