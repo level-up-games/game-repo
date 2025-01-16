@@ -21,8 +21,8 @@ var player: CharacterBody2D
 ##### Movement variables #####
 @export var max_speed: float = 350.0
 @export var acceleration: float = 1200
-@export var jump_speed: float = -350.0
-@export var gravity: float = 1200.0
+@export var jump_speed: float = -500.0
+@export var gravity: float = 1800.0
 var run_away_dir: Vector2
 var under_dir: float
 var pause: float = 0.75
@@ -35,7 +35,7 @@ var patrol_direction: float = 1.0  # 1 = right, -1 = left
 
 ##### Time variables #####
 @export var run_away_time: float = 2.0
-@export var burrow_time: float = 1.0
+@export var burrow_time: float = 0.4
 @export var underground_time: float = 4.0
 @export var burst_attack_time: float = 0.6
 @export var burrow_cooldown_time: float = 3.0
@@ -66,7 +66,7 @@ func _ready() -> void:
 	detection_area.body_exited.connect(_on_detection_body_exited)
 
 	current_state = State.PATROLLING
-	animation_player.play("walk")
+	#animation_player.play("walk")
 
 
 func _physics_process(delta: float) -> void:
@@ -124,7 +124,7 @@ func _process_patrolling(delta: float) -> void:
 	if not _is_within_polygon(global_position, patrol_polygon.polygon, patrol_polygon):
 		patrol_direction = Vector2((global_position.x - patrol_polygon.global_position.x), 0).normalized().x
 
-	animation_player.play("walk")
+	#animation_player.play("walk")
 
 
 func _process_aggressive(delta: float) -> void:
@@ -151,7 +151,7 @@ func _process_aggressive(delta: float) -> void:
 		if randf() < 0.01:
 			if suspend_movement == false and bouncing == false:
 				velocity.y = jump_speed
-				animation_player.play("jump")
+				#animation_player.play("jump")
 
 	if randf() < 0.002 and burrow_cooldown <= 0:
 		_start_run_away()
@@ -210,7 +210,7 @@ func _process_burst_attack(delta: float) -> void:
 	if state_timer <= 0:
 		burrow_cooldown = burrow_cooldown_time
 		current_state = State.AGGRESSIVE
-		animation_player.play("walk")
+		#animation_player.play("walk")
 
 
 ##### Other functions #####
@@ -229,19 +229,19 @@ func _start_run_away() -> void:
 	current_state = State.RUNNING_AWAY
 	state_timer = run_away_time
 	run_away_dir = Vector2((global_position.x - player.global_position.x), 0).normalized()
-	animation_player.play("run_away")
+	#animation_player.play("run_away")
 
 
 func _start_burrowing() -> void:
 	current_state = State.BURROWING
 	state_timer = burrow_time
-	animation_player.play("burrow")
+	#animation_player.play("burrow")
 
 
 func _start_burst_attack() -> void:
 	current_state = State.BURST_ATTACK
 	state_timer = burst_attack_time
-	animation_player.play("burst")
+	#animation_player.play("burst")
 
 	sprite.visible = true
 	dust_particles.emitting = false
@@ -251,7 +251,7 @@ func _start_burst_attack() -> void:
 	hostile_hurtbox.collision_mask = 64
 
 	if suspend_movement == false and bouncing == false:
-		velocity.y = jump_speed
+		velocity.y = jump_speed * 2
 
 	if projectile_scene:
 		var proj = projectile_scene.instantiate()
@@ -307,14 +307,14 @@ func _on_detection_body_entered(body: Node) -> void:
 		player = body as CharacterBody2D
 		if player_seen == true:
 			current_state = State.AGGRESSIVE
-			animation_player.play("walk")
+			#animation_player.play("walk")
 
 
 func _on_detection_body_exited(body: Node) -> void:
 	if body == player and current_state not in [State.BURROWING, State.UNDERGROUND, State.BURST_ATTACK, State.RUNNING_AWAY]:
 		player = null
 		current_state = State.PATROLLING
-		animation_player.play("walk")
+		#animation_player.play("walk")
 
 
 func _is_within_polygon(point: Vector2, poly: PackedVector2Array, polygon_node: CollisionPolygon2D) -> bool:

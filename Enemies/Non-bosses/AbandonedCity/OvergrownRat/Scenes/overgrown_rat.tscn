@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cl2r4i00d811q"]
 
-[ext_resource type="Script" path="res://Enemies/Non-bosses/AbandonedCity/MutatedRat/Scripts/mutated_rat.gd" id="1_rnvv3"]
-[ext_resource type="PackedScene" uid="uid://bd10c1vc5irdq" path="res://Enemies/Non-bosses/AbandonedCity/MutatedRat/Scenes/rat_projectile.tscn" id="2_iiv5k"]
+[ext_resource type="Script" path="res://Enemies/Non-bosses/AbandonedCity/OvergrownRat/Scripts/overgrown_rat.gd" id="1_rnvv3"]
+[ext_resource type="PackedScene" uid="uid://bd10c1vc5irdq" path="res://Enemies/Non-bosses/AbandonedCity/OvergrownRat/Scenes/rat_projectile.tscn" id="2_iiv5k"]
 [ext_resource type="Script" path="res://Enemies/HostileHitbox.gd" id="2_sgfoe"]
 [ext_resource type="Script" path="res://Enemies/HostileHurtbox.gd" id="3_y08f1"]
 
@@ -20,7 +20,8 @@ height = 1966.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m32xq"]
 size = Vector2(89, 37)
 
-[node name="MutatedRat" type="CharacterBody2D"]
+[node name="OvergrownRat" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
 collision_layer = 16
 script = ExtResource("1_rnvv3")
 projectile_scene = ExtResource("2_iiv5k")

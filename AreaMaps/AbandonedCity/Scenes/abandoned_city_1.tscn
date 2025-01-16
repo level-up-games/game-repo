@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://kox5caaxhy55" path="res://4. Items/Scenes/ItemDrop.tscn" id="17_cvp6c"]
 [ext_resource type="PackedScene" uid="uid://crkliktsd2k4m" path="res://AreaMaps/scene_switcher.tscn" id="17_elmnf"]
 [ext_resource type="PackedScene" uid="uid://2xp07ty0gwhv" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Scenes/mutated_bat.tscn" id="17_tk3sp"]
-[ext_resource type="PackedScene" uid="uid://cl2r4i00d811q" path="res://Enemies/Non-bosses/AbandonedCity/MutatedRat/Scenes/mutated_rat.tscn" id="18_oukg2"]
+[ext_resource type="PackedScene" uid="uid://cl2r4i00d811q" path="res://Enemies/Non-bosses/AbandonedCity/OvergrownRat/Scenes/overgrown_rat.tscn" id="18_oukg2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h650h"]
 size = Vector2(262.5, 224.5)
@@ -122,7 +122,7 @@ position = Vector2(75, 0.5)
 shape = SubResource("RectangleShape2D_wwm7k")
 
 [node name="Player" parent="." instance=ExtResource("2_w5sf4")]
-position = Vector2(3204, -1662)
+position = Vector2(3252, -1758)
 
 [node name="UserInterface" type="CanvasLayer" parent="Player"]
 offset = Vector2(-250, 65)
