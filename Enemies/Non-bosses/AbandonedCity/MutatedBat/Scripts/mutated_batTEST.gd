@@ -270,7 +270,6 @@ func _on_swoop_cooldown_timeout() -> void:
 #
 func _on_detection_area_body_entered(body: Node) -> void:
 	if body.name == "Player":
-		print("balls")
 		# If we haven't seen the player yet, check line-of-sight
 		if not has_detected_player:
 			if _has_line_of_sight_to(body.global_position):
@@ -278,11 +277,9 @@ func _on_detection_area_body_entered(body: Node) -> void:
 				player = body as Node2D
 				current_state = State.AGGRESSIVE
 				animation_player.play("fly")
-				print("balls2222")
 			else:
 				has_detected_player = true
 				player = body as Node2D
-				print("ballselse")
 				# We see the player in radius, but there's a wall in between -> ignore
 				current_state = State.AGGRESSIVE
 				pass

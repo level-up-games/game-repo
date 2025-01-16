@@ -28,7 +28,7 @@ var accessories = {}  #--> slot_index: [item_name, item_quantity]
 
 ##### Regular functions #####
 func _ready() -> void:
-	item_data = load_data("res://4. Items/Data/item_data.json")
+	item_data = load_data("res://Items/Data/item_data.json")
 
 
 

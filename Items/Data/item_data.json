@@ -3,12 +3,12 @@
 		"item_category": "Resource",
 		"stack_size": 99,
 		"description": "Valuable currency.",
-		"texture_path": "gold-coin.png"
+		"texture_path": "res://Items/Currency/GoldCoin/Assets/gold-coin.png"
 	},
 	"Sonic Boots": {
 		"item_category": "Accessory",
 		"stack_size": 1,
 		"description": "Boots that make you 1.1x faster.",
-		"texture_path": "sonic-boots.png"
+		"texture_path": "res://Items/Accessories/SonicBoots/Assets/sonic-boots.png"
 	}
 }

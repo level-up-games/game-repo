@@ -13,12 +13,12 @@ var being_picked_up = false
 
 func _process(delta: float) -> void:
 	if item_name != "":
-		$Sprite2D.texture = load("res://4. Items/Assets/" + Global.item_data[item_name]["texture_path"])
+		$Sprite2D.texture = load(Global.item_data[item_name]["texture_path"])
 
 
 func _physics_process(delta: float) -> void:
 	if being_picked_up == true:
-		var direction = global_position.direction_to(player.global_position + Vector2(0, -90))
+		var direction = global_position.direction_to(player.global_position)
 		velocity = velocity.move_toward(direction * SPEED, ACCELERATION * delta)
 		
 		var distance = global_position.distance_to(player.global_position)

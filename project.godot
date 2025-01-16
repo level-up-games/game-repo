@@ -34,10 +34,6 @@ version_control/autoload_on_startup=true
 [file_customization]
 
 folder_colors={
-"res://4. Items/Assets/": "red",
-"res://4. Items/Data/": "purple",
-"res://4. Items/Scenes/": "green",
-"res://4. Items/Scripts/": "yellow",
 "res://AreaMaps/AbandonedCity/Assets/": "red",
 "res://AreaMaps/AbandonedCity/Scenes/": "green",
 "res://AreaMaps/AbandonedCity/Scripts/": "yellow",
@@ -69,6 +65,15 @@ folder_colors={
 "res://Enemies/Non-bosses/AbandonedCity/Testers/Data/": "purple",
 "res://Enemies/Non-bosses/AbandonedCity/Testers/Scenes/": "green",
 "res://Enemies/Non-bosses/AbandonedCity/Testers/Scripts/": "yellow",
+"res://Items/Accessories/SonicBoots/Assets/": "red",
+"res://Items/Accessories/SonicBoots/Scenes/": "green",
+"res://Items/Accessories/SonicBoots/Scripts/": "yellow",
+"res://Items/Currency/GoldCoin/Assets/": "red",
+"res://Items/Currency/GoldCoin/Scenes/": "green",
+"res://Items/Currency/GoldCoin/Scripts/": "yellow",
+"res://Items/Data/": "purple",
+"res://Items/Scenes/": "green",
+"res://Items/Scripts/": "yellow",
 "res://Items/Weapons/Sword/TestSword/Assets/": "red",
 "res://Items/Weapons/Sword/TestSword/Data/": "purple",
 "res://Items/Weapons/Sword/TestSword/Scenes/": "green",

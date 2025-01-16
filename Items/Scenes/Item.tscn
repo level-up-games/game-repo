@@ -1,16 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://jpfu0mln7x6v"]
 
-[ext_resource type="Script" path="res://4. Items/Scripts/item.gd" id="1_m45al"]
-[ext_resource type="Texture2D" uid="uid://bodkkg43oqvko" path="res://4. Items/Assets/gold-coin.png" id="2_kih03"]
+[ext_resource type="Script" path="res://Items/Scripts/item.gd" id="1_qe3a7"]
+[ext_resource type="Texture2D" uid="uid://bodkkg43oqvko" path="res://Items/Currency/GoldCoin/Assets/gold-coin.png" id="2_dop4y"]
 
 [node name="Item" type="Node2D"]
-script = ExtResource("1_m45al")
+script = ExtResource("1_qe3a7")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 50.0
 offset_bottom = 50.0
 mouse_filter = 2
-texture = ExtResource("2_kih03")
+texture = ExtResource("2_dop4y")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 44.0

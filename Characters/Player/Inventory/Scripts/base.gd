@@ -1,7 +1,7 @@
 extends Node2D
 
 const SlotClass: Resource = preload("res://Characters/Player/Inventory/Scripts/slot.gd")
-const ItemClass: PackedScene = preload("res://4. Items/Scenes/Item.tscn")
+const ItemClass: PackedScene = preload("res://Items/Scenes/Item.tscn")
 
 var ui
 var type
