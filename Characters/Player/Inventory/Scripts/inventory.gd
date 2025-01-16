@@ -1,4 +1,4 @@
-extends "res://Characters/Player/Inventory/Scripts/base.gd"
+extends Base
 
 @onready var accessory_slots = $TextureRect/AccessorySlots.get_children()
 

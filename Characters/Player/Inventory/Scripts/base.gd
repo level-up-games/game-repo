@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Base
+
 const SlotClass: Resource = preload("res://Characters/Player/Inventory/Scripts/slot.gd")
 const ItemClass: PackedScene = preload("res://Items/Scenes/Item.tscn")
 
@@ -7,7 +9,7 @@ var ui
 var type
 
 @onready var slots = $TextureRect/GridContainer.get_children()
-var original_slot: SlotClass = null
+var target_slot: SlotClass = null
 
 
 func _ready() -> void:
@@ -40,12 +42,11 @@ func able_to_put_into_slot(slot: SlotClass) -> bool:
 
 func slot_gui_input(event: InputEvent, slot: SlotClass) -> void:
 	# Handle mouse clicks on inventory slots
-	original_slot = slot
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			handle_left_click(slot, event)
-		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			handle_right_click(slot)
+		elif event.button_index == MOUSE_BUTTON_MIDDLE and event.pressed:
+			handle_middle_click(slot)
 
 
 func handle_left_click(slot: SlotClass, event: InputEvent) -> void:
@@ -56,7 +57,6 @@ func handle_left_click(slot: SlotClass, event: InputEvent) -> void:
 	if not able_to_put_into_slot(slot):
 		return
 
-	Global.remove_item(slot)
 	if ui.holding_item:
 		handle_item_drag(event, slot)
 	elif slot.item:
@@ -66,7 +66,7 @@ func handle_left_click(slot: SlotClass, event: InputEvent) -> void:
 		Global.remove_item(slot)
 
 
-func handle_right_click(slot: SlotClass) -> void:
+func handle_middle_click(slot: SlotClass) -> void:
 	# Handle right-click for splitting item stacks
 	if ui == null:
 		ui = find_parent("UserInterface")
@@ -74,9 +74,9 @@ func handle_right_click(slot: SlotClass) -> void:
 	# Case 1: Splitting from the slot's item
 	if slot.item and slot.item.item_quantity > 1 and ui.holding_item == null:
 		var half_quantity = slot.item.item_quantity / 2
-		var remaining_quantity = slot.item.item_quantity - half_quantity
 
-		slot.item.set_item(slot.item.item_name, remaining_quantity)
+		# slot.item.set_item(slot.item.item_name, slot.item.item_quantity)
+		Global.subtract_item_quantity(slot, half_quantity)
 
 		var new_item = ItemClass.instantiate()
 		new_item.set_item(slot.item.item_name, half_quantity)
@@ -85,17 +85,18 @@ func handle_right_click(slot: SlotClass) -> void:
 		ui.holding_item = new_item
 		ui.holding_item.global_position = get_global_mouse_position()
 
-	# Case 2: Splitting the holding item
+	# TODO: fix this
+	"""# Case 2: Splitting the holding item
 	elif ui.holding_item and ui.holding_item.item_quantity > 1:
 		var half_quantity = ui.holding_item.item_quantity / 2
-		var remaining_quantity = ui.holding_item.item_quantity - half_quantity
 
-		ui.holding_item.set_item(ui.holding_item.item_name, remaining_quantity)
+		ui.holding_item.decrease_item_quantity(half_quantity)
 
-		if original_slot and original_slot.item:
-			original_slot.item.add_item_quantity(half_quantity)
-		elif original_slot:
-			original_slot.initialize_item(ui.holding_item.item_name, half_quantity)
+		if slot and slot.item:
+			# target_slot.item.add_item_quantity(half_quantity)
+			Global.add_item_quantity(slot, half_quantity)
+		elif slot:
+			slot.initialize_item(ui.holding_item.item_name, half_quantity)"""
 
 
 func handle_item_drag(event: InputEvent, slot: SlotClass) -> void:
@@ -132,12 +133,12 @@ func stack_items(slot: SlotClass) -> void:
 
 	if able_to_add >= ui.holding_item.item_quantity:
 		Global.add_item_quantity(slot, ui.holding_item.item_quantity)
-		slot.item.add_item_quantity(ui.holding_item.item_quantity)
+		# slot.item.add_item_quantity(ui.holding_item.item_quantity)
 		ui.holding_item.queue_free()
 		ui.holding_item = null
 	else:
 		Global.add_item_quantity(slot, able_to_add)
-		slot.item.add_item_quantity(able_to_add)
+		# slot.item.add_item_quantity(able_to_add)
 		ui.holding_item.decrease_item_quantity(able_to_add)
 
 

@@ -98,8 +98,6 @@ func update_slot_visual(slot_index: int, item_name: String, new_quantity: int, s
 	elif slot_type == SlotClass.SlotType.INVENTORY:
 		path = "UserInterface/Inventory/TextureRect/GridContainer/Slot" + str(slot_index + 1)
 
-	print(player.get_children())
-	
 	var slot = player.get_node(path)
 	slot.initialize_item(item_name, new_quantity)
 
@@ -107,10 +105,13 @@ func update_slot_visual(slot_index: int, item_name: String, new_quantity: int, s
 func get_target_dict(slot: SlotClass) -> Dictionary:
 	match slot.slot_type:
 		SlotClass.SlotType.INVENTORY:
+			print("Inventory: " + str(inventory))
 			return inventory
 		SlotClass.SlotType.HOTBAR:
+			print("Hotbar: " + str(hotbar))
 			return hotbar
 		SlotClass.SlotType.ACCESSORY:
+			print("Accessories: " + str(accessories))
 			return accessories
 		_:
 			print("Unknown slot type: ", slot.slot_type)
@@ -119,21 +120,28 @@ func get_target_dict(slot: SlotClass) -> Dictionary:
 
 func add_item_to_empty_slot(item, slot: SlotClass) -> void:
 	var target_dict = get_target_dict(slot)
-	if target_dict:
+	if target_dict != null:
 		target_dict[slot.slot_index] = [item.item_name, item.item_quantity]
 
 
 func remove_item(slot: SlotClass) -> void:
 	var target_dict = get_target_dict(slot)
-	if target_dict and slot.slot_index in target_dict:
+	if target_dict != null and slot.slot_index in target_dict:
 		target_dict.erase(slot.slot_index)
 
 
 func add_item_quantity(slot: SlotClass, quantity_to_add: int) -> void:
 	var target_dict = get_target_dict(slot)
-	if target_dict and slot.slot_index in target_dict:
+	if target_dict != null and slot.slot_index in target_dict:
+		slot.item.add_item_quantity(quantity_to_add)
 		target_dict[slot.slot_index][1] += quantity_to_add
 
+
+func subtract_item_quantity(slot: SlotClass, quantity_to_subtract: int) -> void:
+	var target_dict = get_target_dict(slot)
+	if target_dict != null and slot.slot_index in target_dict:
+		slot.item.decrease_item_quantity(quantity_to_subtract)
+		target_dict[slot.slot_index][1] -= quantity_to_subtract
 
 
 ##### Item functions #####

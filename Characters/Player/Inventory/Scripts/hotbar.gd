@@ -1,4 +1,4 @@
-extends "res://Characters/Player/Inventory/Scripts/base.gd"
+extends Base
 
 func _ready() -> void:
 	ui = find_parent("User Interface")
@@ -8,5 +8,3 @@ func _ready() -> void:
 		Global.active_item_updated.connect(slots[i].refresh_style)
 	initialize(Global.hotbar)
 	Global.active_item_updated.emit()
-
-# TODO: Equip Slots & Item Name Label - (#8) // 0:50

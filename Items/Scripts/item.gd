@@ -29,6 +29,7 @@ func show_label():
 func add_item_quantity(amount_to_add):
 	item_quantity += amount_to_add
 	show_label()
+	print(amount_to_add, item_quantity)
 
 
 func decrease_item_quantity(amount_to_remove):
