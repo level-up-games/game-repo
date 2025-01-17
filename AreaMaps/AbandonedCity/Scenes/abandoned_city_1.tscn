@@ -15,7 +15,7 @@
 [ext_resource type="Script" path="res://Characters/Player/Camera/Scripts/camera_bottom.gd" id="9_kowsf"]
 [ext_resource type="PackedScene" uid="uid://cyu8s2y7qoiru" path="res://Enemies/Non-bosses/AbandonedCity/Testers/Scenes/test_crawler.tscn" id="12_ebbjf"]
 [ext_resource type="PackedScene" uid="uid://kox5caaxhy55" path="res://Items/Scenes/ItemDrop.tscn" id="17_cvp6c"]
-[ext_resource type="PackedScene" path="res://AreaMaps/scene_switcher.tscn" id="17_elmnf"]
+[ext_resource type="PackedScene" uid="uid://crkliktsd2k4m" path="res://AreaMaps/scene_switcher.tscn" id="17_elmnf"]
 [ext_resource type="PackedScene" uid="uid://2xp07ty0gwhv" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Scenes/mutated_bat.tscn" id="17_tk3sp"]
 [ext_resource type="PackedScene" uid="uid://cl2r4i00d811q" path="res://Enemies/Non-bosses/AbandonedCity/OvergrownRat/Scenes/overgrown_rat.tscn" id="18_oukg2"]
 
@@ -66,38 +66,14 @@ script = ExtResource("9_kowsf")
 camera = NodePath("../../Player/PlayerCamera")
 player = NodePath("../../Player")
 
-[node name="Collision" type="CollisionPolygon2D" parent="Camera/CameraBottom"]
-polygon = PackedVector2Array(2606, -1644, 3887, -1646, 3888, -1680, 4169, -1681, 4172, -1716, 4330, -1716, 4330, -1749, 6213, -1747, 6212, -1717, 6718, -1719, 6718, -1689, 6967, -1690, 6962, -1658, 7006, -1658, 7008, -1624, 7213, -1623, 7213, -1589, 7252, -1587, 7250, -1555, 7352, -1551, 7352, -1523, 7498, -1525, 7496, -1493, 7539, -1493, 7537, -1460, 8022, -1460, 8022, -1434, 8059, -1432, 8058, -1405, 8296, -1400, 8293, -1330, 8729, -1330, 8729, -1304, 10522, -1304, 10911, -1304, 10911, -1227, 10522, -1227, 2573, -1237, 2512, -1234, 2514, -1713, 2567, -1714, 2568, -1680, 2605, -1679)
-
-[node name="Collision2" type="CollisionPolygon2D" parent="Camera/CameraBottom"]
-position = Vector2(1062, 0)
-polygon = PackedVector2Array(10234, -1289, 16846, -1293, 16846, -1260, 17070, -1258, 17068, -1229, 17358, -1224, 17355, -1195, 17548, -1193, 17548, -1165, 17709, -1161, 17709, -1132, 17835, -1132, 17834, -1037, 17931, -1034, 17930, -971, 18572, -971, 18572, -940, 18989, -939, 18989, -907, 19019, -908, 19018, -875, 19049, -872, 19049, -842, 19145, -842, 19143, -811, 19182, -812, 19180, -781, 19214, -778, 19210, -751, 19306, -748, 19305, -716, 19370, -714, 19370, -682, 19464, -681, 19464, -647, 19942, -649, 19942, -618, 19977, -618, 19976, -588, 20203, -588, 20203, -554, 20264, -553, 20264, -521, 20685, -522, 20683, -491, 20845, -489, 20845, -458, 21374, -459, 21375, -426, 19865, -425, 16814, -1151, 10232, -1252)
-
-[node name="Collision3" type="CollisionPolygon2D" parent="Camera/CameraBottom"]
-position = Vector2(1054, 193)
-polygon = PackedVector2Array(21216, 150, 24384, 147, 24383, 172, 21210, 177)
-
-[node name="Collision4" type="CollisionPolygon2D" parent="Camera/CameraBottom"]
-polygon = PackedVector2Array(6906, 853, 8587, 854, 8586, 883, 8816, 883, 8814, 916, 8941, 918, 8940, 946, 9456, 949, 9457, 978, 9873, 980, 9873, 1042, 11945, 1042, 11946, 1076, 16899, 1080, 16899, 1103, 6906, 1120)
-
 [node name="CameraLeft" type="Area2D" parent="Camera" node_paths=PackedStringArray("camera", "player")]
 visible = false
 script = ExtResource("8_wo47i")
 camera = NodePath("../../Player/PlayerCamera")
 player = NodePath("../../Player")
 
-[node name="Collision" type="CollisionPolygon2D" parent="Camera/CameraLeft"]
-polygon = PackedVector2Array(6318, -1126, 6323, 868, 6275, 868, 6273, -1130)
-
-[node name="Collision2" type="CollisionPolygon2D" parent="Camera/CameraLeft"]
-position = Vector2(1071, 0)
-polygon = PackedVector2Array(11576, -1085, 11575, 219, 11546, 218, 11544, -1090)
-
-[node name="Collision3" type="CollisionPolygon2D" parent="Camera/CameraLeft"]
-position = Vector2(34, 0)
-polygon = PackedVector2Array(2338, -2557, 2342, -1442, 2374, -1442, 2368, -2557)
-
 [node name="CameraRight" type="Area2D" parent="Camera" node_paths=PackedStringArray("camera", "player")]
+visible = false
 script = ExtResource("9_j65h0")
 camera = NodePath("../../Player/PlayerCamera")
 player = NodePath("../../Player")
@@ -105,14 +81,6 @@ player = NodePath("../../Player")
 [node name="Collision" type="CollisionPolygon2D" parent="Camera/CameraRight"]
 position = Vector2(1054.2, 0)
 polygon = PackedVector2Array(16098.8, 860, 16097.8, 1097, 16125.8, 1097, 16124.8, 860)
-
-[node name="Collision2" type="CollisionPolygon2D" parent="Camera/CameraRight"]
-position = Vector2(1054.2, 0)
-polygon = PackedVector2Array(16092, -786, 16097, 1101, 16126, 1101, 16121, -786)
-
-[node name="Collision3" type="CollisionPolygon2D" parent="Camera/CameraRight"]
-position = Vector2(1319.2, 0)
-polygon = PackedVector2Array(16890, 719, 16890, 1114, 16927, 1114, 16927, 709)
 
 [node name="CameraRightEnd" type="Area2D" parent="Camera" node_paths=PackedStringArray("camera", "player")]
 visible = false
