@@ -295,7 +295,7 @@ func handle_hit_bounce(delta):
 	if player == null or is_instance_valid(player) == false:
 		return
 	
-	if bouncing == true and current_state == State.SWOOPING:
+	if bouncing == true and current_state == State.SWOOPING and swoop_phase == 1:
 		animation_player.play("Attack")
 	
 	if bouncing == true:

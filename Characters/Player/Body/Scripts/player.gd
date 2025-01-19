@@ -74,7 +74,7 @@ func _physics_process(delta):
 	handle_attacks()
 	handle_counter()
 	move_and_slide()
-
+	
 	##### Timer functions #####
 	countdown_jump_buffer(delta)
 	countdown_coyote(delta)
@@ -85,6 +85,26 @@ func _physics_process(delta):
 
 
 ##### Movement functions #####
+func handle_animation(anim: String):
+	if anim == "Run":
+		if handle_facing_direction() > 0:
+			#if animation_player.current_animation == "RunMirror":
+				#var current_frame = animation_player.current
+			animation_player.play("RunMirror")
+			player_sprite.flip_h = true
+		if handle_facing_direction() < 0:
+			animation_player.play("Run")
+			player_sprite.flip_h = false
+	
+	if anim == "Idle":
+		if handle_facing_direction() > 0:
+			animation_player.play("IdleMirror")
+			player_sprite.flip_h = false
+		if handle_facing_direction() < 0:
+			animation_player.play("Idle")
+			player_sprite.flip_h = false
+
+
 func get_movement_direction() -> float: # Gets the movement direction (not the facing direction).
 	var movement_direction = Input.get_axis("Move_Left", "Move_Right")
 	Global.player_movement_direction = movement_direction
@@ -92,53 +112,54 @@ func get_movement_direction() -> float: # Gets the movement direction (not the f
 	return movement_direction
 
 
-func handle_facing_direction() -> float: # Responsible for the direction the player faces, and also returns this direction when called.
-	var facing_direction = Input.get_axis("Move_Left", "Move_Right")
-	var facing_direction_controller = Input.get_axis("Face_Left", "Face_Right")
+func handle_facing_direction() -> float:
+	var facing_direction = get_movement_direction()
+	var facing_direction_controller = 0.0
 	
-	if Input.get_connected_joypads().size() == 0 and (Input.is_action_pressed("Attack_1") or Input.is_action_pressed("Attack_2") or Input.is_action_pressed("Attack_3") or Input.is_action_pressed("Attack_4")): # This ensures that if a controller is not detected, the cursor dictates direction when attacking.
+	if Input.get_connected_joypads().size() != 0:
+		facing_direction_controller = Input.get_axis("Face_Left", "Face_Right")
+		if facing_direction_controller == 0:
+			facing_direction_controller = get_movement_direction()
+	
+	if Input.get_connected_joypads().size() == 0 and (Input.is_action_pressed("Attack_1") or Input.is_action_pressed("Attack_2") or Input.is_action_pressed("Attack_3") or Input.is_action_pressed("Attack_4")):
 		facing_direction = get_local_mouse_position().x
 	
-	if facing_direction_controller == 0 and Input.get_connected_joypads().size() != 0:
-		facing_direction_controller = Input.get_axis("Move_Left", "Move_Right")
+	var final_direction: bool
 	
 	if facing_direction_controller > 0:
-		player_sprite.flip_h = false
-		player_world_collision.scale.x = 1
-		player_hurtbox_collision.scale.x = 1
+		final_direction = false
 	elif facing_direction_controller < 0:
-		player_sprite.flip_h = true
-		player_world_collision.scale.x = -1
-		player_hurtbox_collision.scale.x = -1
+		final_direction = true
 	elif facing_direction > 0:
-		player_sprite.flip_h = false
-		player_world_collision.scale.x = 1
-		player_hurtbox_collision.scale.x = 1
+		final_direction = false
 	elif facing_direction < 0:
-		player_sprite.flip_h = true
-		player_world_collision.scale.x = -1
-		player_hurtbox_collision.scale.x = -1
+		final_direction = true
+	else:
+		if Global.player_facing_direction == -1:
+			final_direction = false
+		elif Global.player_facing_direction == 1:
+			final_direction = true
+		else:
+			final_direction = false
 
-	if player_sprite.flip_h == false:
+	if final_direction == false:
 		Global.player_facing_direction = -1
 		return -1
-	if player_sprite.flip_h == true:
+	else:
 		Global.player_facing_direction = 1
 		return 1
-	else:
-		return 0
 
 
 func handle_movement(delta): # Responsible for movement left and right.
 	if suspend_movement == false:
 		if not is_dashing:
 			if get_movement_direction() > 0:
-				animation_player.play("Run")
+				handle_animation("Run")
 				if velocity.x < max_speed:
 					velocity.x += acceleration * delta
 					
 			if get_movement_direction() < 0:
-				animation_player.play("Run")
+				handle_animation("Run")
 				if velocity.x > -max_speed:
 					velocity.x -= acceleration * delta
 					
@@ -153,7 +174,7 @@ func handle_movement(delta): # Responsible for movement left and right.
 						velocity.x = 0
 				else:
 					velocity.x = 0
-					animation_player.play("Idle")
+					handle_animation("Idle")
 					
 			elif -max_speed > velocity.x:
 				velocity.x = -max_speed
@@ -161,7 +182,6 @@ func handle_movement(delta): # Responsible for movement left and right.
 				velocity.x = max_speed
 	else:
 		pass
-
 
 
 ##### Dash functions #####
@@ -178,10 +198,10 @@ func handle_dash(): # Responsible for the dash mechanic.
 	if suspend_movement == false:
 		if is_dashing == true and get_movement_direction() != 0:
 			velocity.x = dash_velocity * sign(get_movement_direction())
-			animation_player.play("Run")
+			handle_animation("Run")
 		elif is_dashing == true and get_movement_direction() == 0:
 			velocity.x = dash_velocity * -sign(handle_facing_direction())
-			animation_player.play("Run")
+			handle_animation("Run")
 		
 		if is_dashing == true and dash_countdown < 0:
 			is_dashing = false
@@ -236,7 +256,6 @@ func handle_gravity(delta): # Controls gravities.
 			velocity.y += descend_gravity * delta
 
 
-
 ##### Health functions #####
 func take_damage(damage, hitbox_position, knockback_speed):
 	if invinc_timer <= 0:
@@ -277,7 +296,6 @@ func handle_damage_timers(delta):
 			suspend_movement = false
 
 
-
 ##### Attack functions #####
 func handle_attacks():
 	if can_attack and Input.is_action_just_pressed("Attack_1"):
@@ -291,7 +309,6 @@ func handle_attacks():
 		
 	if can_attack and Input.is_action_just_pressed("Attack_4"):
 		emit_signal("Attack4")
-
 
 
 ##### Counter and parry functions #####
