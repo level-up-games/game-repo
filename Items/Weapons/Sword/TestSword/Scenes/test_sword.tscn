@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Items/Weapons/Sword/TestSword/Scripts/test_sword.gd" id="1_w4cwl"]
 [ext_resource type="Texture2D" uid="uid://c3ftr111bhdf2" path="res://Items/Weapons/Sword/TestSword/Assets/Sprite.png" id="2_urbcp"]
 [ext_resource type="Script" path="res://Characters/Player/PlayerHitbox.gd" id="3_gdb07"]
-[ext_resource type="Texture2D" uid="uid://bvgbi2a5dd5v5" path="res://Characters/Player/Body/Assets/IdleAnimation/frame0001.png" id="4_3rhdd"]
+[ext_resource type="Texture2D" uid="uid://bvgbi2a5dd5v5" path="res://Characters/Player/Body/Assets/Animations/IdleAnimation/frame0001.png" id="4_3rhdd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m3a7s"]
 radius = 28.2161
