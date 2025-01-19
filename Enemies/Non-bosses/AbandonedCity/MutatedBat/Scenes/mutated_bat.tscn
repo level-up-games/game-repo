@@ -1,20 +1,114 @@
-[gd_scene load_steps=18 format=3 uid="uid://2xp07ty0gwhv"]
+[gd_scene load_steps=55 format=3 uid="uid://2xp07ty0gwhv"]
 
 [ext_resource type="Script" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Scripts/mutated_bat.gd" id="1_3v0kn"]
+[ext_resource type="Texture2D" uid="uid://ccedahsrfkhi7" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0000.png" id="2_gyfl3"]
 [ext_resource type="Texture2D" uid="uid://b4wqttvojhe1t" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0000.png" id="2_x14k6"]
 [ext_resource type="Texture2D" uid="uid://c2iat0o6bpm81" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0001.png" id="3_flyxh"]
+[ext_resource type="Texture2D" uid="uid://c3ta42pdtxh3n" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0001.png" id="3_l1g5m"]
 [ext_resource type="Texture2D" uid="uid://cyr3onktspdr3" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0002.png" id="4_c2y5j"]
+[ext_resource type="Texture2D" uid="uid://7tmgkdj7eajn" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0002.png" id="4_cmcud"]
+[ext_resource type="Texture2D" uid="uid://clx0crimjlw5s" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0003.png" id="5_63s20"]
 [ext_resource type="Texture2D" uid="uid://bhk17yhqc6mmu" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0003.png" id="5_whnet"]
 [ext_resource type="Texture2D" uid="uid://bq2mnho7hnu2s" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0004.png" id="6_35adr"]
+[ext_resource type="Texture2D" uid="uid://dx4ljidyqu0b1" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0004.png" id="6_oq3gk"]
 [ext_resource type="Texture2D" uid="uid://bb0c7dqqnqu3g" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0005.png" id="7_g4df0"]
+[ext_resource type="Texture2D" uid="uid://dsdkxm7qs45kg" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0005.png" id="7_slaly"]
 [ext_resource type="Texture2D" uid="uid://2g6iwdoc4rib" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0006.png" id="8_bc8tm"]
+[ext_resource type="Texture2D" uid="uid://c34vcdfyx2lve" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0006.png" id="8_pcjp7"]
+[ext_resource type="Texture2D" uid="uid://cawmlg6w6aqlq" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0000.png" id="9_f2lgu"]
 [ext_resource type="Texture2D" uid="uid://da224ncipcwuh" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0007.png" id="9_uc8ya"]
+[ext_resource type="Texture2D" uid="uid://bocwnmjmttgs8" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0001.png" id="10_j4r7y"]
 [ext_resource type="Texture2D" uid="uid://70qbyh4r5jwg" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0008.png" id="10_wu0u0"]
+[ext_resource type="Texture2D" uid="uid://crbxq2wbplufs" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0002.png" id="11_lqhdk"]
 [ext_resource type="Script" path="res://Enemies/HostileHurtbox.gd" id="11_wkg8d"]
+[ext_resource type="Texture2D" uid="uid://bhi7yp5m7ale4" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0003.png" id="12_c563p"]
 [ext_resource type="Script" path="res://Enemies/HostileHitbox.gd" id="12_tar4e"]
+[ext_resource type="Texture2D" uid="uid://d3kb60yamanm8" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0004.png" id="13_wu8nb"]
+[ext_resource type="Texture2D" uid="uid://bbjy25c1oxl8n" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0005.png" id="14_r8lkg"]
+[ext_resource type="Texture2D" uid="uid://cgrof5dl578y8" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0006.png" id="15_mqkuw"]
+[ext_resource type="Texture2D" uid="uid://bcl8p1gvxlfq0" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0007.png" id="16_x0ko7"]
+[ext_resource type="Texture2D" uid="uid://4mh687y2cw8g" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0008.png" id="17_gx6xx"]
+[ext_resource type="Texture2D" uid="uid://2jk7eaje61bf" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0009.png" id="18_gfgkv"]
+[ext_resource type="Texture2D" uid="uid://d2p47uvns52to" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0010.png" id="19_0xh8y"]
+[ext_resource type="Texture2D" uid="uid://dybvniiy4ub2p" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0000.png" id="29_intms"]
+[ext_resource type="Texture2D" uid="uid://c3klyhpjud6ds" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0001.png" id="30_aj32h"]
+[ext_resource type="Texture2D" uid="uid://c0pe6ki57bgum" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0002.png" id="31_tg0ch"]
+[ext_resource type="Texture2D" uid="uid://x6tlxhe0t6q5" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0003.png" id="32_hsfn1"]
+[ext_resource type="Texture2D" uid="uid://obmwyskdln1y" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0004.png" id="33_q6hhf"]
+[ext_resource type="Texture2D" uid="uid://et351vehb1y6" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0005.png" id="34_pdmb6"]
+[ext_resource type="Texture2D" uid="uid://0sl8ds1y8pm2" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0000.png" id="51_43nyy"]
+[ext_resource type="Texture2D" uid="uid://c4cww302e7p5j" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0001.png" id="52_tykap"]
+[ext_resource type="Texture2D" uid="uid://dmip0c4qwb75n" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0002.png" id="53_rr0fu"]
+[ext_resource type="Texture2D" uid="uid://cidkwb64wbdfu" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0003.png" id="54_7f3nf"]
+[ext_resource type="Texture2D" uid="uid://dj8d0j0qljrop" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0004.png" id="55_5ck62"]
+[ext_resource type="Texture2D" uid="uid://ccqa3sqfrrjjj" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0005.png" id="56_u3y75"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_utw0e"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gyfl3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_l1g5m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cmcud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_63s20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_oq3gk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_slaly")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_pcjp7")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_f2lgu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_j4r7y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_lqhdk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_c563p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_wu8nb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_r8lkg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_mqkuw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_x0ko7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_gx6xx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_gfgkv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_0xh8y")
+}],
+"loop": true,
+"name": &"EyeGlow",
+"speed": 24.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_x14k6")
@@ -44,7 +138,53 @@ animations = [{
 "texture": ExtResource("10_wu0u0")
 }],
 "loop": true,
-"name": &"Patrol",
+"name": &"Idle",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_intms")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_aj32h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_tg0ch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_hsfn1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_q6hhf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_pdmb6")
+}],
+"loop": false,
+"name": &"Prepare",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("51_43nyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_tykap")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_rr0fu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_7f3nf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_5ck62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_u3y75")
+}],
+"loop": true,
+"name": &"Swoop",
 "speed": 24.0
 }]
 
@@ -58,18 +198,749 @@ radius = 827.01
 radius = 37.7668
 height = 142.546
 
+[sub_resource type="Animation" id="Animation_vli5r"]
+resource_name = "Attack"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"Attack", 1.0, false],
+"method": &"play"
+}, {
+"args": [&"Attack"],
+"method": &"play_backwards"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/Collision:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(-10, 55, -1, 69, 14, 71, 16, 64, 19, 57, 32, 52, 36, 49, 37, 41, 46, 43, 56, 43, 52, 28, 43, 18, 36, 8, 31, -4, 21, -10, 12, -15, -2, -19, -8, -20, -5, -32, -6, -42, -17, -37, -20, -31, -27, -37, -33, -35, -33, -24, -31, -18, -35, -13, -37, -5, -38, 4, -39, 8, -34, 12, -30, 13, -24, 19, -8, 28, -1, 30, 2, 41)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/Collision:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox/Collision:shape:radius")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [37.7668]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hurtbox/Collision:shape:height")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [142.546]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hurtbox/Collision:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 6)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hurtbox/Collision:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.959931]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, 0.25)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sprite:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(34.33, -1.225)]
+}
+
+[sub_resource type="Animation" id="Animation_jse5n"]
+resource_name = "DePrepare"
+length = 0.21
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Prepare"],
+"method": &"play_backwards"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/Collision:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(-10, 55, -1, 69, 14, 71, 16, 64, 19, 57, 32, 52, 36, 49, 37, 41, 46, 43, 56, 43, 52, 28, 43, 18, 36, 8, 31, -4, 21, -10, 12, -15, -2, -19, -8, -20, -5, -32, -6, -42, -17, -37, -20, -31, -27, -37, -33, -35, -33, -24, -31, -18, -35, -13, -37, -5, -38, 4, -39, 8, -34, 12, -30, 13, -24, 19, -8, 28, -1, 30, 2, 41)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/Collision:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox/Collision:shape:radius")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [37.7668]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hurtbox/Collision:shape:height")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [142.546]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hurtbox/Collision:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 6)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hurtbox/Collision:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.959931]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, 0.25)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sprite:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32.145, 0.48)]
+}
+
+[sub_resource type="Animation" id="Animation_fytty"]
+resource_name = "EyeGlow"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"EyeGlow", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/Collision:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(-10, 55, -1, 69, 14, 71, 16, 64, 19, 57, 32, 52, 36, 49, 37, 41, 46, 43, 56, 43, 52, 28, 43, 18, 36, 8, 31, -4, 21, -10, 12, -15, -2, -19, -8, -20, -5, -32, -6, -42, -17, -37, -20, -31, -27, -37, -33, -35, -33, -24, -31, -18, -35, -13, -37, -5, -38, 4, -39, 8, -34, 12, -30, 13, -24, 19, -8, 28, -1, 30, 2, 41)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/Collision:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox/Collision:shape:radius")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [37.7668]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hurtbox/Collision:shape:height")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [142.546]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hurtbox/Collision:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 6)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hurtbox/Collision:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.959931]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, 0.25)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sprite:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xts5p"]
+resource_name = "Idle"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Idle", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/Collision:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(-10, 55, -1, 69, 14, 71, 16, 64, 19, 57, 32, 52, 36, 49, 37, 41, 46, 43, 56, 43, 52, 28, 43, 18, 36, 8, 31, -4, 21, -10, 12, -15, -2, -19, -8, -20, -5, -32, -6, -42, -17, -37, -20, -31, -27, -37, -33, -35, -33, -24, -31, -18, -35, -13, -37, -5, -38, 4, -39, 8, -34, 12, -30, 13, -24, 19, -8, 28, -1, 30, 2, 41)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/Collision:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox/Collision:shape:radius")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [37.7668]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hurtbox/Collision:shape:height")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [142.546]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hurtbox/Collision:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 6)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hurtbox/Collision:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.959931]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, 0.25)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sprite:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0tn2u"]
+resource_name = "Prepare"
+length = 0.21
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Prepare", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/Collision:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(-10, 55, -1, 69, 14, 71, 16, 64, 19, 57, 32, 52, 36, 49, 37, 41, 46, 43, 56, 43, 52, 28, 43, 18, 36, 8, 31, -4, 21, -10, 12, -15, -2, -19, -8, -20, -5, -32, -6, -42, -17, -37, -20, -31, -27, -37, -33, -35, -33, -24, -31, -18, -35, -13, -37, -5, -38, 4, -39, 8, -34, 12, -30, 13, -24, 19, -8, 28, -1, 30, 2, 41)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/Collision:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox/Collision:shape:radius")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [37.7668]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hurtbox/Collision:shape:height")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [142.546]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hurtbox/Collision:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 6)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hurtbox/Collision:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.959931]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, 0.25)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sprite:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(35, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".:play_swoop_anim")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.21),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_lmvlv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(35, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:play_swoop_anim")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_yuyxy"]
+resource_name = "Swoop"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Swoop", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/Collision:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(-10, 55, -1, 69, 14, 71, 16, 64, 19, 57, 32, 52, 36, 49, 37, 41, 46, 43, 56, 43, 52, 28, 43, 18, 36, 8, 31, -4, 21, -10, 12, -15, -2, -19, -8, -20, -5, -32, -6, -42, -17, -37, -20, -31, -27, -37, -33, -35, -33, -24, -31, -18, -35, -13, -37, -5, -38, 4, -39, 8, -34, 12, -30, 13, -24, 19, -8, 28, -1, 30, 2, 41)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/Collision:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hurtbox/Collision:shape:radius")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [37.7668]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hurtbox/Collision:shape:height")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [142.546]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hurtbox/Collision:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 6)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hurtbox/Collision:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.959931]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprite:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.25, 0.25)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sprite:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(41.7, 1.03)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epguc"]
+_data = {
+"Attack": SubResource("Animation_vli5r"),
+"DePrepare": SubResource("Animation_jse5n"),
+"EyeGlow": SubResource("Animation_fytty"),
+"Idle": SubResource("Animation_xts5p"),
+"Prepare": SubResource("Animation_0tn2u"),
+"RESET": SubResource("Animation_lmvlv"),
+"Swoop": SubResource("Animation_yuyxy")
+}
 
 [node name="MutatedBat" type="CharacterBody2D"]
 collision_layer = 16
 script = ExtResource("1_3v0kn")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(35, 0)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_utw0e")
-animation = &"Patrol"
-autoplay = "Patrol"
-frame_progress = 0.00500858
+animation = &"Attack"
+autoplay = "Idle"
 
 [node name="WorldCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dhqhw")

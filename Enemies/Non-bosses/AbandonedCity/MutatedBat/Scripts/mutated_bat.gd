@@ -30,10 +30,12 @@ var suspend_movement_timer: float = 0.0
 
 ##### Swoop variables #####
 @export var swoop_speed: float = 460.0
-@export var windup_time: float = 0.5
+@export var windup_time: float = 0.42 # EyeGlow animation time --> 10/24
 @export var swoop_time: float = 1.5
 @export var swoop_height_offset: float = -260.0
 @export var swoop_speed_factor: float = 0.5
+@export var play_swoop_anim: bool = false
+var wait_for_deprep_timer: float = 0.15
 var swoop_start_pos: Vector2
 var swoop_end_pos: Vector2
 var swoop_control_pos: Vector2
@@ -63,7 +65,7 @@ func _ready() -> void:
 	detection_area.body_exited.connect(_on_detection_area_body_exited)
 
 	current_state = State.PATROLLING
-	#animation_player.play("fly")
+	animation_player.play("Idle")
 
 
 func _physics_process(delta: float) -> void:
@@ -106,6 +108,11 @@ func _process_patrolling(delta: float) -> void:
 	
 	if global_position.distance_to(patrol_center) > patrol_radius:
 		direction = (patrol_center - global_position).normalized()
+	
+	if animation_player.current_animation == "DePrepare":
+		pass
+	else:
+		animation_player.play("Idle")
 
 
 func _process_aggressive(delta: float) -> void:
@@ -113,7 +120,7 @@ func _process_aggressive(delta: float) -> void:
 		current_state = State.PATROLLING
 		return
 	
-	if bouncing == false and can_swoop == true and randf() < 0.001: # Chance per frame, so x60 chance per second
+	if bouncing == false and can_swoop == true and randf() < 0.0025: # Chance per frame, so x60 chance per second
 		current_state = State.SWOOPING
 		_start_swoop_attack()
 	
@@ -136,6 +143,11 @@ func _process_aggressive(delta: float) -> void:
 		velocity = velocity.move_toward(target_velocity, acceleration * delta)
 	
 	move_and_slide()
+	
+	if animation_player.current_animation == "DePrepare":
+		pass
+	else:
+		animation_player.play("Idle")
 
 
 func _process_swooping(delta: float) -> void:
@@ -145,13 +157,19 @@ func _process_swooping(delta: float) -> void:
 		return
 
 	if swoop_phase == 0:
-		swoop_timer -= delta
+		wait_for_deprep_timer = 0.21
+		
+		animation_player.play("EyeGlow")
 	
-		var away_path_direction = Vector2((global_position.x - player.global_position.x), 0).normalized() + Vector2(0, -1)
+		var away_path_direction = (3 * Vector2((global_position.x - player.global_position.x), 0).normalized()) + Vector2(0, -1)
 		var target_velocity = away_path_direction.normalized() * swoop_speed
 		velocity = velocity.move_toward(target_velocity, acceleration * delta)
 		
 		move_and_slide()
+		
+		#if far away enough x wise: else: do above
+		if global_position.distance_to(player.global_position + Vector2(0, -180)) > 180:
+			swoop_timer -= delta
 
 		if swoop_timer <= 0:
 			swoop_phase = 1
@@ -165,11 +183,15 @@ func _process_swooping(delta: float) -> void:
 			swoop_control_pos.y += swoop_height_offset
 			distance_traveled = 0.0
 			swoop_curve_length = approximate_bezier_length(swoop_start_pos, swoop_control_pos, swoop_end_pos, 20)
-			#animation_player.play("swoop_attack")
 
 	elif swoop_phase == 1:
 		velocity = Vector2.ZERO
 		move_and_slide()
+		
+		if play_swoop_anim == true:
+			animation_player.play("Swoop")
+		else:
+			animation_player.play("Prepare")
 		
 		# 1) Increase distance traveled
 		distance_traveled += swoop_speed * 2.25 * delta
@@ -178,23 +200,33 @@ func _process_swooping(delta: float) -> void:
 		var t = distance_traveled / swoop_curve_length
 		if t > 1.0:
 			t = 1.0
-
+		
 		# 3) Evaluate the Bezier at t
 		var one_minus_t = 1.0 - t
 		var p0 = swoop_start_pos
 		var p1 = swoop_control_pos
 		var p2 = swoop_end_pos
-
+		
 		var bezier_pos = (one_minus_t * one_minus_t * p0) + (2.0 * one_minus_t * t * p1) + (t * t * p2)
-
-		global_position = bezier_pos
-
+		
+		if t < 0.9:
+			global_position = bezier_pos
+		
+		if t > 0.9:
+			var post_swoop_speed = swoop_speed * 0.9
+			var post_swoop_direction = Vector2((swoop_mid_pos.x - swoop_start_pos.x), (swoop_start_pos.y - swoop_mid_pos.y)).normalized()
+			velocity = post_swoop_direction * post_swoop_speed
+		
 		if t >= 1.0 or (t > 0.1 and (is_on_wall() == true or is_on_ceiling() == true or is_on_floor() == true)):
-			is_swooping = false
-			can_swoop = false
-			swoop_cooldown_timer = 3
-			current_state = State.AGGRESSIVE
-			#animation_player.play("fly")
+			play_swoop_anim = false
+			animation_player.play("DePrepare")
+			wait_for_deprep_timer -= delta
+			if wait_for_deprep_timer <= 0:
+				animation_player.play("Idle")
+				is_swooping = false
+				can_swoop = false
+				swoop_cooldown_timer = 3
+				current_state = State.AGGRESSIVE
 
 
 ##### Other functions #####
@@ -222,8 +254,6 @@ func _start_swoop_attack() -> void:
 
 	swoop_phase = 0
 	swoop_timer = windup_time
-	swoop_start_pos = global_position
-	#animation_player.play("swoop_warning")  # wind-up animation or similar
 
 
 func approximate_bezier_length(p0: Vector2, p1: Vector2, p2: Vector2, steps: int = 20) -> float:
@@ -265,6 +295,9 @@ func handle_hit_bounce(delta):
 	if player == null or is_instance_valid(player) == false:
 		return
 	
+	if bouncing == true and current_state == State.SWOOPING:
+		animation_player.play("Attack")
+	
 	if bouncing == true:
 		var bounce_direction = (global_position - (player.global_position + Vector2(0, -90))).normalized()
 		
@@ -286,9 +319,9 @@ func handle_facing_direction():
 		sprite.flip_h = true
 	elif velocity.x < 0 and current_state != State.SWOOPING:
 		sprite.flip_h = false
-	elif velocity.x < 0 and current_state == State.SWOOPING:
+	elif velocity.x < 0 and current_state == State.SWOOPING and swoop_phase != 1:
 		sprite.flip_h = true
-	elif velocity.x > 0 and current_state == State.SWOOPING:
+	elif velocity.x > 0 and current_state == State.SWOOPING and swoop_phase != 1:
 		sprite.flip_h = false
 
 
@@ -303,11 +336,9 @@ func _on_detection_area_body_entered(body: Node) -> void:
 		player = body
 		if player_seen == true:
 			current_state = State.AGGRESSIVE
-			#animation_player.play("fly")  # or “attack” anim
 
 
 func _on_detection_area_body_exited(body: Node) -> void:
 	if body == player:
 		player = null
 		current_state = State.PATROLLING
-		#animation_player.play("fly")
