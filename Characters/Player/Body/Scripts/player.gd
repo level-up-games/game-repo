@@ -73,6 +73,7 @@ func _physics_process(delta):
 	handle_facing_direction()
 	handle_attacks()
 	handle_counter()
+	handle_current_mouse_direction()
 	move_and_slide()
 
 	##### Timer functions #####
@@ -90,6 +91,20 @@ func get_movement_direction() -> float: # Gets the movement direction (not the f
 	Global.player_movement_direction = movement_direction
 	
 	return movement_direction
+
+
+func handle_current_mouse_direction():
+	var current_mouse_pos = get_local_mouse_position().x
+
+	if current_mouse_pos > 0:
+		Global.current_mouse_direction = 1
+		return 1
+	if current_mouse_pos < 0:
+		Global.current_mouse_direction = -1
+		return -1
+	else:
+		Global.current_mouse_direction = 0
+		return 0
 
 
 func handle_facing_direction() -> float: # Responsible for the direction the player faces, and also returns this direction when called.

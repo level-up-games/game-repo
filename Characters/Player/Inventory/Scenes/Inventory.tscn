@@ -12,7 +12,12 @@ texture = ExtResource("2_roqnd")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ooefo"]
 texture = ExtResource("2_roqnd")
 
-[node name="Inventory" type="Node2D"]
+[node name="Inventory" type="Control"]
+custom_minimum_size = Vector2(475, 270)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 475.0
+offset_bottom = 270.0
 script = ExtResource("1_ea27d")
 
 [node name="TextureRect" type="TextureRect" parent="."]

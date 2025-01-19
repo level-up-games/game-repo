@@ -4,7 +4,9 @@
 [ext_resource type="Script" path="res://Characters/Player/Inventory/Scripts/hotbar.gd" id="1_y1rvt"]
 [ext_resource type="Script" path="res://Characters/Player/Inventory/Scripts/slot.gd" id="2_8k83f"]
 
-[node name="Hotbar" type="Node2D"]
+[node name="Hotbar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_y1rvt")
 
 [node name="TextureRect" type="TextureRect" parent="."]

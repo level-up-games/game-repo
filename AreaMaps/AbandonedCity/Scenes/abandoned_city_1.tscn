@@ -141,11 +141,17 @@ value = 100.0
 script = ExtResource("6_3l82o")
 
 [node name="Hotbar" parent="Player/UserInterface" instance=ExtResource("6_kbn6r")]
-position = Vector2(1676, -48)
+offset_left = 1676.0
+offset_top = -48.0
+offset_right = 1676.0
+offset_bottom = -48.0
 
 [node name="Inventory" parent="Player/UserInterface" instance=ExtResource("7_remg3")]
 visible = false
-position = Vector2(1676, 42)
+offset_left = 1676.0
+offset_top = 33.0
+offset_right = 2151.0
+offset_bottom = 303.0
 
 [node name="PlayerCamera" type="Camera2D" parent="Player"]
 position = Vector2(0, -190)

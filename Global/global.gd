@@ -3,6 +3,7 @@ extends Node
 var player: CharacterBody2D = null
 
 var player_facing_direction: int = 1
+var current_mouse_direction: int = 1
 var player_movement_direction: float = 0.0
 
 ##### Item variables #####
