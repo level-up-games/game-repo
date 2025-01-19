@@ -1,20 +1,20 @@
 [gd_scene load_steps=55 format=3 uid="uid://2xp07ty0gwhv"]
 
 [ext_resource type="Script" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Scripts/mutated_bat.gd" id="1_3v0kn"]
-[ext_resource type="Texture2D" uid="uid://ccedahsrfkhi7" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0000.png" id="2_gyfl3"]
+[ext_resource type="Texture2D" uid="uid://7jyf57kch8kv" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0000.png" id="2_gyfl3"]
 [ext_resource type="Texture2D" uid="uid://b4wqttvojhe1t" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0000.png" id="2_x14k6"]
 [ext_resource type="Texture2D" uid="uid://c2iat0o6bpm81" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0001.png" id="3_flyxh"]
-[ext_resource type="Texture2D" uid="uid://c3ta42pdtxh3n" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0001.png" id="3_l1g5m"]
+[ext_resource type="Texture2D" uid="uid://c6nahhxtgxubf" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0001.png" id="3_l1g5m"]
 [ext_resource type="Texture2D" uid="uid://cyr3onktspdr3" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0002.png" id="4_c2y5j"]
-[ext_resource type="Texture2D" uid="uid://7tmgkdj7eajn" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0002.png" id="4_cmcud"]
-[ext_resource type="Texture2D" uid="uid://clx0crimjlw5s" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0003.png" id="5_63s20"]
+[ext_resource type="Texture2D" uid="uid://wyneterep65p" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0002.png" id="4_cmcud"]
+[ext_resource type="Texture2D" uid="uid://t6chrb6etb7v" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0003.png" id="5_63s20"]
 [ext_resource type="Texture2D" uid="uid://bhk17yhqc6mmu" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0003.png" id="5_whnet"]
 [ext_resource type="Texture2D" uid="uid://bq2mnho7hnu2s" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0004.png" id="6_35adr"]
-[ext_resource type="Texture2D" uid="uid://dx4ljidyqu0b1" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0004.png" id="6_oq3gk"]
+[ext_resource type="Texture2D" uid="uid://ttu2rdbllqfd" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0004.png" id="6_oq3gk"]
 [ext_resource type="Texture2D" uid="uid://bb0c7dqqnqu3g" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0005.png" id="7_g4df0"]
-[ext_resource type="Texture2D" uid="uid://dsdkxm7qs45kg" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0005.png" id="7_slaly"]
+[ext_resource type="Texture2D" uid="uid://dqlrds0b2wy8s" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0005.png" id="7_slaly"]
 [ext_resource type="Texture2D" uid="uid://2g6iwdoc4rib" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0006.png" id="8_bc8tm"]
-[ext_resource type="Texture2D" uid="uid://c34vcdfyx2lve" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0006.png" id="8_pcjp7"]
+[ext_resource type="Texture2D" uid="uid://xnmiki2mkoia" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0006.png" id="8_pcjp7"]
 [ext_resource type="Texture2D" uid="uid://cawmlg6w6aqlq" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0000.png" id="9_f2lgu"]
 [ext_resource type="Texture2D" uid="uid://da224ncipcwuh" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0007.png" id="9_uc8ya"]
 [ext_resource type="Texture2D" uid="uid://bocwnmjmttgs8" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0001.png" id="10_j4r7y"]
@@ -30,18 +30,18 @@
 [ext_resource type="Texture2D" uid="uid://4mh687y2cw8g" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0008.png" id="17_gx6xx"]
 [ext_resource type="Texture2D" uid="uid://2jk7eaje61bf" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0009.png" id="18_gfgkv"]
 [ext_resource type="Texture2D" uid="uid://d2p47uvns52to" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0010.png" id="19_0xh8y"]
-[ext_resource type="Texture2D" uid="uid://dybvniiy4ub2p" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0000.png" id="29_intms"]
-[ext_resource type="Texture2D" uid="uid://c3klyhpjud6ds" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0001.png" id="30_aj32h"]
-[ext_resource type="Texture2D" uid="uid://c0pe6ki57bgum" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0002.png" id="31_tg0ch"]
-[ext_resource type="Texture2D" uid="uid://x6tlxhe0t6q5" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0003.png" id="32_hsfn1"]
-[ext_resource type="Texture2D" uid="uid://obmwyskdln1y" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0004.png" id="33_q6hhf"]
-[ext_resource type="Texture2D" uid="uid://et351vehb1y6" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0005.png" id="34_pdmb6"]
-[ext_resource type="Texture2D" uid="uid://0sl8ds1y8pm2" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0000.png" id="51_43nyy"]
-[ext_resource type="Texture2D" uid="uid://c4cww302e7p5j" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0001.png" id="52_tykap"]
-[ext_resource type="Texture2D" uid="uid://dmip0c4qwb75n" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0002.png" id="53_rr0fu"]
-[ext_resource type="Texture2D" uid="uid://cidkwb64wbdfu" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0003.png" id="54_7f3nf"]
-[ext_resource type="Texture2D" uid="uid://dj8d0j0qljrop" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0004.png" id="55_5ck62"]
-[ext_resource type="Texture2D" uid="uid://ccqa3sqfrrjjj" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0005.png" id="56_u3y75"]
+[ext_resource type="Texture2D" uid="uid://ddxayfau4jxbv" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0000.png" id="29_intms"]
+[ext_resource type="Texture2D" uid="uid://bk81x1qoshqvp" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0001.png" id="30_aj32h"]
+[ext_resource type="Texture2D" uid="uid://mg1hb4mfth6c" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0002.png" id="31_tg0ch"]
+[ext_resource type="Texture2D" uid="uid://bavnhjh4gya0n" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0003.png" id="32_hsfn1"]
+[ext_resource type="Texture2D" uid="uid://dh0iqjjat8y85" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0004.png" id="33_q6hhf"]
+[ext_resource type="Texture2D" uid="uid://qdjb23np63ik" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/PrepareAnimation/frame0005.png" id="34_pdmb6"]
+[ext_resource type="Texture2D" uid="uid://cpnpais6rbjcd" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0000.png" id="51_43nyy"]
+[ext_resource type="Texture2D" uid="uid://dwi7dwhr3uebg" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0001.png" id="52_tykap"]
+[ext_resource type="Texture2D" uid="uid://deao6tasd5je5" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0002.png" id="53_rr0fu"]
+[ext_resource type="Texture2D" uid="uid://drab8d0mvwbfm" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0003.png" id="54_7f3nf"]
+[ext_resource type="Texture2D" uid="uid://crikjc4me8ix5" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0004.png" id="55_5ck62"]
+[ext_resource type="Texture2D" uid="uid://l707t7lcki7k" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/SwoopAnimation/frame0005.png" id="56_u3y75"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_utw0e"]
 animations = [{
@@ -939,7 +939,7 @@ script = ExtResource("1_3v0kn")
 position = Vector2(35, 0)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_utw0e")
-animation = &"Attack"
+animation = &"Swoop"
 autoplay = "Idle"
 
 [node name="WorldCollision" type="CollisionShape2D" parent="."]

@@ -21,7 +21,7 @@ func _process(delta):
 
 
 func handle_running():
-	if sprite.animation == "Run":
+	if sprite.animation == "Run" or sprite.animation == "RunMirror":
 		if sprite.frame == 2 or sprite.frame == 3 or sprite.frame == 12 or sprite.frame == 13 and playing == false:
 			if player.is_on_floor() == false:
 				return

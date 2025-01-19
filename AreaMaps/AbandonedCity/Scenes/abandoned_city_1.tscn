@@ -124,7 +124,6 @@ shape = SubResource("RectangleShape2D_wwm7k")
 
 [node name="Player" parent="." instance=ExtResource("2_w5sf4")]
 position = Vector2(3231, -1775)
-max_speed = 2000.0
 
 [node name="UserInterface" type="CanvasLayer" parent="Player"]
 offset = Vector2(-250, 65)
