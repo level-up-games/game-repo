@@ -142,6 +142,9 @@ func subtract_item_quantity(slot: SlotClass, quantity_to_subtract: int) -> void:
 	if target_dict != null and slot.slot_index in target_dict:
 		slot.item.decrease_item_quantity(quantity_to_subtract)
 		target_dict[slot.slot_index][1] -= quantity_to_subtract
+		if target_dict[slot.slot_index][1] <= 0:
+			target_dict.erase(slot.slot_index)
+			slot.pick_from_slot()  # so the panel no longer holds that item
 
 
 ##### Item functions #####

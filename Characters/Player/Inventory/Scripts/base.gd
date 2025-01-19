@@ -47,6 +47,8 @@ func slot_gui_input(event: InputEvent, slot: SlotClass) -> void:
 			handle_left_click(slot, event)
 		elif event.button_index == MOUSE_BUTTON_MIDDLE and event.pressed:
 			handle_middle_click(slot)
+		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			handle_right_click(slot)
 
 
 func handle_left_click(slot: SlotClass, event: InputEvent) -> void:
@@ -73,7 +75,7 @@ func handle_middle_click(slot: SlotClass) -> void:
 	
 	# Case 1: Splitting from the slot's item
 	if slot.item and slot.item.item_quantity > 1 and ui.holding_item == null:
-		var half_quantity = slot.item.item_quantity / 2
+		var half_quantity = floor(slot.item.item_quantity / 2)
 
 		# slot.item.set_item(slot.item.item_name, slot.item.item_quantity)
 		Global.subtract_item_quantity(slot, half_quantity)
@@ -97,6 +99,38 @@ func handle_middle_click(slot: SlotClass) -> void:
 			Global.add_item_quantity(slot, half_quantity)
 		elif slot:
 			slot.initialize_item(ui.holding_item.item_name, half_quantity)"""
+
+func handle_right_click(slot: SlotClass) -> void:
+	if ui == null:
+		ui = find_parent("UserInterface")
+	
+	# Only do this if slot has an item (quantity > 0) and the user isn't holding anything
+	if slot.item and slot.item.item_quantity > 1 and ui.holding_item == null:
+		# Subtract 1 from the slot
+		Global.subtract_item_quantity(slot, 1)
+	
+		# Create a new item with quantity = 1
+		var new_item = ItemClass.instantiate()
+		new_item.set_item(slot.item.item_name, 1)
+		ui.add_child(new_item)
+	
+		# Now "hold" that single item
+		ui.holding_item = new_item
+		ui.holding_item.global_position = get_global_mouse_position()
+	
+	elif slot.item and slot.item.item_quantity == 1 and ui.holding_item == null:
+		ui.holding_item = slot.item
+		slot.pick_from_slot()
+		ui.holding_item.global_position = get_global_mouse_position()
+		Global.remove_item(slot)
+	
+	elif slot.item and ui.holding_item and ui.holding_item.item_name == slot.item.item_name and slot.item.item_quantity > 0:
+		# (Place 1 from the holding item into the slot) 
+		Global.subtract_item_quantity(slot, 1)
+		ui.holding_item.add_item_quantity(1)
+		# If the holding item hits 0, queue_free and set ui.holding_item = null
+
+
 
 
 func handle_item_drag(event: InputEvent, slot: SlotClass) -> void:
