@@ -13,9 +13,9 @@ var current_state: State = State.PATROLLING
 @onready var hostile_hurtbox: Area2D = $HostileHurtbox
 @onready var dust_particles: CPUParticles2D = $CPUParticles2D
 @onready var rat_projectile_spawner: Node2D = $RatProjectileSpawner
+@onready var first_detection_ray = $FirstDetectionRay
 @export var patrol_polygon: CollisionPolygon2D
 @export var projectile_scene: PackedScene
-@onready var first_detection_ray = $FirstDetectionRay
 var player: CharacterBody2D
 
 ##### Movement variables #####
@@ -64,7 +64,7 @@ func _ready() -> void:
 	
 	detection_area.body_entered.connect(_on_detection_body_entered)
 	detection_area.body_exited.connect(_on_detection_body_exited)
-
+	
 	current_state = State.PATROLLING
 	#animation_player.play("walk")
 
@@ -72,7 +72,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if suspend_movement == false and bouncing == false:
 		velocity.y += gravity * delta
-
+	
 	match current_state:
 		State.PATROLLING:
 			_process_patrolling(delta)
@@ -86,15 +86,15 @@ func _physics_process(delta: float) -> void:
 			_process_underground(delta)
 		State.BURST_ATTACK:
 			_process_burst_attack(delta)
-
-
+	
+	
 	handle_hit_bounce(delta)
 	handle_damage_timers(delta)
 	handle_death()
 	handle_wall_vision()
-
+	
 	move_and_slide()
-
+	
 	if velocity.x < 0:
 		sprite.flip_h = true
 	elif velocity.x > 0:

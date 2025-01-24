@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckqyu5lx3ik6u"]
+
+[ext_resource type="Script" path="res://Enemies/HostileHurtbox.gd" id="1_c1ixt"]
+[ext_resource type="Script" path="res://Enemies/Non-bosses/AbandonedCity/FeralWolf/Scripts/feral_wolf.gd" id="1_ij850"]
+[ext_resource type="Script" path="res://Enemies/HostileHitbox.gd" id="2_h7bjt"]
+
+[sub_resource type="Gradient" id="Gradient_1sim5"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xl0o8"]
+gradient = SubResource("Gradient_1sim5")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6tp6s"]
+size = Vector2(222, 103)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k4bo1"]
+radius = 471.0
+height = 2238.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvxnh"]
+size = Vector2(227, 108)
+
+[node name="FeralWolf" type="CharacterBody2D"]
+collision_layer = 16
+script = ExtResource("1_ij850")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(3.46875, 1.59375)
+texture = SubResource("GradientTexture2D_xl0o8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="WorldCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_6tp6s")
+
+[node name="FirstDetectionRay" type="RayCast2D" parent="."]
+target_position = Vector2(1e+07, 1e+07)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="Collision" type="CollisionShape2D" parent="DetectionArea"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_k4bo1")
+debug_color = Color(0.533333, 0.54902, 0.431373, 0.419608)
+
+[node name="HostileHitbox" type="Area2D" parent="."]
+script = ExtResource("2_h7bjt")
+
+[node name="Collision" type="CollisionPolygon2D" parent="HostileHitbox"]
+polygon = PackedVector2Array(113, -52, -112, -52, -112, 54, 112, 53)
+
+[node name="HostileHurtbox" type="Area2D" parent="."]
+script = ExtResource("1_c1ixt")
+
+[node name="Collision" type="CollisionShape2D" parent="HostileHurtbox"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_rvxnh")
+debug_color = Color(0.341176, 0.611765, 0.317647, 0.419608)
