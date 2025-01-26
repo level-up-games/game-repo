@@ -21,7 +21,7 @@ var player: Node2D
 @export var jump_speed: float = -500.0
 @export var gravity: float = 1800.0
 @export var leap_force_x: float = 1050.0
-@export var leap_force_y: float = -750.0
+@export var leap_force_y: float = -450.0
 var direction: float = 1.0
 var can_leap: bool = true
 var suspend_movement: bool = false
@@ -34,21 +34,24 @@ var player_seen: bool = false
 ##### Time variables #####
 @export var leap_cooldown: float = 2.0
 @export var back_up_time: float = 1.0     # how long the wolf backs away
-@export var windup_time: float = 0.5      # pause before leap
+@export var windup_time: float = 0.4      # pause before leap
 var patrol_timer: float = 0.0
 var state_timer: float = 0.0
 
 ##### Attack-related variables #####
-@export var health: int = 50
+@export var health: int = 70
 @export var bounce_speed: float = 300.0
 var bouncing: bool = false
-
+var parried_time: float
+var hit_bounce_timer: float
 
 
 ##### High level functions #####
 func _ready() -> void:
 	detection_area.body_entered.connect(_on_detection_area_body_entered)
 	detection_area.body_exited.connect(_on_detection_area_body_exited)
+	
+	hostile_hitbox.parried.connect(_on_parried)
 	
 	current_state = State.PATROLLING
 	#animation_player.play("walk")  # or some default anim
@@ -57,7 +60,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if suspend_movement == false and bouncing == false:
+	if suspend_movement == false:
 		velocity.y += gravity * delta
 	
 	match current_state:
@@ -72,15 +75,18 @@ func _physics_process(delta: float) -> void:
 	
 	handle_hit_bounce(delta)
 	handle_damage_timers(delta)
+	handle_parry_timers(delta)
+	handle_hit_timer(delta)
 	handle_death()
 	handle_wall_vision()
-	
+
 	move_and_slide()
 	
-	if velocity.x < 0:
-		sprite.flip_h = true
-	elif velocity.x > 0:
-		sprite.flip_h = false
+	if bouncing == false:
+		if velocity.x < 0:
+			sprite.flip_h = true
+		elif velocity.x > 0:
+			sprite.flip_h = false
 
 
 func _process_patrolling(delta: float) -> void:
@@ -93,7 +99,7 @@ func _process_patrolling(delta: float) -> void:
 		direction = Vector2((global_position.x - patrol_polygon.global_position.x), 0).normalized().x
 	
 	if suspend_movement == false and bouncing == false:
-		var target_velocity = Vector2((direction * max_speed * 0.5), 0)
+		var target_velocity = Vector2((direction * max_speed * 0.3), 0)
 		velocity.x = velocity.move_toward(target_velocity, acceleration * delta).x
 	
 	#animation_player.play("walk")  # patrolling anim
@@ -110,7 +116,10 @@ func _process_aggressive(delta: float) -> void:
 		velocity.x = velocity.move_toward(target_velocity, acceleration * delta).x
 	
 	if can_leap and randf() < 0.0035:
-		_start_back_up()
+		if abs(player.global_position.x - global_position.x) < 300:
+			_start_back_up()
+		else:
+			_start_leap_attack()
 
 
 func _process_backing_up(delta: float) -> void:
@@ -122,7 +131,7 @@ func _process_backing_up(delta: float) -> void:
 	
 	var away_dir = sign(global_position.x - player.global_position.x)
 	if suspend_movement == false and bouncing == false:
-		var target_velocity = Vector2((away_dir * max_speed), 0)
+		var target_velocity = Vector2((away_dir * max_speed * 0.4), 0)
 		velocity.x = velocity.move_toward(target_velocity, acceleration * delta).x
 	
 	if state_timer <= 0:
@@ -136,14 +145,12 @@ func _process_leap_attack(delta: float) -> void:
 		velocity.x = 0
 		return
 	
-	# If windup is done, we do the actual leap
-	# only once, then go back to aggressive
-	if is_on_floor():
+	# If windup is done, we do the actual leap only once, then go back to aggressive
+	if is_on_floor() and state_timer > -0.01:
+		hostile_hitbox.can_be_parried = true
 		if player:
-			################################################################################## MAKE SO THAT WOLF LEAP FORCE X BASED ON DISTANCE
-			################################################################################## MAKE SO THAT WOLF ONLY BACKS UP IF CLOSE ELSE JUST JUMP
 			var dir_x = sign(player.global_position.x - global_position.x)
-			velocity.x = dir_x * leap_force_x
+			velocity.x = dir_x * abs(player.global_position.x - global_position.x) * 2
 			velocity.y = leap_force_y
 		else:
 			velocity.x = direction * leap_force_x
@@ -152,13 +159,15 @@ func _process_leap_attack(delta: float) -> void:
 	
 	can_leap = false
 	
-	# Let's do a small timer for "leap cooldown"
+	# Timer for "leap cooldown"
 	var cd_timer = get_tree().create_timer(leap_cooldown)
 	cd_timer.timeout.connect(func() -> void:
 		can_leap = true
 	)
 	
-	current_state = State.AGGRESSIVE
+	if is_on_floor() and state_timer < -0.01:
+		hostile_hitbox.can_be_parried = false
+		current_state = State.AGGRESSIVE
 
 
 ##### Other functions #####
@@ -196,12 +205,13 @@ func handle_damage_timers(delta):
 func take_damage(damage, hitbox_position, knockback_speed):
 	health -= damage
 	
-	suspend_movement_timer = 0.001
-	suspend_movement = true
-	
-	var knockback_direction: Vector2 = global_position - hitbox_position
-	velocity = Vector2(0, 0)
-	velocity = knockback_direction.normalized() * knockback_speed
+	if current_state not in [State.LEAP_ATTACK] or parried_time > 0:
+		suspend_movement_timer = 0.001
+		suspend_movement = true
+		
+		var knockback_direction: Vector2 = global_position - hitbox_position
+		velocity = Vector2(0, 0)
+		velocity = knockback_direction.normalized() * knockback_speed * 0.75
 	
 	sprite.modulate = Color(1, 0, 0)
 	await get_tree().create_timer(0.1).timeout
@@ -212,12 +222,22 @@ func handle_hit_bounce(delta):
 	if player == null or is_instance_valid(player) == false:
 		return
 	
-	if bouncing == true:
+	if bouncing == true and hit_bounce_timer <= 0:
+		velocity.x = 0
+		
 		var bounce_direction = (global_position - (player.global_position + Vector2(0, -90))).normalized()
 		
 		var target_velocity = bounce_direction * max_speed * 1.5
-		velocity = velocity.move_toward(target_velocity, acceleration * 1.5 * delta)
-		await get_tree().create_timer(0.25).timeout
+		velocity.x = velocity.move_toward(target_velocity, acceleration * 20 * delta).x
+		hit_bounce_timer = 0.25
+
+
+func handle_hit_timer(delta):
+	hit_bounce_timer -= delta
+	
+	if hit_bounce_timer <= 0:
+		if bouncing == true:
+			velocity.x = 0
 		bouncing = false
 
 
@@ -225,6 +245,20 @@ func handle_death():
 	if health <=0:
 		queue_free()
 
+
+func _on_parried():
+	parried_time = 0.5
+	
+	hostile_hitbox.damage_dealt = 0
+	modulate = Color(1,1,0)
+
+
+func handle_parry_timers(delta):
+	parried_time -= delta
+
+	if parried_time <= 0:
+		hostile_hitbox.damage_dealt = hostile_hitbox.original_damage_dealt
+		modulate = Color(1,1,1)
 
 ##### Signal functions #####
 func _on_detection_area_body_entered(body: Node) -> void:

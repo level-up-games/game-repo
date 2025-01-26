@@ -8,12 +8,15 @@ signal broken_parry
 
 @export var can_be_parried: bool = false
 @export var knockback_speed: float = 750.0
-@export var damage_dealt: int = 10
+@export var damage_dealt: int
+@export var original_damage_dealt: int = 10
 var hitbox_position: Vector2
 
 
 
 func _init():
+	damage_dealt = original_damage_dealt
+	
 	collision_layer = 2
 	collision_mask = 64
 	

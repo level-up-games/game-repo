@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://2xp07ty0gwhv"]
+[gd_scene load_steps=52 format=3 uid="uid://2xp07ty0gwhv"]
 
 [ext_resource type="Script" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Scripts/mutated_bat.gd" id="1_3v0kn"]
 [ext_resource type="Texture2D" uid="uid://7jyf57kch8kv" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0000.png" id="2_gyfl3"]
@@ -12,9 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bq2mnho7hnu2s" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0004.png" id="6_35adr"]
 [ext_resource type="Texture2D" uid="uid://ttu2rdbllqfd" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0004.png" id="6_oq3gk"]
 [ext_resource type="Texture2D" uid="uid://bb0c7dqqnqu3g" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0005.png" id="7_g4df0"]
-[ext_resource type="Texture2D" uid="uid://dqlrds0b2wy8s" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0005.png" id="7_slaly"]
 [ext_resource type="Texture2D" uid="uid://2g6iwdoc4rib" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0006.png" id="8_bc8tm"]
-[ext_resource type="Texture2D" uid="uid://xnmiki2mkoia" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/AttackAnimation/frame0006.png" id="8_pcjp7"]
 [ext_resource type="Texture2D" uid="uid://cawmlg6w6aqlq" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0000.png" id="9_f2lgu"]
 [ext_resource type="Texture2D" uid="uid://da224ncipcwuh" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/IdleAnimation/frame0007.png" id="9_uc8ya"]
 [ext_resource type="Texture2D" uid="uid://bocwnmjmttgs8" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Assets/EyeGlowAnimation/frame0001.png" id="10_j4r7y"]
@@ -60,12 +58,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_oq3gk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_slaly")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_pcjp7")
 }],
 "loop": false,
 "name": &"Attack",
@@ -425,7 +417,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(32.145, 0.48)]
+"values": [Vector2(31.64, -0.015)]
 }
 
 [sub_resource type="Animation" id="Animation_fytty"]
@@ -538,7 +530,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1.2, 0)]
+"values": [Vector2(0.625, -0.13)]
 }
 
 [sub_resource type="Animation" id="Animation_xts5p"]
@@ -651,7 +643,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(-0.505, -0.245)]
 }
 
 [sub_resource type="Animation" id="Animation_0tn2u"]
@@ -765,7 +757,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(35, 0)]
+"values": [Vector2(31.62, -0.025)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -778,33 +770,6 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_lmvlv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(35, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:play_swoop_anim")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_yuyxy"]
@@ -917,7 +882,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(41.7, 1.03)]
+"values": [Vector2(41.13, 0.6)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epguc"]
@@ -927,7 +892,6 @@ _data = {
 "EyeGlow": SubResource("Animation_fytty"),
 "Idle": SubResource("Animation_xts5p"),
 "Prepare": SubResource("Animation_0tn2u"),
-"RESET": SubResource("Animation_lmvlv"),
 "Swoop": SubResource("Animation_yuyxy")
 }
 
@@ -936,10 +900,10 @@ collision_layer = 16
 script = ExtResource("1_3v0kn")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(35, 0)
+position = Vector2(-0.505, -0.245)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_utw0e")
-animation = &"Swoop"
+animation = &"Idle"
 autoplay = "Idle"
 
 [node name="WorldCollision" type="CollisionShape2D" parent="."]

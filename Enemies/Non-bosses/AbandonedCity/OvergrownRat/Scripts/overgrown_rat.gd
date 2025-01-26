@@ -47,6 +47,7 @@ var state_timer: float = 0.0
 @export var health: int = 50
 @export var bounce_speed: float = 300.0
 var bouncing: bool = false
+var hit_bounce_timer: float
 
 
 
@@ -70,7 +71,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if suspend_movement == false and bouncing == false:
+	if suspend_movement == false:
 		velocity.y += gravity * delta
 	
 	match current_state:
@@ -90,15 +91,17 @@ func _physics_process(delta: float) -> void:
 	
 	handle_hit_bounce(delta)
 	handle_damage_timers(delta)
+	handle_hit_timer(delta)
 	handle_death()
 	handle_wall_vision()
 	
 	move_and_slide()
 	
-	if velocity.x < 0:
-		sprite.flip_h = true
-	elif velocity.x > 0:
-		sprite.flip_h = false
+	if bouncing == false:
+		if velocity.x < 0:
+			sprite.flip_h = true
+		elif velocity.x > 0:
+			sprite.flip_h = false
 
 
 func _process_patrolling(delta: float) -> void:
@@ -287,13 +290,26 @@ func handle_hit_bounce(delta):
 	if player == null or is_instance_valid(player) == false:
 		return
 	
-	if bouncing == true:
+	if bouncing == true and hit_bounce_timer <= 0:
+		velocity.x = 0
+		
 		var bounce_direction = (global_position - (player.global_position + Vector2(0, -90))).normalized()
 		
 		var target_velocity = bounce_direction * max_speed * 1.5
-		velocity = velocity.move_toward(target_velocity, acceleration * 1.5 * delta)
-		await get_tree().create_timer(0.25).timeout
+		velocity.x = velocity.move_toward(target_velocity, acceleration * 20 * delta).x
+		hit_bounce_timer = 0.25
+
+
+func handle_hit_timer(delta):
+	hit_bounce_timer -= delta
+	
+	if hit_bounce_timer <= 0:
+		if bouncing == true:
+			velocity.x = 0
 		bouncing = false
+
+
+
 
 
 func handle_death():

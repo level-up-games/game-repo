@@ -188,11 +188,6 @@ func _process_swooping(delta: float) -> void:
 		velocity = Vector2.ZERO
 		move_and_slide()
 		
-		if play_swoop_anim == true:
-			animation_player.play("Swoop")
-		else:
-			animation_player.play("Prepare")
-		
 		# 1) Increase distance traveled
 		distance_traveled += swoop_speed * 2.25 * delta
 		
@@ -200,6 +195,11 @@ func _process_swooping(delta: float) -> void:
 		var t = distance_traveled / swoop_curve_length
 		if t > 1.0:
 			t = 1.0
+		
+		if play_swoop_anim == true:
+			animation_player.play("Swoop")
+		elif play_swoop_anim == false and t < 0.5:
+			animation_player.play("Prepare")
 		
 		# 3) Evaluate the Bezier at t
 		var one_minus_t = 1.0 - t
@@ -295,9 +295,6 @@ func handle_hit_bounce(delta):
 	if player == null or is_instance_valid(player) == false:
 		return
 	
-	if bouncing == true and current_state == State.SWOOPING and swoop_phase == 1:
-		animation_player.play("Attack")
-	
 	if bouncing == true:
 		var bounce_direction = (global_position - (player.global_position + Vector2(0, -90))).normalized()
 		
@@ -315,14 +312,15 @@ func handle_hit_bounce(delta):
 
 
 func handle_facing_direction():
-	if velocity.x > 0 and current_state != State.SWOOPING:
-		sprite.flip_h = true
-	elif velocity.x < 0 and current_state != State.SWOOPING:
-		sprite.flip_h = false
-	elif velocity.x < 0 and current_state == State.SWOOPING and swoop_phase != 1:
-		sprite.flip_h = true
-	elif velocity.x > 0 and current_state == State.SWOOPING and swoop_phase != 1:
-		sprite.flip_h = false
+	if bouncing == false:
+		if velocity.x > 0 and current_state != State.SWOOPING:
+			sprite.flip_h = true
+		elif velocity.x < 0 and current_state != State.SWOOPING:
+			sprite.flip_h = false
+		elif velocity.x < 0 and current_state == State.SWOOPING and swoop_phase != 1:
+			sprite.flip_h = true
+		elif velocity.x > 0 and current_state == State.SWOOPING and swoop_phase != 1:
+			sprite.flip_h = false
 
 
 func handle_death():

@@ -299,16 +299,40 @@ func handle_damage_timers(delta):
 ##### Attack functions #####
 func handle_attacks():
 	if can_attack and Input.is_action_just_pressed("Attack_1"):
-		emit_signal("Attack1")
+		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65) # weird ass inventory/hotbar position problem, top left is (250, -65) away, so this corrects it
+		var inv_rect = $UserInterface/Inventory.get_rect()
+		var hotbar_rect = $UserInterface/Hotbar.get_rect()
+
+		if not inv_rect.has_point(click_pos):
+			if not hotbar_rect.has_point(click_pos):
+				emit_signal("Attack1")
 
 	if can_attack and Input.is_action_just_pressed("Attack_2"):
-		emit_signal("Attack2")
+		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65) # weird ass inventory/hotbar position problem, top left is (250, -65) away, so this corrects it
+		var inv_rect = $UserInterface/Inventory.get_rect()
+		var hotbar_rect = $UserInterface/Hotbar.get_rect()
+
+		if not inv_rect.has_point(click_pos):
+			if not hotbar_rect.has_point(click_pos):
+				emit_signal("Attack2")
 		
 	if can_attack and Input.is_action_just_pressed("Attack_3"):
-		emit_signal("Attack3")
+		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65) # weird ass inventory/hotbar position problem, top left is (250, -65) away, so this corrects it
+		var inv_rect = $UserInterface/Inventory.get_rect()
+		var hotbar_rect = $UserInterface/Hotbar.get_rect()
+
+		if not inv_rect.has_point(click_pos):
+			if not hotbar_rect.has_point(click_pos):
+				emit_signal("Attack3")
 		
 	if can_attack and Input.is_action_just_pressed("Attack_4"):
-		emit_signal("Attack4")
+		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65) # weird ass inventory/hotbar position problem, top left is (250, -65) away, so this corrects it
+		var inv_rect = $UserInterface/Inventory.get_rect()
+		var hotbar_rect = $UserInterface/Hotbar.get_rect()
+
+		if not inv_rect.has_point(click_pos):
+			if not hotbar_rect.has_point(click_pos):
+				emit_signal("Attack4")
 
 
 ##### Counter and parry functions #####
