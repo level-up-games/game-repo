@@ -3,8 +3,8 @@ class_name CameraTop
 
 
 @onready var player_ceiling_ray = get_node("../../Player/Rays/CeilingRay")
+@onready var camera = get_node("../../Player/PlayerCamera")
 
-@export var camera: Camera2D
 @export var player: CharacterBody2D
 @export var top_limit: float = 150
 
@@ -18,7 +18,7 @@ func _init():
 
 
 func _ready():
-	pass
+	camera.limit_top = player.position.y - 1500
 
 
 func _process(delta):
@@ -27,6 +27,8 @@ func _process(delta):
 			var origin = player_ceiling_ray.global_transform.origin
 			var collision_point = player_ceiling_ray.get_collision_point()
 			var distance = origin.distance_to(collision_point)
-			camera.limit_top = player.position.y - (distance + 150) - top_limit
+			var limit_to_set = player.position.y - (distance + 150) - top_limit
+			
+			camera.limit_top = move_toward(camera.limit_top, limit_to_set, 3000 * delta)
 		else:
 			camera.limit_top = player.position.y - 1500

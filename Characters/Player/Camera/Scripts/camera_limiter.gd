@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@export var camera: Camera2D
+@onready var camera = get_node("../../Player/PlayerCamera")
 
 @export var left_limit: float
 @export var right_limit: float

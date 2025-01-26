@@ -3,8 +3,8 @@ class_name CameraRight
 
 
 @onready var player_wall_ray_right = get_node("../../Player/Rays/WallRayRight")
+@onready var camera = get_node("../../Player/PlayerCamera")
 
-@export var camera: Camera2D
 @export var player: CharacterBody2D
 @export var right_limit: float = 150
 
@@ -18,7 +18,7 @@ func _init():
 
 
 func _ready():
-	pass
+	camera.limit_right = player.global_position.x + 2000
 
 
 func _process(delta):
@@ -27,6 +27,8 @@ func _process(delta):
 			var origin = player_wall_ray_right.global_transform.origin
 			var collision_point = player_wall_ray_right.get_collision_point()
 			var distance = origin.distance_to(collision_point)
-			camera.limit_right = player.position.x + (distance + 50) + right_limit
+			var limit_to_set = player.position.x + (distance + 50) + right_limit
+			
+			camera.limit_right = move_toward(camera.limit_right, limit_to_set, 3000 * delta)
 		else:
-			camera.limit_right = player.position.x + 2000
+			camera.limit_right = player.global_position.x + 2000

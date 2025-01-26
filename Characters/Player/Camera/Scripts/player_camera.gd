@@ -7,14 +7,14 @@ func _ready():
 
 
 func _process(delta):
-	handle_camera_bias()
+	handle_camera_bias(delta)
 
 
-func handle_camera_bias():
-	if Global.player_movement_direction > 0:
-		position.x = 35
-	elif Global.player_movement_direction < 0:
-		position.x = -35
+func handle_camera_bias(delta):
+	if Global.player_facing_direction < 0:
+		position.x = move_toward(position.x, 35, 280 * delta)
+	elif Global.player_facing_direction > 0:
+		position.x = move_toward(position.x, -35, 280 * delta)
 
 
 func change_limits(left, right, top, bottom):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://cjwnd5fmbi3ir"]
+[gd_scene load_steps=21 format=4 uid="uid://cjwnd5fmbi3ir"]
 
 [ext_resource type="TileSet" uid="uid://r4hvwuq4btws" path="res://AreaMaps/world_tileset.tres" id="1_64n2v"]
 [ext_resource type="PackedScene" uid="uid://r802u2g0c73d" path="res://Characters/Player/Body/Scenes/player.tscn" id="2_w5sf4"]
@@ -7,10 +7,8 @@
 [ext_resource type="Script" path="res://Characters/Player/Inventory/Scripts/user_interface.gd" id="5_ocrpi"]
 [ext_resource type="Script" path="res://Characters/Player/Body/Scripts/progress_bar.gd" id="6_3l82o"]
 [ext_resource type="PackedScene" uid="uid://by31ctaq45chn" path="res://Characters/Player/Inventory/Scenes/Hotbar.tscn" id="6_kbn6r"]
-[ext_resource type="Script" path="res://Characters/Player/Camera/Scripts/player_camera.gd" id="7_m1v1x"]
 [ext_resource type="PackedScene" uid="uid://bjthtkra8x2fr" path="res://Characters/Player/Inventory/Scenes/Inventory.tscn" id="7_remg3"]
 [ext_resource type="Script" path="res://Characters/Player/Camera/Scripts/camera_left.gd" id="8_wo47i"]
-[ext_resource type="PackedScene" uid="uid://dsj0a7gm164a8" path="res://Characters/Player/Camera/Scenes/camera_limiter.tscn" id="9_covws"]
 [ext_resource type="Script" path="res://Characters/Player/Camera/Scripts/camera_right.gd" id="9_j65h0"]
 [ext_resource type="Script" path="res://Characters/Player/Camera/Scripts/camera_bottom.gd" id="9_kowsf"]
 [ext_resource type="PackedScene" uid="uid://kox5caaxhy55" path="res://Items/Scenes/ItemDrop.tscn" id="17_cvp6c"]
@@ -58,61 +56,29 @@ shape = SubResource("RectangleShape2D_h650h")
 
 [node name="Camera" type="Node2D" parent="."]
 
-[node name="CameraBottom" type="Area2D" parent="Camera" node_paths=PackedStringArray("camera", "player")]
+[node name="CameraBottom" type="Area2D" parent="Camera" node_paths=PackedStringArray("player")]
 visible = false
 collision_layer = 256
 collision_mask = 8
 script = ExtResource("9_kowsf")
-camera = NodePath("../../Player/PlayerCamera")
 player = NodePath("../../Player")
 
-[node name="CameraLeft" type="Area2D" parent="Camera" node_paths=PackedStringArray("camera", "player")]
+[node name="CameraLeft" type="Area2D" parent="Camera" node_paths=PackedStringArray("player")]
 visible = false
 script = ExtResource("8_wo47i")
-camera = NodePath("../../Player/PlayerCamera")
 player = NodePath("../../Player")
 
-[node name="CameraRight" type="Area2D" parent="Camera" node_paths=PackedStringArray("camera", "player")]
-visible = false
+[node name="CameraRight" type="Area2D" parent="Camera" node_paths=PackedStringArray("player")]
 script = ExtResource("9_j65h0")
-camera = NodePath("../../Player/PlayerCamera")
 player = NodePath("../../Player")
 
 [node name="Collision" type="CollisionPolygon2D" parent="Camera/CameraRight"]
 position = Vector2(1054.2, 0)
 polygon = PackedVector2Array(16098.8, 860, 16097.8, 1097, 16125.8, 1097, 16124.8, 860)
 
-[node name="CameraRightEnd" type="Area2D" parent="Camera" node_paths=PackedStringArray("camera", "player")]
-visible = false
-script = ExtResource("9_j65h0")
-camera = NodePath("../../Player/PlayerCamera")
-player = NodePath("../../Player")
-right_limit = 0.0
-
-[node name="Collision" type="CollisionPolygon2D" parent="Camera/CameraRightEnd"]
+[node name="CollisionEnd" type="CollisionPolygon2D" parent="Camera/CameraRight"]
 position = Vector2(-86, 0)
 polygon = PackedVector2Array(26386, 427, 26392, -1160, 26634, -1159, 26636, 427)
-
-[node name="CameraLimiter" parent="Camera" node_paths=PackedStringArray("camera") instance=ExtResource("9_covws")]
-position = Vector2(11104, -1265)
-rotation = 1.5708
-scale = Vector2(1, 1.95)
-camera = NodePath("../../Player/PlayerCamera")
-left_limit = -5000.0
-right_limit = 50000.0
-top_limit = -5000.0
-bottom_limit = 1000.0
-change_left = true
-change_right = true
-change_top = true
-change_bottom = true
-
-[node name="CameraLimiter2" parent="Camera" node_paths=PackedStringArray("camera") instance=ExtResource("9_covws")]
-position = Vector2(14848, 676)
-scale = Vector2(1, 4.075)
-camera = NodePath("../../Player/PlayerCamera")
-left_limit = -5000.0
-change_left = true
 
 [node name="SceneSwitcher" parent="Camera" instance=ExtResource("17_elmnf")]
 position = Vector2(26340, -360)
@@ -123,7 +89,7 @@ position = Vector2(75, 0.5)
 shape = SubResource("RectangleShape2D_wwm7k")
 
 [node name="Player" parent="." instance=ExtResource("2_w5sf4")]
-position = Vector2(3259, -1667)
+position = Vector2(9027, -1306)
 
 [node name="UserInterface" type="CanvasLayer" parent="Player"]
 offset = Vector2(-250, 65)
@@ -151,18 +117,6 @@ offset_left = 1676.0
 offset_top = 33.0
 offset_right = 2151.0
 offset_bottom = 303.0
-
-[node name="PlayerCamera" type="Camera2D" parent="Player"]
-position = Vector2(0, -190)
-limit_left = 2340
-limit_top = -4900
-limit_right = 26520
-limit_bottom = -1440
-limit_smoothed = true
-position_smoothing_enabled = true
-editor_draw_limits = true
-editor_draw_drag_margin = true
-script = ExtResource("7_m1v1x")
 
 [node name="Enemies" type="Node2D" parent="."]
 

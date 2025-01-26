@@ -25,12 +25,24 @@ var accessories = {}  #--> slot_index: [item_name, item_quantity]
 @export var player_max_health: int = 100
 @export var player_health: int = 100
 
+##### Camera variables #####
+var is_fullscreen: bool = false
+
 
 
 ##### Regular functions #####
 func _ready() -> void:
 	item_data = load_data("res://Items/Data/item_data.json")
 
+
+func _process(delta):
+	if Input.is_action_just_pressed("Fullscreen"):
+		if is_fullscreen == false:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			is_fullscreen = true
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			is_fullscreen = false
 
 
 ##### Hotbar functions #####

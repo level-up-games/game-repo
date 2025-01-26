@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://r802u2g0c73d"]
+[gd_scene load_steps=99 format=3 uid="uid://r802u2g0c73d"]
 
 [ext_resource type="Script" path="res://Characters/Player/Body/Scripts/player.gd" id="1_e41gs"]
 [ext_resource type="Texture2D" uid="uid://q55qttr4qu6l" path="res://Characters/Player/Body/Assets/Animations/IdleAnimation/frame0000.png" id="3_2n0p3"]
@@ -86,6 +86,7 @@
 [ext_resource type="Texture2D" uid="uid://cj3c0owkvil4" path="res://Characters/Player/Body/Assets/Animations/RunMirror/frame0017.png" id="57_ngeoo"]
 [ext_resource type="Texture2D" uid="uid://domlgqa2ilb6o" path="res://Characters/Player/Body/Assets/Animations/RunMirror/frame0018.png" id="58_lyax1"]
 [ext_resource type="Texture2D" uid="uid://c4td1p0ilvka1" path="res://Characters/Player/Body/Assets/Animations/RunMirror/frame0019.png" id="59_hrmel"]
+[ext_resource type="Script" path="res://Characters/Player/Camera/Scripts/player_camera.gd" id="87_x5wpa"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2wi05"]
 animations = [{
@@ -949,27 +950,27 @@ position = Vector2(3, 1)
 
 [node name="GroundRay" type="RayCast2D" parent="Rays"]
 position = Vector2(0, -30)
-target_position = Vector2(0, 800)
+target_position = Vector2(0, 1600)
 collision_mask = 256
 collide_with_areas = true
 
 [node name="CeilingRay" type="RayCast2D" parent="Rays"]
 position = Vector2(0, -160)
-target_position = Vector2(0, -800)
+target_position = Vector2(0, -1600)
 collision_mask = 512
 collide_with_areas = true
 
 [node name="WallRayLeft" type="RayCast2D" parent="Rays"]
 position = Vector2(0, -90)
 rotation = 1.5708
-target_position = Vector2(0, 1000)
+target_position = Vector2(0, 2000)
 collision_mask = 1024
 collide_with_areas = true
 
 [node name="WallRayRight" type="RayCast2D" parent="Rays"]
 position = Vector2(0, -90)
 rotation = -1.5708
-target_position = Vector2(0, 1000)
+target_position = Vector2(0, 2000)
 collision_mask = 2048
 collide_with_areas = true
 
@@ -1020,6 +1021,19 @@ script = ExtResource("50_s86sl")
 position = Vector2(0, -22.5)
 shape = SubResource("RectangleShape2D_5vm51")
 debug_color = Color(0.647362, 0.51919, 0.122231, 0.42)
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+position = Vector2(0, -190)
+zoom = Vector2(0.83, 0.83)
+limit_left = -9999999
+limit_top = -9999999
+limit_right = 9999999
+limit_bottom = 9999999
+limit_smoothed = true
+position_smoothing_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource("87_x5wpa")
 
 [connection signal="body_entered" from="PickupZone" to="PickupZone" method="_on_body_entered"]
 [connection signal="body_exited" from="PickupZone" to="PickupZone" method="_on_body_exited"]
