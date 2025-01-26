@@ -211,7 +211,7 @@ func take_damage(damage, hitbox_position, knockback_speed):
 		
 		var knockback_direction: Vector2 = global_position - hitbox_position
 		velocity = Vector2(0, 0)
-		velocity = knockback_direction.normalized() * knockback_speed * 0.75
+		velocity = knockback_direction.normalized() * knockback_speed * 0.6
 	
 	sprite.modulate = Color(1, 0, 0)
 	await get_tree().create_timer(0.1).timeout

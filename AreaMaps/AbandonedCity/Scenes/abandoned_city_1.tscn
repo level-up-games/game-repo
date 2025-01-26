@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://cjwnd5fmbi3ir"]
+[gd_scene load_steps=23 format=4 uid="uid://cjwnd5fmbi3ir"]
 
 [ext_resource type="TileSet" uid="uid://r4hvwuq4btws" path="res://AreaMaps/world_tileset.tres" id="1_64n2v"]
 [ext_resource type="PackedScene" uid="uid://r802u2g0c73d" path="res://Characters/Player/Body/Scenes/player.tscn" id="2_w5sf4"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://dsj0a7gm164a8" path="res://Characters/Player/Camera/Scenes/camera_limiter.tscn" id="9_covws"]
 [ext_resource type="Script" path="res://Characters/Player/Camera/Scripts/camera_right.gd" id="9_j65h0"]
 [ext_resource type="Script" path="res://Characters/Player/Camera/Scripts/camera_bottom.gd" id="9_kowsf"]
-[ext_resource type="PackedScene" uid="uid://cyu8s2y7qoiru" path="res://Enemies/Non-bosses/AbandonedCity/Testers/Scenes/test_crawler.tscn" id="12_ebbjf"]
 [ext_resource type="PackedScene" uid="uid://kox5caaxhy55" path="res://Items/Scenes/ItemDrop.tscn" id="17_cvp6c"]
 [ext_resource type="PackedScene" uid="uid://crkliktsd2k4m" path="res://AreaMaps/scene_switcher.tscn" id="17_elmnf"]
 [ext_resource type="PackedScene" uid="uid://2xp07ty0gwhv" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Scenes/mutated_bat.tscn" id="17_tk3sp"]
@@ -167,53 +166,57 @@ script = ExtResource("7_m1v1x")
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Test Crawler" parent="Enemies" instance=ExtResource("12_ebbjf")]
-position = Vector2(13920, 151)
+[node name="Bats" type="Node2D" parent="Enemies"]
 
-[node name="Test Crawler2" parent="Enemies" instance=ExtResource("12_ebbjf")]
-position = Vector2(10231, 1015)
-
-[node name="Test Crawler3" parent="Enemies" instance=ExtResource("12_ebbjf")]
-position = Vector2(7511, 824)
-
-[node name="MutatedBat" parent="Enemies" instance=ExtResource("17_tk3sp")]
+[node name="MutatedBat" parent="Enemies/Bats" instance=ExtResource("17_tk3sp")]
 position = Vector2(6682, 4)
 
-[node name="MutatedBat2" parent="Enemies" instance=ExtResource("17_tk3sp")]
+[node name="MutatedBat2" parent="Enemies/Bats" instance=ExtResource("17_tk3sp")]
 position = Vector2(10163, -267)
 
-[node name="MutatedBat3" parent="Enemies" instance=ExtResource("17_tk3sp")]
+[node name="MutatedBat3" parent="Enemies/Bats" instance=ExtResource("17_tk3sp")]
 position = Vector2(11863, 677)
 
-[node name="MutatedBat4" parent="Enemies" instance=ExtResource("17_tk3sp")]
+[node name="MutatedBat4" parent="Enemies/Bats" instance=ExtResource("17_tk3sp")]
 position = Vector2(14842, -231)
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Enemies"]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Enemies/Bats"]
 visible = false
 position = Vector2(3370, 2156)
 navigation_polygon = SubResource("NavigationPolygon_2ntu5")
 
-[node name="MutatedRat" parent="Enemies" node_paths=PackedStringArray("patrol_polygon") instance=ExtResource("18_oukg2")]
+[node name="Rats" type="Node2D" parent="Enemies"]
+
+[node name="MutatedRat" parent="Enemies/Rats" node_paths=PackedStringArray("patrol_polygon") instance=ExtResource("18_oukg2")]
 position = Vector2(14569, 157.6)
 patrol_polygon = NodePath("../RatPatrol")
 
-[node name="MutatedRat2" parent="Enemies" node_paths=PackedStringArray("patrol_polygon") instance=ExtResource("18_oukg2")]
+[node name="MutatedRat2" parent="Enemies/Rats" node_paths=PackedStringArray("patrol_polygon") instance=ExtResource("18_oukg2")]
 position = Vector2(10726, 1023)
 patrol_polygon = NodePath("../RatPatrol2")
 
-[node name="MutatedRat3" parent="Enemies" node_paths=PackedStringArray("patrol_polygon") instance=ExtResource("18_oukg2")]
+[node name="MutatedRat3" parent="Enemies/Rats" node_paths=PackedStringArray("patrol_polygon") instance=ExtResource("18_oukg2")]
 position = Vector2(15335, 1052)
 patrol_polygon = NodePath("../RatPatrol3")
 
-[node name="RatPatrol" type="CollisionPolygon2D" parent="Enemies"]
+[node name="RatPatrol" type="CollisionPolygon2D" parent="Enemies/Rats"]
 position = Vector2(9295.5, 1947.6)
 polygon = PackedVector2Array(4775.5, -2083.6, 3300.5, -2116.6, 3306.5, -1894.6, 4483.5, -1668.6, 6936.5, -1679.6, 6920.5, -2055.6)
 
-[node name="RatPatrol2" type="CollisionPolygon2D" parent="Enemies"]
+[node name="RatPatrol2" type="CollisionPolygon2D" parent="Enemies/Rats"]
 polygon = PackedVector2Array(9875, 1063, 9880, 592, 11678, 606, 11740, 1091)
 
-[node name="RatPatrol3" type="CollisionPolygon2D" parent="Enemies"]
+[node name="RatPatrol3" type="CollisionPolygon2D" parent="Enemies/Rats"]
 polygon = PackedVector2Array(16402, 1124, 16387, 801, 14703, 858, 14689, 1124)
+
+[node name="Wolves" type="Node2D" parent="Enemies"]
+
+[node name="FeralWolf" parent="Enemies/Wolves" node_paths=PackedStringArray("patrol_polygon") instance=ExtResource("19_qrler")]
+position = Vector2(15365, -1357)
+patrol_polygon = NodePath("../WolfPatrol1")
+
+[node name="WolfPatrol1" type="CollisionPolygon2D" parent="Enemies/Wolves"]
+polygon = PackedVector2Array(16598, -1851, 12860, -1846, 12860, -1265, 16597, -1265)
 
 [node name="Items" type="Node2D" parent="."]
 
@@ -229,10 +232,3 @@ item_name = "Coin"
 [node name="ItemDrop3" parent="Items" instance=ExtResource("17_cvp6c")]
 position = Vector2(3612, -1683)
 item_name = "Sonic Boots"
-
-[node name="FeralWolf" parent="." node_paths=PackedStringArray("patrol_polygon") instance=ExtResource("19_qrler")]
-position = Vector2(5847, -1795)
-patrol_polygon = NodePath("../CollisionPolygon2D")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(7883, -1351, 7928, -2405, 5055, -2339, 5096, -1367)
