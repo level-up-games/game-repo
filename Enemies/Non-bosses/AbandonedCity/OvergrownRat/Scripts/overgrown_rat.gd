@@ -281,6 +281,14 @@ func take_damage(damage, hitbox_position, knockback_speed):
 	velocity = Vector2(0, 0)
 	velocity = knockback_direction.normalized() * knockback_speed * 0.1
 	
+	var popup_scene = preload("res://Enemies/damage_popup.tscn")
+	var popup = popup_scene.instantiate() as RichTextLabel
+	get_tree().get_current_scene().add_child(popup)
+	
+	var random_offset_x = randf_range(-15, 15)
+	var spawn_pos = global_position + Vector2(random_offset_x, -50)
+	popup.show_damage(damage, spawn_pos, false)
+	
 	sprite.modulate = Color(1, 0, 0)
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1)

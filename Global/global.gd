@@ -5,6 +5,7 @@ var player: CharacterBody2D = null
 var player_facing_direction: int = 1
 var current_mouse_direction: int = 1
 var player_movement_direction: float = 0.0
+var player_last_movement_direction: float = 1.0
 
 ##### Item variables #####
 var item_data: Dictionary

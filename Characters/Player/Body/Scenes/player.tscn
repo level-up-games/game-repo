@@ -935,9 +935,7 @@ z_index = 5
 position = Vector2(-16, -108)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_2wi05")
-animation = &"Run"
-frame = 13
-frame_progress = 0.970648
+animation = &"IdleMirror"
 
 [node name="WorldCollision" type="CollisionShape2D" parent="."]
 position = Vector2(15, -90)

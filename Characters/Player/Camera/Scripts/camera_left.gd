@@ -31,4 +31,4 @@ func _process(delta):
 			
 			camera.limit_left = move_toward(camera.limit_left, limit_to_set, 3000 * delta)
 		else:
-			camera.limit_left = player.position.x - 2000
+			camera.limit_left = move_toward(camera.limit_left, player.position.x - 2000, 3000 * delta)

@@ -3,7 +3,8 @@ class_name PlayerHitbox
 
 
 @export var knockback_speed: float = 750.0
-@export var damage_dealt: int = 10
+@export var set_damage_dealt: int = 10
+var damage_dealt: int
 var hitbox_position: Vector2
 
 

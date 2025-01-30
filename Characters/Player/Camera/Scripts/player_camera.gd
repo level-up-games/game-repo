@@ -11,10 +11,10 @@ func _process(delta):
 
 
 func handle_camera_bias(delta):
-	if Global.player_facing_direction < 0:
-		position.x = move_toward(position.x, 35, 280 * delta)
-	elif Global.player_facing_direction > 0:
-		position.x = move_toward(position.x, -35, 280 * delta)
+	if Global.player_last_movement_direction > 0:
+		position.x = move_toward(position.x, 25, 400 * delta)
+	elif Global.player_last_movement_direction < 0:
+		position.x = move_toward(position.x, -25, 400 * delta)
 
 
 func change_limits(left, right, top, bottom):

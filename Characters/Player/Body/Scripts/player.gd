@@ -108,6 +108,8 @@ func handle_animation(anim: String):
 func get_movement_direction() -> float: # Gets the movement direction (not the facing direction).
 	var movement_direction = Input.get_axis("Move_Left", "Move_Right")
 	Global.player_movement_direction = movement_direction
+	if movement_direction != 0:
+		Global.player_last_movement_direction = movement_direction
 	
 	return movement_direction
 
@@ -268,6 +270,14 @@ func take_damage(damage, hitbox_position, knockback_speed):
 			var knockback_direction: Vector2 = (global_position - Vector2(0, 90)) - hitbox_position
 			velocity = Vector2(0, 0)
 			velocity = knockback_direction.normalized() * knockback_speed
+			
+			var popup_scene = preload("res://Enemies/damage_popup.tscn")
+			var popup = popup_scene.instantiate() as RichTextLabel
+			get_tree().get_current_scene().add_child(popup)
+			
+			var random_offset_x = randf_range(-15, 15)
+			var spawn_pos = global_position + Vector2(random_offset_x, -170)
+			popup.show_damage(damage, spawn_pos, true)
 			
 			for i in range(3):
 				player_sprite.modulate = Color(0.8, 0.8, 0.8, 0.5)
