@@ -91,6 +91,12 @@ folder_colors={
 "res://Menus/MainMenu/Scripts/": "yellow"
 }
 
+[gui]
+
+theme/default_font_hinting=2
+theme/default_font_multichannel_signed_distance_field=true
+theme/default_font_generate_mipmaps=true
+
 [input]
 
 Move_Left={
