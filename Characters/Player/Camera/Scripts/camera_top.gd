@@ -18,7 +18,7 @@ func _init():
 
 
 func _ready():
-	camera.limit_top = player.position.y - 1500
+	camera.limit_top = player.position.y - 1200
 
 
 func _process(delta):
@@ -31,4 +31,4 @@ func _process(delta):
 			
 			camera.limit_top = move_toward(camera.limit_top, limit_to_set, 3000 * delta)
 		else:
-			camera.limit_top = move_toward(camera.limit_top, player.position.y - 1500, 3000 * delta)
+			camera.limit_top = move_toward(camera.limit_top, player.position.y - 1200, 3000 * delta)

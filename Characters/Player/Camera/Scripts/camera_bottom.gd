@@ -18,10 +18,11 @@ func _init():
 
 
 func _ready():
-	camera.limit_bottom = player.position.y + 1500
+	camera.limit_bottom = player.position.y + 1200
 
 
 func _process(delta):
+	print(camera.limit_bottom)
 	if get_limits == true:
 		if player_ground_ray.is_colliding():
 			var origin = player_ground_ray.global_transform.origin
@@ -31,4 +32,4 @@ func _process(delta):
 			
 			camera.limit_bottom = move_toward(camera.limit_bottom, limit_to_set, 3000 * delta)
 		else:
-			camera.limit_bottom = move_toward(camera.limit_bottom, player.position.y + 1500, 3000 * delta)
+			camera.limit_bottom = move_toward(camera.limit_bottom, player.position.y + 600, 3000 * delta)
