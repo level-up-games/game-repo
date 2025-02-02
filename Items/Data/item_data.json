@@ -10,5 +10,17 @@
 		"stack_size": 1,
 		"description": "Boots that make you 1.1x faster.",
 		"texture_path": "res://Items/Accessories/SonicBoots/Assets/sonic-boots.png"
+	},
+	"Wood": {
+		"item_category": "Resource",
+		"stack_size": 99,
+		"description": "What I gave your mother last night",
+		"texture_path": "res://Items/TestWood.png"
+	},
+	"Apple": {
+		"item_category": "Resource",
+		"stack_size": 99,
+		"description": "Heals or something idk",
+		"texture_path": "res://Items/TestApple.png"
 	}
 }

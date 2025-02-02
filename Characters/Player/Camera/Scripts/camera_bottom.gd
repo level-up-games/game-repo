@@ -22,7 +22,6 @@ func _ready():
 
 
 func _process(delta):
-	print(camera.limit_bottom)
 	if get_limits == true:
 		if player_ground_ray.is_colliding():
 			var origin = player_ground_ray.global_transform.origin

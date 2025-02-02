@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://6fh38pslhrr0"]
+
+[ext_resource type="Script" path="res://AreaMaps/AbandonedCity/Scripts/tree.gd" id="1_5nlkp"]
+[ext_resource type="Script" path="res://Enemies/HostileHurtbox.gd" id="2_6tcdp"]
+
+[node name="Tree" type="StaticBody2D"]
+script = ExtResource("1_5nlkp")
+
+[node name="Sprite" type="Polygon2D" parent="."]
+position = Vector2(-5, 0)
+polygon = PackedVector2Array(-8, 0, -8, -416, -36, -398, -89, -384, -101, -414, -91, -463, -113, -487, -126, -516, -115, -553, -77, -570, -52, -563, -30, -582, -22, -606, 17, -612, 40, -602, 70, -585, 95, -589, 124, -585, 134, -563, 126, -530, 115, -500, 140, -468, 145, -458, 141, -437, 121, -411, 79, -399, 56, -402, 19, -421, 20, 0)
+
+[node name="HostileHurtbox" type="Area2D" parent="."]
+script = ExtResource("2_6tcdp")
+
+[node name="Collision" type="CollisionPolygon2D" parent="HostileHurtbox"]
+polygon = PackedVector2Array(-14, 0, -13, -414, -92, -384, -94, -462, -127, -532, -56, -562, 2, -611, 64, -584, 126, -557, 110, -501, 117, -414, 14, -422, 15, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

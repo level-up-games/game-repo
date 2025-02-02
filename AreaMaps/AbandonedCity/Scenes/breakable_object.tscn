@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpy24l01l1tkw"]
+
+[ext_resource type="Script" path="res://Enemies/HostileHurtbox.gd" id="1_1jrhd"]
+[ext_resource type="Script" path="res://AreaMaps/AbandonedCity/Scripts/breakable_object.gd" id="1_w6bdn"]
+
+[sub_resource type="Gradient" id="Gradient_bbg43"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w833l"]
+gradient = SubResource("Gradient_bbg43")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5xdm"]
+size = Vector2(38, 50)
+
+[node name="BreakableObject" type="StaticBody2D"]
+script = ExtResource("1_w6bdn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, 0)
+scale = Vector2(0.578125, 0.765625)
+texture = SubResource("GradientTexture2D_w833l")
+
+[node name="HostileHurtbox" type="Area2D" parent="."]
+script = ExtResource("1_1jrhd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HostileHurtbox"]
+shape = SubResource("RectangleShape2D_o5xdm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

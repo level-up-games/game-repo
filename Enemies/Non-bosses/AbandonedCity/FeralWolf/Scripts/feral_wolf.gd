@@ -45,6 +45,18 @@ var bouncing: bool = false
 var parried_time: float
 var hit_bounce_timer: float
 
+##### Item variables #####
+@export var item_drop_scene: PackedScene = preload("res://Items/Scenes/ItemDrop.tscn")
+
+# Drop table: an Array of Dictionaries. For each drop, specify:
+# - "item_name": the name of the item to drop.
+# - "chance": a value between 0 and 1 representing the drop chance.
+# - "min_quantity" and "max_quantity": the range of quantities to drop.
+@export var drop_table: Array = [
+	{"item_name": "Coin", "chance": 0.8, "min_quantity": 0, "max_quantity": 5},
+]
+
+
 
 ##### High level functions #####
 func _ready() -> void:
@@ -171,6 +183,27 @@ func _process_leap_attack(delta: float) -> void:
 
 
 ##### Other functions #####
+func _drop_items() -> void:
+	for drop in drop_table:
+		var quantity = 0
+		
+		for i in range(drop["max_quantity"]):
+			if randf() <= drop["chance"]:
+				quantity += 1
+		
+		if drop.has("min_quantity") and quantity < drop["min_quantity"]:
+			quantity = drop["min_quantity"]
+		
+		if quantity > 0:
+			var drop_instance = item_drop_scene.instantiate()
+			drop_instance.item_name = drop["item_name"]
+			drop_instance.item_quantity = quantity
+			
+			drop_instance.global_position = global_position + Vector2(randf_range(-30, 30), randf_range(-30, 30))
+			
+			get_tree().get_current_scene().add_child(drop_instance)
+
+
 func handle_wall_vision():
 	if is_instance_valid(player) == true:
 		first_detection_ray.target_position = (player.global_position + Vector2(0, -90)) - first_detection_ray.global_position
@@ -251,11 +284,13 @@ func handle_hit_timer(delta):
 
 func handle_death():
 	if health <=0:
+		_drop_items()
 		queue_free()
 
 
 func _on_parried():
 	parried_time = 0.5
+	velocity = Vector2(0, 0)
 	
 	hostile_hitbox.damage_dealt = 0
 	modulate = Color(1,1,0)
