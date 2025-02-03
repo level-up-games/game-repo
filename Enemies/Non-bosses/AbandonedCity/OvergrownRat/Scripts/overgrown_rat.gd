@@ -349,9 +349,6 @@ func handle_hit_timer(delta):
 		bouncing = false
 
 
-
-
-
 func handle_death():
 	if health <=0:
 		_drop_items()

@@ -61,9 +61,18 @@ var counter_active_timer: float = 0.0
 @export var counter_cooldown: float = 1.0
 @export var counter_duration: float = 0.05 # THIS MAY CHANGE DUE TO DIFFICULT BOSS ATTACK REACTION TIMES
 
+##### Inventory variables #####
+var held_item = Global.get_held_item()
+
+# make these so this only happens on pickup of the weapon
+var test_sword_instance: Node = null
+var test_sword_scene = preload("res://Items/Weapons/Sword/TestSword/Scenes/test_sword.tscn")
+
+
 
 func _physics_process(delta):
 	Global.player = self
+	held_item = Global.get_held_item()
 	
 	##### Normal functions #####
 	handle_jump()
@@ -73,6 +82,7 @@ func _physics_process(delta):
 	handle_facing_direction()
 	handle_attacks()
 	handle_counter()
+	prepare_weapon()
 	move_and_slide()
 	
 	##### Timer functions #####
@@ -307,6 +317,18 @@ func handle_damage_timers(delta):
 
 
 ##### Attack functions #####
+func prepare_weapon():
+	 #### Change this to be more modular in the future (check if weapon, then auto instansiate the scene based on name) ####
+	if held_item and held_item.item_name == "TestSword":
+		if test_sword_instance == null:
+			test_sword_instance = test_sword_scene.instantiate()
+			add_child(test_sword_instance)
+	else:
+		if test_sword_instance:
+			test_sword_instance.queue_free()
+			test_sword_instance = null
+
+
 func handle_attacks():
 	if can_attack and Input.is_action_just_pressed("Attack_1"):
 		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65) # weird ass inventory/hotbar position problem, top left is (250, -65) away, so this corrects it
@@ -380,6 +402,28 @@ func handle_counter():
 
 
 ##### Items/Inventory functions #####
+func has_item(item_name: String) -> bool:
+	var ui = $UserInterface#get_node("Player/UserInterface")
+	
+	# First, check if the player is currently dragging (holding) an item.
+	if ui.holding_item:
+		if ui.holding_item.item_name == item_name:
+			return true
+	
+	# Next, check the active slot in the hotbar.
+	# Assuming your Global script holds the hotbar dictionary and the active slot index.
+	if Global.hotbar.has(Global.active_item_slot):
+		var slot_data = Global.hotbar[Global.active_item_slot]
+		# slot_data is assumed to be an array [item_name, item_quantity]
+		if slot_data[0] == item_name:
+			return true
+	
+	# Optionally, if you want to check the inventory's currently highlighted slot,
+	# you can add that check here as well.
+	
+	return false
+
+
 func pickup() -> void:
 	if Input.is_action_pressed("Interact"):
 		if $PickupZone.items_in_range.size() > 0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://r802u2g0c73d"]
+[gd_scene load_steps=98 format=3 uid="uid://r802u2g0c73d"]
 
 [ext_resource type="Script" path="res://Characters/Player/Body/Scripts/player.gd" id="1_e41gs"]
 [ext_resource type="Texture2D" uid="uid://q55qttr4qu6l" path="res://Characters/Player/Body/Assets/Animations/IdleAnimation/frame0000.png" id="3_2n0p3"]
@@ -58,7 +58,6 @@
 [ext_resource type="Texture2D" uid="uid://w1exhrfj03pm" path="res://Characters/Player/Body/Assets/Animations/RunMirror/frame0000.png" id="40_0pgyx"]
 [ext_resource type="Script" path="res://Characters/Player/PlayerHurtbox.gd" id="40_idlto"]
 [ext_resource type="Texture2D" uid="uid://c1c1hfopopmo" path="res://Characters/Player/Body/Assets/Animations/RunMirror/frame0001.png" id="41_25dfh"]
-[ext_resource type="PackedScene" uid="uid://d3ndp0r41pqda" path="res://Items/Weapons/Sword/TestSword/Scenes/test_sword.tscn" id="41_cl2f0"]
 [ext_resource type="Texture2D" uid="uid://blaain437o6yq" path="res://Characters/Player/Body/Assets/Animations/RunMirror/frame0002.png" id="42_uvy2e"]
 [ext_resource type="Script" path="res://Characters/Player/Body/Scripts/running_sounds.gd" id="43_6ddxp"]
 [ext_resource type="Texture2D" uid="uid://cixoshnxdyxu3" path="res://Characters/Player/Body/Assets/Animations/RunMirror/frame0003.png" id="43_rnd8q"]
@@ -940,9 +939,6 @@ animation = &"IdleMirror"
 [node name="WorldCollision" type="CollisionShape2D" parent="."]
 position = Vector2(15, -90)
 shape = SubResource("RectangleShape2D_88iql")
-
-[node name="TestSword" parent="." instance=ExtResource("41_cl2f0")]
-position = Vector2(3, 1)
 
 [node name="Rays" type="Node2D" parent="."]
 

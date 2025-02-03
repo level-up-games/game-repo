@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://cjwnd5fmbi3ir"]
+[gd_scene load_steps=38 format=4 uid="uid://cjwnd5fmbi3ir"]
 
 [ext_resource type="TileSet" uid="uid://r4hvwuq4btws" path="res://AreaMaps/world_tileset.tres" id="1_bfjkg"]
 [ext_resource type="Script" path="res://AreaMaps/world_collision_breakables.gd" id="2_a5ql5"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Characters/Player/Body/Scripts/progress_bar.gd" id="11_lytxp"]
 [ext_resource type="PackedScene" uid="uid://by31ctaq45chn" path="res://Characters/Player/Inventory/Scenes/Hotbar.tscn" id="12_vh3dg"]
 [ext_resource type="PackedScene" uid="uid://bjthtkra8x2fr" path="res://Characters/Player/Inventory/Scenes/Inventory.tscn" id="13_1q1tu"]
+[ext_resource type="PackedScene" uid="uid://bgmnt62q8mf5p" path="res://AreaMaps/AbandonedCity/Scenes/gate.tscn" id="14_888pi"]
 [ext_resource type="PackedScene" uid="uid://ckqyu5lx3ik6u" path="res://Enemies/Non-bosses/AbandonedCity/FeralWolf/Scenes/feral_wolf.tscn" id="14_luch1"]
 [ext_resource type="PackedScene" uid="uid://cl2r4i00d811q" path="res://Enemies/Non-bosses/AbandonedCity/OvergrownRat/Scenes/overgrown_rat.tscn" id="15_cdoj8"]
 [ext_resource type="PackedScene" uid="uid://2xp07ty0gwhv" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Scenes/mutated_bat.tscn" id="16_fiibj"]
@@ -203,6 +204,52 @@ shape = SubResource("RectangleShape2D_24qoy")
 debug_color = Color(0.81579, 0.386492, 0.346899, 0.42)
 
 [node name="Environment" type="Node2D" parent="."]
+
+[node name="Trees" type="Node2D" parent="Environment"]
+
+[node name="Tree" parent="Environment/Trees" instance=ExtResource("19_1ae6q")]
+position = Vector2(5122, -1728)
+
+[node name="Tree2" parent="Environment/Trees" instance=ExtResource("19_1ae6q")]
+position = Vector2(5898, -1726)
+
+[node name="Tree3" parent="Environment/Trees" instance=ExtResource("19_1ae6q")]
+position = Vector2(3500, -1631)
+
+[node name="Tree4" parent="Environment/Trees" instance=ExtResource("19_1ae6q")]
+position = Vector2(8969, -1277)
+
+[node name="Pots" type="Node2D" parent="Environment"]
+
+[node name="BreakableObject" parent="Environment/Pots" instance=ExtResource("20_3bcan")]
+position = Vector2(6824, -1691)
+
+[node name="BreakableObject2" parent="Environment/Pots" instance=ExtResource("20_3bcan")]
+position = Vector2(6462, -1723)
+
+[node name="BreakableObject3" parent="Environment/Pots" instance=ExtResource("20_3bcan")]
+position = Vector2(7619, -1467)
+
+[node name="BreakableObject4" parent="Environment/Pots" instance=ExtResource("20_3bcan")]
+position = Vector2(7822, -1467)
+
+[node name="BreakableObject5" parent="Environment/Pots" instance=ExtResource("20_3bcan")]
+position = Vector2(5514, -1755)
+
+[node name="BreakableObject6" parent="Environment/Pots" instance=ExtResource("20_3bcan")]
+position = Vector2(4696, -1755)
+
+[node name="BreakableObject7" parent="Environment/Pots" instance=ExtResource("20_3bcan")]
+position = Vector2(4280, -1726)
+
+[node name="BreakableObject8" parent="Environment/Pots" instance=ExtResource("20_3bcan")]
+position = Vector2(4986, -1758)
+
+[node name="BreakableObject9" parent="Environment/Pots" instance=ExtResource("20_3bcan")]
+position = Vector2(3765, -1663)
+
+[node name="BreakableObject10" parent="Environment/Pots" instance=ExtResource("20_3bcan")]
+position = Vector2(6072, -1756)
 
 [node name="Camera" type="Node2D" parent="."]
 
@@ -413,44 +460,9 @@ item_name = "Coin"
 position = Vector2(3612, -1683)
 item_name = "Sonic Boots"
 
-[node name="Tree" parent="." instance=ExtResource("19_1ae6q")]
-position = Vector2(5122, -1728)
+[node name="TestSword" parent="Items" instance=ExtResource("18_cua63")]
+position = Vector2(8556, -1379)
+item_name = "TestSword"
 
-[node name="Tree2" parent="." instance=ExtResource("19_1ae6q")]
-position = Vector2(5898, -1726)
-
-[node name="Tree3" parent="." instance=ExtResource("19_1ae6q")]
-position = Vector2(3500, -1631)
-
-[node name="Tree4" parent="." instance=ExtResource("19_1ae6q")]
-position = Vector2(8969, -1277)
-
-[node name="BreakableObject" parent="." instance=ExtResource("20_3bcan")]
-position = Vector2(6824, -1691)
-
-[node name="BreakableObject2" parent="." instance=ExtResource("20_3bcan")]
-position = Vector2(6462, -1723)
-
-[node name="BreakableObject3" parent="." instance=ExtResource("20_3bcan")]
-position = Vector2(7619, -1467)
-
-[node name="BreakableObject4" parent="." instance=ExtResource("20_3bcan")]
-position = Vector2(7822, -1467)
-
-[node name="BreakableObject5" parent="." instance=ExtResource("20_3bcan")]
-position = Vector2(5514, -1755)
-
-[node name="BreakableObject6" parent="." instance=ExtResource("20_3bcan")]
-position = Vector2(4696, -1755)
-
-[node name="BreakableObject7" parent="." instance=ExtResource("20_3bcan")]
-position = Vector2(4280, -1726)
-
-[node name="BreakableObject8" parent="." instance=ExtResource("20_3bcan")]
-position = Vector2(4986, -1758)
-
-[node name="BreakableObject9" parent="." instance=ExtResource("20_3bcan")]
-position = Vector2(3765, -1663)
-
-[node name="BreakableObject10" parent="." instance=ExtResource("20_3bcan")]
-position = Vector2(6072, -1756)
+[node name="Gate" parent="." instance=ExtResource("14_888pi")]
+position = Vector2(16909, -1569)

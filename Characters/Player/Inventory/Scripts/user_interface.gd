@@ -4,6 +4,10 @@ var holding_item: Node2D = null
 
 
 
+func _ready():
+	Global.ui = self
+
+
 # We'll define a helper to get the mouse world position
 func get_mouse_world_position() -> Vector2:
 	return get_viewport().get_mouse_position()

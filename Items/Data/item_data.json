@@ -22,5 +22,11 @@
 		"stack_size": 99,
 		"description": "Heals or something idk",
 		"texture_path": "res://Items/TestApple.png"
+	},
+	"TestSword": {
+		"item_category": "Resource",
+		"stack_size": 1,
+		"description": "test sword moment",
+		"texture_path": "res://Items/Weapons/Sword/TestSword/Assets/Icon.png"
 	}
 }
