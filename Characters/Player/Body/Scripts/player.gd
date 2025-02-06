@@ -52,6 +52,8 @@ var invinc_timer: float = 1.0
 
 ##### Attack variables #####
 var can_attack: bool = true
+var current_weapon_instance: Node = null
+var current_weapon_name: String = ""
 
 ##### Counter and parry variables #####
 var can_counter: bool = true
@@ -63,10 +65,6 @@ var counter_active_timer: float = 0.0
 
 ##### Inventory variables #####
 var held_item = Global.get_held_item()
-
-# make these so this only happens on pickup of the weapon
-var test_sword_instance: Node = null
-var test_sword_scene = preload("res://Items/Weapons/Sword/TestSword/Scenes/test_sword.tscn")
 
 
 
@@ -81,8 +79,8 @@ func _physics_process(delta):
 	handle_movement(delta)
 	handle_facing_direction()
 	handle_attacks()
-	handle_counter()
 	prepare_weapon()
+	handle_counter()
 	move_and_slide()
 	
 	##### Timer functions #####
@@ -317,54 +315,59 @@ func handle_damage_timers(delta):
 
 
 ##### Attack functions #####
-func prepare_weapon():
-	 #### Change this to be more modular in the future (check if weapon, then auto instansiate the scene based on name) ####
-	if held_item and held_item.item_name == "TestSword":
-		if test_sword_instance == null:
-			test_sword_instance = test_sword_scene.instantiate()
-			add_child(test_sword_instance)
+func prepare_weapon() -> void:
+	if held_item and Global.item_data[held_item.item_name]["item_category"] == "Weapon":
+		var new_weapon_name = held_item.item_name
+		
+		if new_weapon_name != current_weapon_name:
+			if current_weapon_instance:
+				current_weapon_instance.queue_free()
+				current_weapon_instance = null
+				
+			if Global.item_data.has(new_weapon_name) and Global.item_data[new_weapon_name].has("weapon_scene_path"):
+				var scene_path = Global.item_data[new_weapon_name]["weapon_scene_path"]
+				var weapon_scene = ResourceLoader.load(scene_path)
+				if weapon_scene:
+					current_weapon_instance = weapon_scene.instantiate()
+					add_child(current_weapon_instance)
+					if current_weapon_instance.has_method("setup_weapon"):
+						current_weapon_instance.setup_weapon(self)
+					current_weapon_name = new_weapon_name
 	else:
-		if test_sword_instance:
-			test_sword_instance.queue_free()
-			test_sword_instance = null
+		if current_weapon_instance:
+			current_weapon_instance.queue_free()
+			current_weapon_instance = null
+			current_weapon_name = ""
 
 
-func handle_attacks():
+func handle_attacks() -> void:
 	if can_attack and Input.is_action_just_pressed("Attack_1"):
 		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65) # weird ass inventory/hotbar position problem, top left is (250, -65) away, so this corrects it
 		var inv_rect = $UserInterface/Inventory.get_rect()
 		var hotbar_rect = $UserInterface/Hotbar.get_rect()
-
-		if not inv_rect.has_point(click_pos):
-			if not hotbar_rect.has_point(click_pos):
-				emit_signal("Attack1")
-
+		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
+			emit_signal("Attack1")
+			
 	if can_attack and Input.is_action_just_pressed("Attack_2"):
 		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65) # weird ass inventory/hotbar position problem, top left is (250, -65) away, so this corrects it
 		var inv_rect = $UserInterface/Inventory.get_rect()
 		var hotbar_rect = $UserInterface/Hotbar.get_rect()
-
-		if not inv_rect.has_point(click_pos):
-			if not hotbar_rect.has_point(click_pos):
-				emit_signal("Attack2")
-		
+		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
+			emit_signal("Attack2")
+			
 	if can_attack and Input.is_action_just_pressed("Attack_3"):
 		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65) # weird ass inventory/hotbar position problem, top left is (250, -65) away, so this corrects it
 		var inv_rect = $UserInterface/Inventory.get_rect()
 		var hotbar_rect = $UserInterface/Hotbar.get_rect()
-
-		if not inv_rect.has_point(click_pos):
-			if not hotbar_rect.has_point(click_pos):
-				emit_signal("Attack3")
-		
+		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
+			emit_signal("Attack3")
+			
 	if can_attack and Input.is_action_just_pressed("Attack_4"):
 		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65) # weird ass inventory/hotbar position problem, top left is (250, -65) away, so this corrects it
 		var inv_rect = $UserInterface/Inventory.get_rect()
 		var hotbar_rect = $UserInterface/Hotbar.get_rect()
-
-		if not inv_rect.has_point(click_pos):
-			if not hotbar_rect.has_point(click_pos):
-				emit_signal("Attack4")
+		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
+			emit_signal("Attack4")
 
 
 ##### Counter and parry functions #####
@@ -403,23 +406,16 @@ func handle_counter():
 
 ##### Items/Inventory functions #####
 func has_item(item_name: String) -> bool:
-	var ui = $UserInterface#get_node("Player/UserInterface")
+	var ui = $UserInterface
 	
-	# First, check if the player is currently dragging (holding) an item.
 	if ui.holding_item:
 		if ui.holding_item.item_name == item_name:
 			return true
 	
-	# Next, check the active slot in the hotbar.
-	# Assuming your Global script holds the hotbar dictionary and the active slot index.
 	if Global.hotbar.has(Global.active_item_slot):
 		var slot_data = Global.hotbar[Global.active_item_slot]
-		# slot_data is assumed to be an array [item_name, item_quantity]
 		if slot_data[0] == item_name:
 			return true
-	
-	# Optionally, if you want to check the inventory's currently highlighted slot,
-	# you can add that check here as well.
 	
 	return false
 

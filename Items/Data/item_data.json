@@ -24,9 +24,10 @@
 		"texture_path": "res://Items/TestApple.png"
 	},
 	"TestSword": {
-		"item_category": "Resource",
+		"item_category": "Weapon",
 		"stack_size": 1,
 		"description": "test sword moment",
-		"texture_path": "res://Items/Weapons/Sword/TestSword/Assets/Icon.png"
+		"texture_path": "res://Items/Weapons/Sword/TestSword/Assets/Icon.png",
+		"weapon_scene_path": "res://Items/Weapons/Sword/TestSword/Scenes/test_sword.tscn"
 	}
 }
