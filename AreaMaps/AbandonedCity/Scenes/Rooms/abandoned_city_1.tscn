@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://cjwnd5fmbi3ir"]
+[gd_scene load_steps=37 format=4 uid="uid://cjwnd5fmbi3ir"]
 
 [ext_resource type="TileSet" uid="uid://r4hvwuq4btws" path="res://AreaMaps/world_tileset.tres" id="1_bfjkg"]
 [ext_resource type="Script" path="res://AreaMaps/world_collision_breakables.gd" id="2_a5ql5"]
@@ -10,9 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://crkliktsd2k4m" path="res://AreaMaps/scene_switcher.tscn" id="8_nlya1"]
 [ext_resource type="PackedScene" uid="uid://r802u2g0c73d" path="res://Characters/Player/Body/Scenes/player.tscn" id="9_05dg6"]
 [ext_resource type="Script" path="res://Characters/Player/Inventory/Scripts/user_interface.gd" id="10_wdkwl"]
-[ext_resource type="Script" path="res://Characters/Player/Body/Scripts/progress_bar.gd" id="11_lytxp"]
 [ext_resource type="PackedScene" uid="uid://by31ctaq45chn" path="res://Characters/Player/Inventory/Scenes/Hotbar.tscn" id="12_vh3dg"]
 [ext_resource type="PackedScene" uid="uid://bjthtkra8x2fr" path="res://Characters/Player/Inventory/Scenes/Inventory.tscn" id="13_1q1tu"]
+[ext_resource type="PackedScene" uid="uid://cy7jyqmrxnm3q" path="res://Characters/Player/health_spell_bars.tscn" id="13_mji45"]
 [ext_resource type="PackedScene" uid="uid://bgmnt62q8mf5p" path="res://AreaMaps/AbandonedCity/Scenes/gate.tscn" id="14_888pi"]
 [ext_resource type="PackedScene" uid="uid://ckqyu5lx3ik6u" path="res://Enemies/Non-bosses/AbandonedCity/FeralWolf/Scenes/feral_wolf.tscn" id="14_luch1"]
 [ext_resource type="PackedScene" uid="uid://cl2r4i00d811q" path="res://Enemies/Non-bosses/AbandonedCity/OvergrownRat/Scenes/overgrown_rat.tscn" id="15_cdoj8"]
@@ -53,9 +53,6 @@ size = Vector2(933, 31)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwm7k"]
 size = Vector2(226, 1459)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ty1ux"]
-bg_color = Color(1, 0.353694, 0.401166, 1)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3oxi8"]
 vertices = PackedVector2Array(2426.18, 243.094, 2400.15, 288.117, 1851.51, 300.75, 1863.86, 49.9375, 1933.76, -68.7813, 2161.62, -149.313, 2404.25, -194.063, 3960.71, 125.969, 3964.7, 265.852, 3059.68, 253.117, 3043.7, 142.242, 3070, -501.563, 4041.34, -499, 4993.27, -564.297, 5011.72, 128.969, 3958.63, -499, 3070, -587.039, 3952.63, -590.953, 2808.25, -308.422, 2854.68, -436.859, 2673.06, 131.828, 2660.28, -213.219, 2615.92, 240.094)
@@ -294,14 +291,11 @@ offset = Vector2(-250, 65)
 transform = Transform2D(1, 0, 0, 1, -250, 65)
 script = ExtResource("10_wdkwl")
 
-[node name="Healthbar" type="ProgressBar" parent="Player/UserInterface"]
-offset_left = 275.0
-offset_top = -41.0
-offset_right = 750.0
-offset_bottom = -14.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_ty1ux")
-value = 100.0
-script = ExtResource("11_lytxp")
+[node name="HealthSpellBars" parent="Player/UserInterface" instance=ExtResource("13_mji45")]
+offset_left = 250.0
+offset_top = -65.0
+offset_right = 250.0
+offset_bottom = -65.0
 
 [node name="Hotbar" parent="Player/UserInterface" instance=ExtResource("12_vh3dg")]
 offset_left = 1676.0
@@ -459,6 +453,10 @@ item_name = "Coin"
 [node name="ItemDrop3" parent="Items" instance=ExtResource("18_cua63")]
 position = Vector2(3612, -1683)
 item_name = "Sonic Boots"
+
+[node name="TestSpell" parent="Items" instance=ExtResource("18_cua63")]
+position = Vector2(10015, -1331)
+item_name = "TestSpell"
 
 [node name="TestSword" parent="Items" instance=ExtResource("18_cua63")]
 position = Vector2(8556, -1379)

@@ -5,6 +5,10 @@ signal Attack1
 signal Attack2
 signal Attack3
 signal Attack4
+signal Attack1_released
+signal Attack2_released
+signal Attack3_released
+signal Attack4_released
 
 
 ##### General variables #####
@@ -66,6 +70,10 @@ var counter_active_timer: float = 0.0
 ##### Inventory variables #####
 var held_item = Global.get_held_item()
 
+
+
+func _ready():
+	Global.player = self
 
 
 func _physics_process(delta):
@@ -347,6 +355,12 @@ func handle_attacks() -> void:
 		var hotbar_rect = $UserInterface/Hotbar.get_rect()
 		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
 			emit_signal("Attack1")
+	if can_attack and Input.is_action_just_released("Attack_1"):
+		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65)
+		var inv_rect = $UserInterface/Inventory.get_rect()
+		var hotbar_rect = $UserInterface/Hotbar.get_rect()
+		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
+			emit_signal("Attack1_released")
 			
 	if can_attack and Input.is_action_just_pressed("Attack_2"):
 		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65) # weird ass inventory/hotbar position problem, top left is (250, -65) away, so this corrects it
@@ -354,6 +368,12 @@ func handle_attacks() -> void:
 		var hotbar_rect = $UserInterface/Hotbar.get_rect()
 		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
 			emit_signal("Attack2")
+	if can_attack and Input.is_action_just_released("Attack_2"):
+		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65)
+		var inv_rect = $UserInterface/Inventory.get_rect()
+		var hotbar_rect = $UserInterface/Hotbar.get_rect()
+		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
+			emit_signal("Attack2_released")
 			
 	if can_attack and Input.is_action_just_pressed("Attack_3"):
 		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65) # weird ass inventory/hotbar position problem, top left is (250, -65) away, so this corrects it
@@ -361,6 +381,12 @@ func handle_attacks() -> void:
 		var hotbar_rect = $UserInterface/Hotbar.get_rect()
 		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
 			emit_signal("Attack3")
+	if can_attack and Input.is_action_just_released("Attack_3"):
+		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65)
+		var inv_rect = $UserInterface/Inventory.get_rect()
+		var hotbar_rect = $UserInterface/Hotbar.get_rect()
+		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
+			emit_signal("Attack3_released")
 			
 	if can_attack and Input.is_action_just_pressed("Attack_4"):
 		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65) # weird ass inventory/hotbar position problem, top left is (250, -65) away, so this corrects it
@@ -368,6 +394,12 @@ func handle_attacks() -> void:
 		var hotbar_rect = $UserInterface/Hotbar.get_rect()
 		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
 			emit_signal("Attack4")
+	if can_attack and Input.is_action_just_released("Attack_4"):
+		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65)
+		var inv_rect = $UserInterface/Inventory.get_rect()
+		var hotbar_rect = $UserInterface/Hotbar.get_rect()
+		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
+			emit_signal("Attack4_released")
 
 
 ##### Counter and parry functions #####

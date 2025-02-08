@@ -26,6 +26,7 @@ var accessories = {}  #--> slot_index: [item_name, item_quantity]
 ##### Player health/combat variables #####
 @export var player_max_health: int = 100
 @export var player_health: int = 100
+var spell_bar
 
 ##### Camera variables #####
 var is_fullscreen: bool = false

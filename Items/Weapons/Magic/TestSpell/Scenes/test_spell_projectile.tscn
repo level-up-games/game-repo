@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://da4daoqyuv2nk"]
+
+[ext_resource type="Script" path="res://Items/Weapons/Magic/TestSpell/Scripts/test_spell_projectile.gd" id="1_qsyit"]
+
+[sub_resource type="Gradient" id="Gradient_2g7ac"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vosi6"]
+gradient = SubResource("Gradient_2g7ac")
+
+[node name="TestSpellProjectile" type="CharacterBody2D"]
+script = ExtResource("1_qsyit")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_vosi6")

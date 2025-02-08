@@ -11,7 +11,7 @@ var player: CharacterBody2D = null
 var being_picked_up = false
 
 
-func _process(delta: float) -> void:
+func _ready():
 	if item_name != "":
 		$Sprite2D.texture = load(Global.item_data[item_name]["texture_path"])
 
