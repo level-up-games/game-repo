@@ -78,6 +78,6 @@ func _spawn_drop(item_name: String, quantity: int) -> void:
 	drop_instance.item_name = item_name
 	drop_instance.item_quantity = quantity
 	# Add a small random offset so drops aren’t exactly overlapping
-	var offset = Vector2(randf_range(-75, 75), randf_range(-75, 75) - 100)
+	var offset = Vector2(randf_range(-35, 35), randf_range(-75, 75) - 175)
 	drop_instance.global_position = global_position + offset
 	get_tree().get_current_scene().add_child(drop_instance)

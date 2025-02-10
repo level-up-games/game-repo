@@ -131,6 +131,11 @@ func get_movement_direction() -> float: # Gets the movement direction (not the f
 
 
 func handle_facing_direction() -> float:
+	if get_local_mouse_position().x > 0:
+		Global.current_mouse_direction = 1
+	else:
+		Global.current_mouse_direction = -1
+	
 	var facing_direction = get_movement_direction()
 	var facing_direction_controller = 0.0
 	

@@ -50,6 +50,6 @@ func _drop_items() -> void:
 			drop_instance.item_name = drop["item_name"]
 			drop_instance.item_quantity = quantity
 			
-			drop_instance.global_position = global_position + Vector2(randf_range(-30, 30), randf_range(-30, 30))
+			drop_instance.global_position = global_position + Vector2(randf_range(-30, 30), randf_range(-30, 30) - 35)
 			
 			get_tree().get_current_scene().add_child(drop_instance)

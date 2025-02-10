@@ -8,7 +8,6 @@ func _ready():
 	Global.ui = self
 
 
-# We'll define a helper to get the mouse world position
 func get_mouse_world_position() -> Vector2:
 	return get_viewport().get_mouse_position()
 
@@ -45,27 +44,20 @@ func _input(event) -> void:
 
 
 func drop_item_in_world(item_node: Node2D) -> void:
-	# We'll spawn an item_drop node in the game world with the same item data
 	var item_name = item_node.item_name
 	var item_quantity = item_node.item_quantity
-
-	# For instance, we can place the drop near the Player
-	# or near the mouse position. Let's do near the Player:
+	
 	var item_drop_scene = preload("res://Items/Scenes/ItemDrop.tscn")
 	var drop_instance = item_drop_scene.instantiate()
-
+	
 	drop_instance.item_name = item_name
 	drop_instance.item_quantity = item_quantity
-
-	# Place it near the player
+	
 	if Global.player:
-		drop_instance.global_position = Global.player.global_position + Vector2(75 * Global.current_mouse_direction, -75)
+		drop_instance.bounce_on_spawn = false
+		drop_instance.global_position = Global.player.global_position + Vector2(0, -100)
+		drop_instance.velocity = Vector2(350 * Global.current_mouse_direction, -150)
 	else:
-		# fallback: place at mouse
 		drop_instance.global_position = get_mouse_world_position()
-
-	# Add it to the current scene
+	
 	get_tree().current_scene.add_child(drop_instance)
-
-	# Optionally: if you have physics or an initial velocity, you can set that here
-	# e.g. drop_instance.velocity = Vector2(50, -100)

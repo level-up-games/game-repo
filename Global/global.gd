@@ -4,7 +4,7 @@ var player: CharacterBody2D = null
 var ui
 
 var player_facing_direction: int = 1
-var current_mouse_direction: int = 1
+var current_mouse_direction: float = 1.0
 var player_movement_direction: float = 0.0
 var player_last_movement_direction: float = 1.0
 
@@ -54,21 +54,15 @@ func get_held_item():
 		# First, try the item currently being dragged.
 		if ui.holding_item:
 			return ui.holding_item
-
+	
 		# Next, check if the active hotbar slot has an item.
-		# Here we assume your Global script has:
-		#   Global.hotbar -> a dictionary mapping slot indices to an array [item_name, item_quantity]
-		#   Global.active_item_slot -> the index of the active (highlighted) slot.
 		if Global.hotbar.has(Global.active_item_slot):
-			# Now, we need to retrieve the actual instance from the UI slot.
-			# For example, if your hotbar nodes are organized like:
-			#   UserInterface/Hotbar/TextureRect/GridContainer/HotbarSlot1, HotbarSlot2, etc.
 			var slot_path = "Hotbar/TextureRect/GridContainer/HotbarSlot" + str(Global.active_item_slot + 1)
 			if ui.has_node(slot_path):
 				var slot = ui.get_node(slot_path)
-				if slot.item:  # slot.item is assumed to store the item instance.
+				if slot.item:
 					return slot.item
-		# If neither condition is met, return null.
+	
 		return null
 
 
