@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://kox5caaxhy55"]
 
-[ext_resource type="Texture2D" uid="uid://bodkkg43oqvko" path="res://Items/Currency/GoldCoin/Assets/gold-coin.png" id="1_1yn1v"]
+[ext_resource type="Texture2D" uid="uid://bodkkg43oqvko" path="res://Items/Currency/Coins/Assets/gold-coin.png" id="1_1yn1v"]
 [ext_resource type="Script" path="res://Items/Scripts/item_drop.gd" id="1_8ptq6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lu7ue"]

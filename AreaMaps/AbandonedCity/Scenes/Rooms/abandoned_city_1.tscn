@@ -443,12 +443,12 @@ scale = Vector2(19.6523, 83.75)
 
 [node name="ItemDrop" parent="Items" instance=ExtResource("18_cua63")]
 position = Vector2(2782, -1727)
-item_name = "Coin"
+item_name = "Gold Coin"
 item_quantity = 4
 
 [node name="ItemDrop2" parent="Items" instance=ExtResource("18_cua63")]
 position = Vector2(4077, -1872)
-item_name = "Coin"
+item_name = "Gold Coin"
 
 [node name="ItemDrop3" parent="Items" instance=ExtResource("18_cua63")]
 position = Vector2(3612, -1683)

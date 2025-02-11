@@ -71,7 +71,7 @@ folder_colors={
 "res://Items/Accessories/SonicBoots/Assets/": "red",
 "res://Items/Accessories/SonicBoots/Scenes/": "green",
 "res://Items/Accessories/SonicBoots/Scripts/": "yellow",
-"res://Items/Currency/GoldCoin/Assets/": "red",
+"res://Items/Currency/Coins/Assets/": "red",
 "res://Items/Currency/GoldCoin/Scenes/": "green",
 "res://Items/Currency/GoldCoin/Scripts/": "yellow",
 "res://Items/Data/": "purple",

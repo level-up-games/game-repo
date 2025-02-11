@@ -57,7 +57,8 @@ var hit_bounce_timer: float
 # - "chance": a value between 0 and 1 representing the drop chance.
 # - "min_quantity" and "max_quantity": the range of quantities to drop.
 @export var drop_table: Array = [
-	{"item_name": "Coin", "chance": 0.8, "min_quantity": 0, "max_quantity": 3},
+	{"item_name": "Silver Coin", "chance": 0.8, "min_quantity": 0, "max_quantity": 3},
+	{"item_name": "Copper Coin", "chance": 0.8, "min_quantity": 10, "max_quantity": 50}
 ]
 
 

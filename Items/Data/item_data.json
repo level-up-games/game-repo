@@ -1,9 +1,21 @@
 {
-	"Coin": {
+	"Gold Coin": {
 		"item_category": "Resource",
 		"stack_size": 99,
 		"description": "Valuable currency.",
-		"texture_path": "res://Items/Currency/GoldCoin/Assets/gold-coin.png"
+		"texture_path": "res://Items/Currency/Coins/Assets/gold-coin.png"
+	},
+	"Silver Coin": {
+		"item_category": "Resource",
+		"stack_size": 99,
+		"description": "Valuable currency.",
+		"texture_path": "res://Items/Currency/Coins/Assets/silver-coin.png"
+	},
+	"Copper Coin": {
+		"item_category": "Resource",
+		"stack_size": 99,
+		"description": "Valuable currency.",
+		"texture_path": "res://Items/Currency/Coins/Assets/copper-coin.png"
 	},
 	"Sonic Boots": {
 		"item_category": "Accessory",
