@@ -45,10 +45,10 @@ func pick_up_item(body) -> void:
 
 func handle_item_pick_up(delta):
 	if being_picked_up == true:
-		var direction = global_position.direction_to(player.global_position)
+		var direction = global_position.direction_to(player.global_position + Vector2(0, -100))
 		velocity = velocity.move_toward(direction * SPEED, ACCELERATION * delta)
 		
-		var distance = global_position.distance_to(player.global_position)
+		var distance = global_position.distance_to(player.global_position + Vector2(0, -100))
 		if distance < 50:
 			Global.add_item(item_name, item_quantity)
 			queue_free()
