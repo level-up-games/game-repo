@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba7bgry8m8bpk"]
+
+[ext_resource type="Script" path="res://Characters/TextStuff/Scripts/npc_dialogue_box.gd" id="1_02sv8"]
+
+[node name="NPCDialogueBox" type="Panel"]
+offset_left = 605.0
+offset_top = 20.0
+offset_right = 1261.0
+offset_bottom = 212.0
+script = ExtResource("1_02sv8")
+
+[node name="NPCPortrait" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 37.0
+offset_right = 141.0
+offset_bottom = 151.0
+
+[node name="DialogueText" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 49.0
+offset_right = 440.0
+offset_bottom = 105.0
+bbcode_enabled = true
+
+[node name="OptionsContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 299.0
+offset_top = 138.0
+offset_right = 460.0
+offset_bottom = 183.0
+
+[node name="PlayerPortrait" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 558.0
+offset_top = 45.0
+offset_right = 656.0
+offset_bottom = 144.0

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://crkliktsd2k4m"]
-
-[ext_resource type="Script" path="res://AreaMaps/scene_switcher.gd" id="1_qtrog"]
-
-[node name="SceneSwitcher" type="Area2D"]
-script = ExtResource("1_qtrog")

@@ -1,13 +1,13 @@
-[gd_scene load_steps=39 format=4 uid="uid://cjwnd5fmbi3ir"]
+[gd_scene load_steps=38 format=4 uid="uid://cjwnd5fmbi3ir"]
 
-[ext_resource type="TileSet" uid="uid://r4hvwuq4btws" path="res://AreaMaps/world_tileset.tres" id="1_bfjkg"]
-[ext_resource type="Script" path="res://AreaMaps/world_collision_breakables.gd" id="2_a5ql5"]
-[ext_resource type="Script" path="res://AreaMaps/world_hurtbox.gd" id="3_cidmo"]
-[ext_resource type="PackedScene" uid="uid://d4eqmjqfjoxi1" path="res://AreaMaps/falling_platform.tscn" id="4_5dqt7"]
+[ext_resource type="TileSet" uid="uid://r4hvwuq4btws" path="res://AreaMaps/Tiles/world_tileset.tres" id="1_bfjkg"]
+[ext_resource type="Script" path="res://AreaMaps/Tiles/world_collision_breakables.gd" id="2_a5ql5"]
+[ext_resource type="Script" path="res://AreaMaps/Tiles/world_hurtbox.gd" id="3_cidmo"]
+[ext_resource type="PackedScene" uid="uid://d4eqmjqfjoxi1" path="res://AreaMaps/General/falling_platform.tscn" id="4_5dqt7"]
 [ext_resource type="Script" path="res://Characters/Player/Camera/Scripts/camera_bottom.gd" id="5_2jw7t"]
 [ext_resource type="Script" path="res://Characters/Player/Camera/Scripts/camera_left.gd" id="6_skqv6"]
 [ext_resource type="Script" path="res://Characters/Player/Camera/Scripts/camera_right.gd" id="7_xc5yh"]
-[ext_resource type="PackedScene" uid="uid://crkliktsd2k4m" path="res://AreaMaps/scene_switcher.tscn" id="8_nlya1"]
+[ext_resource type="PackedScene" uid="uid://crkliktsd2k4m" path="res://AreaMaps/General/scene_switcher.tscn" id="8_nlya1"]
 [ext_resource type="PackedScene" uid="uid://r802u2g0c73d" path="res://Characters/Player/Body/Scenes/player.tscn" id="9_05dg6"]
 [ext_resource type="Script" path="res://Characters/Player/Inventory/Scripts/user_interface.gd" id="10_wdkwl"]
 [ext_resource type="PackedScene" uid="uid://by31ctaq45chn" path="res://Characters/Player/Inventory/Scenes/Hotbar.tscn" id="12_vh3dg"]
@@ -16,13 +16,12 @@
 [ext_resource type="PackedScene" uid="uid://bgmnt62q8mf5p" path="res://AreaMaps/AbandonedCity/Scenes/gate.tscn" id="14_888pi"]
 [ext_resource type="PackedScene" uid="uid://ckqyu5lx3ik6u" path="res://Enemies/Non-bosses/AbandonedCity/FeralWolf/Scenes/feral_wolf.tscn" id="14_luch1"]
 [ext_resource type="PackedScene" uid="uid://cl2r4i00d811q" path="res://Enemies/Non-bosses/AbandonedCity/OvergrownRat/Scenes/overgrown_rat.tscn" id="15_cdoj8"]
-[ext_resource type="PackedScene" uid="uid://dob3e5tfbqdk1" path="res://AreaMaps/dialogue_box.tscn" id="16_687ta"]
 [ext_resource type="PackedScene" uid="uid://2xp07ty0gwhv" path="res://Enemies/Non-bosses/AbandonedCity/MutatedBat/Scenes/mutated_bat.tscn" id="16_fiibj"]
 [ext_resource type="PackedScene" uid="uid://clcjsxgqqv4os" path="res://AreaMaps/AbandonedCity/Scenes/temp_spikes.tscn" id="17_okuld"]
 [ext_resource type="PackedScene" uid="uid://kox5caaxhy55" path="res://Items/Scenes/ItemDrop.tscn" id="18_cua63"]
 [ext_resource type="PackedScene" uid="uid://6fh38pslhrr0" path="res://AreaMaps/AbandonedCity/Scenes/tree.tscn" id="19_1ae6q"]
 [ext_resource type="PackedScene" uid="uid://dpy24l01l1tkw" path="res://AreaMaps/AbandonedCity/Scenes/breakable_object.tscn" id="20_3bcan"]
-[ext_resource type="PackedScene" uid="uid://h37kxy2a8hjc" path="res://AreaMaps/interactable_item.tscn" id="23_p3ho2"]
+[ext_resource type="PackedScene" uid="uid://cgiujt0dmt7ww" path="res://test_npc_interaction.tscn" id="22_20alj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h650h"]
 size = Vector2(223.25, 255.25)
@@ -312,8 +311,6 @@ offset_top = 33.0
 offset_right = 2151.0
 offset_bottom = 303.0
 
-[node name="DialogueBox" parent="Player/UserInterface" instance=ExtResource("16_687ta")]
-
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Wolves" type="Node2D" parent="Enemies"]
@@ -469,5 +466,5 @@ item_name = "TestSword"
 [node name="Gate" parent="." instance=ExtResource("14_888pi")]
 position = Vector2(16909, -1569)
 
-[node name="InteractableItem" parent="." instance=ExtResource("23_p3ho2")]
-position = Vector2(10509, -1410)
+[node name="testNPCinteraction" parent="." instance=ExtResource("22_20alj")]
+position = Vector2(10314, -1428)

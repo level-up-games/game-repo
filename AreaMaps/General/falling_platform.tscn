@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4eqmjqfjoxi1"]
+
+[ext_resource type="Script" path="res://AreaMaps/General/falling_platform.gd" id="1_rvnft"]
+
+[node name="FallingPlatform" type="StaticBody2D"]
+script = ExtResource("1_rvnft")

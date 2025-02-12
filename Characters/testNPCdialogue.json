@@ -1,0 +1,27 @@
+{
+  "start": {
+	"text": "Hello, traveler! Welcome to our village.",
+	"portrait": "res://Items/TestApple.png",
+	"options": [
+	  {"text": "Tell me about this place.", "next": "about_village"},
+	  {"text": "Goodbye.", "next": "end"}
+	]
+  },
+  "about_village": {
+	"text": "Our village has stood here for generations, built on the old ways.",
+	"portrait": "res://Items/TestApple.png",
+	"options": [
+	  {"text": "Thanks for the info.", "next": "end"},
+	  {"text": "Can I see your wares?", "action": "open_shop", "next": "shop"}
+	]
+  },
+  "shop": {
+	"text": "Here are my wares.",
+	"portrait": "res://Items/TestApple.png",
+	"next": "end"
+  },
+  "end": {
+	"text": "Safe travels, friend.",
+	"portrait": "res://Items/TestApple.png"
+  }
+}
