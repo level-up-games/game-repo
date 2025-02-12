@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dob3e5tfbqdk1"]
+
+[ext_resource type="Script" path="res://AreaMaps/dialogue_box.gd" id="1_rxgvc"]
+
+[node name="DialogueBox" type="Panel"]
+offset_left = 644.0
+offset_top = 35.0
+offset_right = 1202.0
+offset_bottom = 208.0
+script = ExtResource("1_rxgvc")
+
+[node name="DialogueLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 22.3333
