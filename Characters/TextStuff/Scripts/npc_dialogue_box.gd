@@ -1,5 +1,6 @@
 extends Panel
 
+
 @onready var npc_portrait: TextureRect = $NPCPortrait
 @onready var dialogue_text: RichTextLabel = $DialogueText
 @onready var options_container: VBoxContainer = $OptionsContainer
@@ -7,18 +8,9 @@ extends Panel
 var dialogue_data: Dictionary = {}
 var current_node_key: String = "start"
 
-
 var typewriter_index: int = 0
 var typewriter_full_text: String = ""
 var typewriter_timer: Timer = null
-
-
-
-
-
-
-
-
 
 
 
@@ -27,6 +19,7 @@ func setup(data: Dictionary) -> void:
 	current_node_key = "start"
 	_display_current_node()
 	print("aight but the better aight")
+
 
 func _display_current_node() -> void:
 	if not dialogue_data.has(current_node_key): ###############################################
@@ -39,14 +32,11 @@ func _display_current_node() -> void:
 	if node_data.has("portrait"):
 		$NPCPortrait.texture = load(node_data["portrait"])
 	
-	print("Displaying node '", current_node_key, "' with text: '", node_data.get("text", ""), "'")
-	
-	
-	
 	# Start the typewriter effect for dialogue text.
 	_type_text(node_data.get("text", ""))
 	# Populate options if they exist.
 	_populate_options(node_data)
+
 
 func _type_text(full_text: String) -> void:
 	$DialogueText.clear()  # Clear previous text.
@@ -79,12 +69,6 @@ func _on_typewriter_timeout() -> void:
 		typewriter_timer = null
 
 
-
-
-
-
-
-
 func _populate_options(node_data: Dictionary) -> void:
 	# Clear previous options.
 	for child in $OptionsContainer.get_children():
@@ -102,6 +86,7 @@ func _populate_options(node_data: Dictionary) -> void:
 		btn.connect("pressed", Callable(self, "_advance_dialogue")) ####################### changed
 		$OptionsContainer.add_child(btn)
 
+
 func _on_option_selected(option: Dictionary) -> void:
 	# Optionally, if the option has an action to trigger, call it.
 	if option.has("action"):
@@ -116,6 +101,7 @@ func _on_option_selected(option: Dictionary) -> void:
 		current_node_key = ""
 	_display_current_node()
 
+
 func _advance_dialogue() -> void:
 	# For nodes without options, use a "continue" button.
 	var node_data = dialogue_data[current_node_key]
@@ -124,6 +110,7 @@ func _advance_dialogue() -> void:
 	else:
 		current_node_key = ""
 	_display_current_node()
+
 
 func _input(event: InputEvent) -> void:
 	# Optionally, allow closing the dialogue with a key (if no options are shown).

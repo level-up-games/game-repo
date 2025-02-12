@@ -2,6 +2,11 @@
   "start": {
 	"text": "Hello, traveler! Welcome to our village.",
 	"portrait": "res://Items/TestApple.png",
+	"next": "name"
+  },
+  "name": {
+	"text": "My name is John Apple",
+	"portrait": "res://Items/TestApple.png",
 	"options": [
 	  {"text": "Tell me about this place.", "next": "about_village"},
 	  {"text": "Goodbye.", "next": "end"}

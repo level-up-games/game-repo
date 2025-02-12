@@ -468,3 +468,7 @@ position = Vector2(16909, -1569)
 
 [node name="testNPCinteraction" parent="." instance=ExtResource("22_20alj")]
 position = Vector2(10314, -1428)
+
+[node name="testNPCinteraction2" parent="." instance=ExtResource("22_20alj")]
+position = Vector2(10711, -1428)
+npc = false

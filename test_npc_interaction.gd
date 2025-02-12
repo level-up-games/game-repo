@@ -3,7 +3,9 @@ extends Area2D
 var player_in_range: bool = false
 var dialogue_open: bool = false
 
-var do_once = true
+@export var npc: bool = true
+
+
 
 func _ready() -> void:
 	# Connect the area signals
@@ -23,6 +25,9 @@ func _on_body_exited(body: Node) -> void:
 
 func _input(event: InputEvent) -> void:
 	# When the player presses the interact button and is in range…
-	if player_in_range and Input.is_action_just_pressed("Interact"):
-		do_once = false
-		DialogueManager.show_npc_dialogue("res://Characters/testNPCdialogue.json")
+	if npc == true:
+		if player_in_range and Input.is_action_just_pressed("Interact"):
+			DialogueManager.show_npc_dialogue("res://Characters/testNPCdialogue.json")
+	else:
+		if player_in_range and Input.is_action_just_pressed("Interact"):
+			DialogueManager.show_readable_dialogue({"text": "This is an ancient rune inscribed with cryptic symbols."})
