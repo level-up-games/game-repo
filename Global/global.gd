@@ -33,6 +33,8 @@ var spell_bar
 var is_fullscreen: bool = false
 
 
+var npc_dialogue_checkpoints: Dictionary = {}
+
 
 ##### Regular functions #####
 func _ready() -> void:

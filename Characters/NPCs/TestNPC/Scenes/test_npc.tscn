@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://ehh6df13vw3h"]
+
+[ext_resource type="Script" path="res://Characters/NPCs/TestNPC/Scripts/npc.gd" id="1_se4de"]
+
+[sub_resource type="Gradient" id="Gradient_xuk3g"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y37b5"]
+gradient = SubResource("Gradient_xuk3g")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpgok"]
+size = Vector2(65, 165)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xnefc"]
+size = Vector2(237, 236)
+
+[node name="NPC" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_se4de")
+is_moving = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1, 2.54688)
+texture = SubResource("GradientTexture2D_y37b5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_xpgok")
+
+[node name="InteractionZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZone"]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_xnefc")
+debug_color = Color(0.723383, 0.391539, 0.711117, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://Characters/TextStuff/Scripts/readable_dialogue_box.gd" id="1_xbvvq"]
 
 [node name="ReadableDialogueBox" type="Panel"]
-offset_left = 673.0
+offset_left = 949.0
 offset_top = 48.0
-offset_right = 1212.0
+offset_right = 1488.0
 offset_bottom = 230.0
 script = ExtResource("1_xbvvq")
 

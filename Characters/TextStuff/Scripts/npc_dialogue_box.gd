@@ -1,9 +1,9 @@
 extends Panel
 
 
-@onready var npc_portrait: TextureRect = $NPCPortrait
-@onready var dialogue_text: RichTextLabel = $DialogueText
-@onready var options_container: VBoxContainer = $OptionsContainer
+
+var npc_id: String = ""  # This should be set during setup.
+
 
 var dialogue_data: Dictionary = {}
 var current_node_key: String = "start"
@@ -14,37 +14,55 @@ var typewriter_timer: Timer = null
 
 
 
-func setup(data: Dictionary) -> void:
+func setup(data: Dictionary, checkpoint, npc) -> void:
+	npc_id = npc
 	dialogue_data = data
-	current_node_key = "start"
+	current_node_key = checkpoint
 	_display_current_node()
-	print("aight but the better aight")
+	# add checkpoints, where a global is used to check whether to go to start or a diff place (based on checkpoint).
+	# do a similar thing to the above, but checks location/progression to see where to talk from, as adjusted in the npc's scene (export?) i.e. if in_house == true...
 
 
 func _display_current_node() -> void:
-	if not dialogue_data.has(current_node_key): ###############################################
+	if not dialogue_data.has(current_node_key):
 		push_error("Dialogue node '" + current_node_key + "' not found. Available keys: " + str(dialogue_data.keys()))
 		queue_free()
 		return
 	
 	var node_data = dialogue_data[current_node_key]
-	# Set NPC portrait if available.
+	
+	
+	
+	 #   // **Update the checkpoint if defined:**
+	if node_data.has("checkpoint"):
+		Global.npc_dialogue_checkpoints[npc_id] = node_data["checkpoint"]
+	
+	
+	
+	
+	if node_data.has("action"):
+		var action_callable = Callable(DialogueManager, node_data["action"])
+		if action_callable.is_valid():
+			action_callable.call()
+	
+	
+	
+	
+	
 	if node_data.has("portrait"):
 		$NPCPortrait.texture = load(node_data["portrait"])
 	
-	# Start the typewriter effect for dialogue text.
 	_type_text(node_data.get("text", ""))
-	# Populate options if they exist.
+	
 	_populate_options(node_data)
 
 
 func _type_text(full_text: String) -> void:
-	$DialogueText.clear()  # Clear previous text.
-	$DialogueText.parse_bbcode("")  # Ensure it’s empty.
+	$DialogueText.clear()
+	$DialogueText.parse_bbcode("")
 	typewriter_full_text = full_text
 	typewriter_index = 0
-
-	# Create a new Timer to drive the typewriter effect.
+	
 	typewriter_timer = Timer.new()
 	typewriter_timer.wait_time = 0.03  # Adjust speed as desired.
 	typewriter_timer.one_shot = false
@@ -57,11 +75,9 @@ func _on_typewriter_timeout() -> void:
 	if typewriter_timer == null:
 		return
 	
-	
 	typewriter_index += 1
-	# Update the text to show the substring from 0 to typewriter_index.
+	
 	$DialogueText.parse_bbcode(typewriter_full_text.substr(0, typewriter_index))
-	# Optionally, you can call dialogue_text.update() here if needed.
 	
 	if typewriter_index >= typewriter_full_text.length():
 		typewriter_timer.stop()
@@ -70,49 +86,47 @@ func _on_typewriter_timeout() -> void:
 
 
 func _populate_options(node_data: Dictionary) -> void:
-	# Clear previous options.
 	for child in $OptionsContainer.get_children():
 		child.queue_free()
+	
 	if node_data.has("options"):
 		for option in node_data["options"]:
 			var btn = Button.new()
 			btn.text = option["text"]
-			btn.connect("pressed", Callable(self, "_on_option_selected").bind(option)) ################# changed
+			btn.connect("pressed", Callable(self, "_on_option_selected").bind(option))
 			$OptionsContainer.add_child(btn)
 	else:
-		# If no options, add a default "Continue" button.
 		var btn = Button.new()
 		btn.text = "Continue"
-		btn.connect("pressed", Callable(self, "_advance_dialogue")) ####################### changed
+		btn.connect("pressed", Callable(self, "_advance_dialogue"))
 		$OptionsContainer.add_child(btn)
 
 
 func _on_option_selected(option: Dictionary) -> void:
-	# Optionally, if the option has an action to trigger, call it.
 	if option.has("action"):
 		# e.g., call a function on a game manager.
 		print("calls action now or something thru gamemanager")
-		#GameManager.call(option["action"]) #############################################################
-	# Then advance the dialogue:
+	
 	if option.has("next"):
 		current_node_key = option["next"]
 	else:
-		# If no "next" is defined, end dialogue.
 		current_node_key = ""
+	
 	_display_current_node()
 
 
 func _advance_dialogue() -> void:
 	# For nodes without options, use a "continue" button.
 	var node_data = dialogue_data[current_node_key]
+	
 	if node_data.has("next"):
 		current_node_key = node_data["next"]
 	else:
 		current_node_key = ""
+	
 	_display_current_node()
 
 
 func _input(event: InputEvent) -> void:
-	# Optionally, allow closing the dialogue with a key (if no options are shown).
-	if Input.is_action_just_pressed("Interact") and options_container.get_child_count() == 0:
+	if Input.is_action_just_pressed("Interact") and $OptionsContainer.get_child_count() == 0:
 		_advance_dialogue()

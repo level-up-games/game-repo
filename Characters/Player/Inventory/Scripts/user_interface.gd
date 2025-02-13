@@ -6,6 +6,7 @@ var holding_item: Node2D = null
 
 func _ready():
 	Global.ui = self
+	DialogueManager.ui = self
 
 
 func get_mouse_world_position() -> Vector2:

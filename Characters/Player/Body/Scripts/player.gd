@@ -354,57 +354,41 @@ func prepare_weapon() -> void:
 
 
 func handle_attacks() -> void:
-	if can_attack and Input.is_action_just_pressed("Attack_1"):
-		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65) # weird ass inventory/hotbar position problem, top left is (250, -65) away, so this corrects it
-		var inv_rect = $UserInterface/Inventory.get_rect()
-		var hotbar_rect = $UserInterface/Hotbar.get_rect()
-		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
-			emit_signal("Attack1")
-	if can_attack and Input.is_action_just_released("Attack_1"):
-		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65)
-		var inv_rect = $UserInterface/Inventory.get_rect()
-		var hotbar_rect = $UserInterface/Hotbar.get_rect()
-		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
-			emit_signal("Attack1_released")
-			
-	if can_attack and Input.is_action_just_pressed("Attack_2"):
-		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65) # weird ass inventory/hotbar position problem, top left is (250, -65) away, so this corrects it
-		var inv_rect = $UserInterface/Inventory.get_rect()
-		var hotbar_rect = $UserInterface/Hotbar.get_rect()
-		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
-			emit_signal("Attack2")
-	if can_attack and Input.is_action_just_released("Attack_2"):
-		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65)
-		var inv_rect = $UserInterface/Inventory.get_rect()
-		var hotbar_rect = $UserInterface/Hotbar.get_rect()
-		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
-			emit_signal("Attack2_released")
-			
-	if can_attack and Input.is_action_just_pressed("Attack_3"):
-		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65) # weird ass inventory/hotbar position problem, top left is (250, -65) away, so this corrects it
-		var inv_rect = $UserInterface/Inventory.get_rect()
-		var hotbar_rect = $UserInterface/Hotbar.get_rect()
-		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
-			emit_signal("Attack3")
-	if can_attack and Input.is_action_just_released("Attack_3"):
-		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65)
-		var inv_rect = $UserInterface/Inventory.get_rect()
-		var hotbar_rect = $UserInterface/Hotbar.get_rect()
-		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
-			emit_signal("Attack3_released")
-			
-	if can_attack and Input.is_action_just_pressed("Attack_4"):
-		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65) # weird ass inventory/hotbar position problem, top left is (250, -65) away, so this corrects it
-		var inv_rect = $UserInterface/Inventory.get_rect()
-		var hotbar_rect = $UserInterface/Hotbar.get_rect()
-		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
-			emit_signal("Attack4")
-	if can_attack and Input.is_action_just_released("Attack_4"):
-		var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65)
-		var inv_rect = $UserInterface/Inventory.get_rect()
-		var hotbar_rect = $UserInterface/Hotbar.get_rect()
-		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
-			emit_signal("Attack4_released")
+	var click_pos = get_viewport().get_mouse_position() + Vector2(250, -65) # weird ass inventory/hotbar position problem, top left is (250, -65) away, so this corrects it
+	var npc_dialogue_rect = Rect2(0, 0, 0, 0)
+	var readable_dialogue_rect = Rect2(0, 0, 0, 0)
+	if get_node_or_null("UserInterface/NPCDialogueBox") != null:
+		npc_dialogue_rect = $UserInterface/NPCDialogueBox.get_rect()
+	if get_node_or_null("UserInterface/ReadableDialogueBox") != null:
+		readable_dialogue_rect = $UserInterface/ReadableDialogueBox.get_rect()
+	var inv_rect = $UserInterface/Inventory.get_rect()
+	var hotbar_rect = $UserInterface/Hotbar.get_rect()
+	
+	var attack_valid: bool = true
+	if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos) and not npc_dialogue_rect.has_point(click_pos) and not readable_dialogue_rect.has_point(click_pos):
+		attack_valid = true
+	else:
+		attack_valid = false
+	
+	if can_attack and Input.is_action_just_pressed("Attack_1") and attack_valid:
+		emit_signal("Attack1")
+	if can_attack and Input.is_action_just_released("Attack_1") and attack_valid:
+		emit_signal("Attack1_released")
+		
+	if can_attack and Input.is_action_just_pressed("Attack_2") and attack_valid:
+		emit_signal("Attack2")
+	if can_attack and Input.is_action_just_released("Attack_2") and attack_valid:
+		emit_signal("Attack2_released")
+		
+	if can_attack and Input.is_action_just_pressed("Attack_3") and attack_valid:
+		emit_signal("Attack3")
+	if can_attack and Input.is_action_just_released("Attack_3") and attack_valid:
+		emit_signal("Attack3_released")
+		
+	if can_attack and Input.is_action_just_pressed("Attack_4") and attack_valid:
+		emit_signal("Attack4")
+	if can_attack and Input.is_action_just_released("Attack_4") and attack_valid:
+		emit_signal("Attack4_released")
 
 
 ##### Counter and parry functions #####

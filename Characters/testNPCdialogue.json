@@ -1,12 +1,14 @@
 {
   "start": {
-	"text": "Hello, traveler! Welcome to our village.",
+	"text": "Hello, traveler! My name is John Apple.",
 	"portrait": "res://Items/TestApple.png",
-	"next": "name"
+	"next": "welcome"
   },
-  "name": {
-	"text": "My name is John Apple",
+  "welcome": {
+	"text": "Welcome to our village.",
 	"portrait": "res://Items/TestApple.png",
+	"checkpoint": "welcome",
+	"action": "",
 	"options": [
 	  {"text": "Tell me about this place.", "next": "about_village"},
 	  {"text": "Goodbye.", "next": "end"}
@@ -23,10 +25,11 @@
   "shop": {
 	"text": "Here are my wares.",
 	"portrait": "res://Items/TestApple.png",
-	"next": "end"
+	"next": "about_village"
   },
   "end": {
 	"text": "Safe travels, friend.",
-	"portrait": "res://Items/TestApple.png"
+	"portrait": "res://Items/TestApple.png",
+	"action": "resume_movement",
   }
 }

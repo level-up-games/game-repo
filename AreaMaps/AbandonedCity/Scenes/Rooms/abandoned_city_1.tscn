@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://cjwnd5fmbi3ir"]
+[gd_scene load_steps=39 format=4 uid="uid://cjwnd5fmbi3ir"]
 
 [ext_resource type="TileSet" uid="uid://r4hvwuq4btws" path="res://AreaMaps/Tiles/world_tileset.tres" id="1_bfjkg"]
 [ext_resource type="Script" path="res://AreaMaps/Tiles/world_collision_breakables.gd" id="2_a5ql5"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://6fh38pslhrr0" path="res://AreaMaps/AbandonedCity/Scenes/tree.tscn" id="19_1ae6q"]
 [ext_resource type="PackedScene" uid="uid://dpy24l01l1tkw" path="res://AreaMaps/AbandonedCity/Scenes/breakable_object.tscn" id="20_3bcan"]
 [ext_resource type="PackedScene" uid="uid://cgiujt0dmt7ww" path="res://test_npc_interaction.tscn" id="22_20alj"]
+[ext_resource type="PackedScene" uid="uid://ehh6df13vw3h" path="res://Characters/NPCs/TestNPC/Scenes/test_npc.tscn" id="23_mokpp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h650h"]
 size = Vector2(223.25, 255.25)
@@ -460,7 +461,7 @@ position = Vector2(10015, -1331)
 item_name = "TestSpell"
 
 [node name="TestSword" parent="Items" instance=ExtResource("18_cua63")]
-position = Vector2(8556, -1379)
+position = Vector2(9729, -1339)
 item_name = "TestSword"
 
 [node name="Gate" parent="." instance=ExtResource("14_888pi")]
@@ -472,3 +473,9 @@ position = Vector2(10314, -1428)
 [node name="testNPCinteraction2" parent="." instance=ExtResource("22_20alj")]
 position = Vector2(10711, -1428)
 npc = false
+
+[node name="NPC" parent="." instance=ExtResource("23_mokpp")]
+position = Vector2(8857, -1408)
+is_moving = true
+patrol_point_a = Vector2(8431, -1408)
+patrol_point_b = Vector2(8857, -1408)

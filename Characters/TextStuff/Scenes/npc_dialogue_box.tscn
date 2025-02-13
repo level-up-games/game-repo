@@ -1,35 +1,51 @@
-[gd_scene load_steps=2 format=3 uid="uid://ba7bgry8m8bpk"]
+[gd_scene load_steps=3 format=3 uid="uid://ba7bgry8m8bpk"]
 
 [ext_resource type="Script" path="res://Characters/TextStuff/Scripts/npc_dialogue_box.gd" id="1_02sv8"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8r6wo"]
+bg_color = Color(0.478754, 0.323545, 0.204637, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.541176)
+shadow_size = 3
+shadow_offset = Vector2(2.7, 2.7)
+
 [node name="NPCDialogueBox" type="Panel"]
-offset_left = 605.0
-offset_top = 20.0
-offset_right = 1261.0
-offset_bottom = 212.0
+offset_left = 841.0
+offset_top = 10.0
+offset_right = 1572.0
+offset_bottom = 202.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8r6wo")
 script = ExtResource("1_02sv8")
 
 [node name="NPCPortrait" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 30.0
-offset_top = 37.0
-offset_right = 141.0
-offset_bottom = 151.0
+offset_left = 26.0
+offset_top = 26.0
+offset_right = 166.0
+offset_bottom = 166.0
 
 [node name="DialogueText" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 222.0
-offset_top = 49.0
-offset_right = 440.0
-offset_bottom = 105.0
+offset_left = 180.0
+offset_top = 28.0
+offset_right = 671.0
+offset_bottom = 107.0
 bbcode_enabled = true
 
 [node name="OptionsContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 299.0
-offset_top = 138.0
-offset_right = 460.0
-offset_bottom = 183.0
+offset_left = 271.0
+offset_top = 110.0
+offset_right = 581.0
+offset_bottom = 173.0
 
 [node name="PlayerPortrait" type="TextureRect" parent="."]
 layout_mode = 0

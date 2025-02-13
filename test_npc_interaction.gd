@@ -27,7 +27,7 @@ func _input(event: InputEvent) -> void:
 	# When the player presses the interact button and is in range…
 	if npc == true:
 		if player_in_range and Input.is_action_just_pressed("Interact"):
-			DialogueManager.show_npc_dialogue("res://Characters/testNPCdialogue.json")
+			DialogueManager.show_npc_dialogue("res://Characters/testNPCdialogue.json", "john apple")
 	else:
 		if player_in_range and Input.is_action_just_pressed("Interact"):
 			DialogueManager.show_readable_dialogue({"text": "This is an ancient rune inscribed with cryptic symbols."})
