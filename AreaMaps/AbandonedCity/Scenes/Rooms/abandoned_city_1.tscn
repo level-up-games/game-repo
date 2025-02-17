@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Characters/Player/Camera/Scripts/camera_bottom.gd" id="5_2jw7t"]
 [ext_resource type="Script" path="res://Characters/Player/Camera/Scripts/camera_left.gd" id="6_skqv6"]
 [ext_resource type="Script" path="res://Characters/Player/Camera/Scripts/camera_right.gd" id="7_xc5yh"]
-[ext_resource type="PackedScene" uid="uid://crkliktsd2k4m" path="res://AreaMaps/scene_switcher.tscn" id="8_nlya1"]
+[ext_resource type="PackedScene" path="res://AreaMaps/scene_switcher.tscn" id="8_nlya1"]
 [ext_resource type="PackedScene" uid="uid://r802u2g0c73d" path="res://Characters/Player/Body/Scenes/player.tscn" id="9_05dg6"]
 [ext_resource type="Script" path="res://Characters/Player/Inventory/Scripts/user_interface.gd" id="10_wdkwl"]
 [ext_resource type="PackedScene" uid="uid://by31ctaq45chn" path="res://Characters/Player/Inventory/Scenes/Hotbar.tscn" id="12_vh3dg"]

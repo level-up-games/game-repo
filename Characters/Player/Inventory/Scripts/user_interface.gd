@@ -3,7 +3,6 @@ extends CanvasLayer
 var holding_item: Node2D = null
 
 
-
 func _ready():
 	Global.ui = self
 

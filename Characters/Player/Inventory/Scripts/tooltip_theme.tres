@@ -1,0 +1,19 @@
+[gd_resource type="Theme" format=3 uid="uid://ccc6fo2dpolmy"]
+
+[resource]
+default_font = SubResource("Font_5mufh")
+
+StyleBox/flat = SubResource("StyleBoxFlat_3k4gh")
+StyleBox/panel_style = SubResource("StyleBoxFlat_3k4gh")
+
+[sub_resource type="Font" id="Font_5mufh"]
+font_data = ExtResource("uid://dlmcmpwttp04g")  # Load your preferred font here
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3k4gh"]
+bg_color = Color(0.1, 0.1, 0.1, 0.95)
+border_width_left = 2
+border_width_right = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.4, 0.4)
+corner_detail = 8

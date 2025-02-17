@@ -1,6 +1,7 @@
 extends Panel
 
 @export var ItemClass: PackedScene = preload("res://Items/Scenes/Item.tscn")
+@onready var tooltip = preload("res://Characters/Player/Inventory/Scenes/Tooltip.tscn").instantiate()
 
 var default_texture = preload("res://Characters/Player/Inventory/Assets/inv-slot.png")
 var selected_texture = preload("res://Characters/Player/Inventory/Assets/selected.png")
@@ -25,6 +26,8 @@ func _ready() -> void:
 	default_style.texture = default_texture
 	selected_style.texture = selected_texture
 	refresh_style()
+	self.mouse_entered.connect(_on_mouse_entered)
+	self.mouse_exited.connect(_on_mouse_exited)
 
 
 func refresh_style():
@@ -57,3 +60,14 @@ func initialize_item(item_name: String, item_quantity: int) -> void:
 		item.set_item(item_name, item_quantity)
 	else:
 		item.set_item(item_name, item_quantity)
+
+
+func _on_mouse_entered():
+	if item:
+		Global.ui.add_child(tooltip)
+		tooltip.show_tooltip(item["item_name"])
+
+
+func _on_mouse_exited():
+	Global.ui.remove_child(tooltip)
+	tooltip.hide_tooltip()
