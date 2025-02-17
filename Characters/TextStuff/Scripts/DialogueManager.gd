@@ -29,19 +29,12 @@ func show_npc_dialogue(json_path: String, npc_id: String) -> void:
 	active_dialogue_box.setup(dialogue_data, checkpoint, npc_id)
 	ui.add_child(active_dialogue_box)
 	
-	
 	#once npc done, call a function like below in the json or whatever to add checkpoint
 	#Global.npc_dialogue_checkpoints[npc_id] = new_checkpoint_value
 
 
-
 func resume_movement():
 	npc.resume_movement("welcome")
-
-
-
-func hide_dialogue() -> void:
-	_clear_active_dialogue()
 
 
 func _clear_active_dialogue() -> void:

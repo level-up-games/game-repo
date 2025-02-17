@@ -1,5 +1,4 @@
 extends CharacterBody2D
-class_name NPC
 
 
 var player_in_range: bool = false
@@ -17,8 +16,8 @@ var player_in_range: bool = false
 
 # Patrol settings (if is_moving is true).
 @export var patrol_speed: float = 50.0
-@export var patrol_point_a: Vector2 = Vector2.ZERO
-@export var patrol_point_b: Vector2 = Vector2(200, 0)
+@export var patrol_point_a: float = 0
+@export var patrol_point_b: float = 200
 
 # Internal state for patrol movement.
 var moving_towards_a: bool = true
@@ -34,18 +33,23 @@ var in_dialogue: bool = false
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var interaction_zone: Area2D = $InteractionZone
 
+
+var gravity = 4750
+
+
+################ as of 17/02/2025 need to add a way to differentiate location to update checkpoints
+# otherwise all function stuff is done (can adjust where it is in the callable first arg, needs to be figured out tho [how to call self in other script])
+# each npc will have the same script with variations.
+
+
+
 func _ready() -> void:
-	
-	
 	DialogueManager.npc = self
 	
 	set_process_input(true)
 	interaction_zone.body_entered.connect(_on_interaction_zone_entered)
 	interaction_zone.body_exited.connect(_on_interaction_zone_exited)
 	
-	
-	# Optionally set the NPC's starting position to patrol_point_a.
-	position = patrol_point_a
 	# Connect signals for interaction zone.
 	interaction_zone.body_entered.connect(_on_interaction_zone_entered)
 	interaction_zone.body_exited.connect(_on_interaction_zone_exited)
@@ -53,22 +57,20 @@ func _ready() -> void:
 	# Set a default animation.
 	anim_player.play("idle")
 
+
 func _physics_process(delta: float) -> void:
-	
-	print(in_dialogue)
-	
-	
-	
+	velocity.y += gravity * delta
 	
 	if not in_dialogue and is_moving:
 		_patrol(delta)
 	# Optionally, update other behavior (e.g., turning to face the player if near)
 
+
 func _patrol(delta: float) -> void:
 	# Simple linear interpolation between two patrol points.
 	var target = patrol_point_a if moving_towards_a else patrol_point_b
-	var direction = (target - position).normalized()
-	velocity = direction * patrol_speed
+	var direction = sign(target - position.x)
+	velocity.x = direction * patrol_speed
 	move_and_slide()
 	
 	# Flip sprite based on horizontal direction (for example).
@@ -78,9 +80,8 @@ func _patrol(delta: float) -> void:
 		sprite.flip_h = false
 	
 	# When near the target, switch direction.
-	if position.distance_to(target) < 5:
+	if abs(position.x - target) < 5:
 		moving_towards_a = !moving_towards_a
-
 
 
 func _input(event: InputEvent) -> void:
@@ -88,18 +89,17 @@ func _input(event: InputEvent) -> void:
 		_on_player_interact()
 
 
-
-
-
 func _on_interaction_zone_entered(body: Node) -> void:
 	if body.name == "Player":
 		# Optionally show a prompt: "Press E to talk"
 		player_in_range = true
 
+
 func _on_interaction_zone_exited(body: Node) -> void:
 	if body.name == "Player":
 		# Hide prompt if any.
 		player_in_range = false
+
 
 func _on_player_interact() -> void:
 	# Called when the player presses interact while in range.
@@ -113,13 +113,15 @@ func _on_player_interact() -> void:
 	# DialogueManager should use npc_name to look up any saved checkpoint.
 	# Optionally, you can pause NPC movement here.
 
+
 func _face_player() -> void:
 	# Assuming you can get the player's position from Global.player
 	if Global.player:
 		if Global.player.global_position.x < global_position.x:
-			sprite.flip_h = false  # Face left
+			sprite.flip_h = true  # Face left
 		else:
-			sprite.flip_h = true   # Face right
+			sprite.flip_h = false   # Face right
+
 
 # This function should be called by the DialogueManager when the conversation ends.
 func resume_movement(new_checkpoint: String) -> void:

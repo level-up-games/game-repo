@@ -475,7 +475,8 @@ position = Vector2(10711, -1428)
 npc = false
 
 [node name="NPC" parent="." instance=ExtResource("23_mokpp")]
-position = Vector2(8857, -1408)
+position = Vector2(8079, -1509)
 is_moving = true
-patrol_point_a = Vector2(8431, -1408)
-patrol_point_b = Vector2(8857, -1408)
+patrol_speed = 80.0
+patrol_point_a = 8352.0
+patrol_point_b = 8880.0

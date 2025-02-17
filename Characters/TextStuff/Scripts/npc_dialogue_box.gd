@@ -1,10 +1,7 @@
 extends Panel
 
 
-
 var npc_id: String = ""  # This should be set during setup.
-
-
 var dialogue_data: Dictionary = {}
 var current_node_key: String = "start"
 
@@ -37,17 +34,10 @@ func _display_current_node() -> void:
 	if node_data.has("checkpoint"):
 		Global.npc_dialogue_checkpoints[npc_id] = node_data["checkpoint"]
 	
-	
-	
-	
 	if node_data.has("action"):
 		var action_callable = Callable(DialogueManager, node_data["action"])
 		if action_callable.is_valid():
 			action_callable.call()
-	
-	
-	
-	
 	
 	if node_data.has("portrait"):
 		$NPCPortrait.texture = load(node_data["portrait"])
