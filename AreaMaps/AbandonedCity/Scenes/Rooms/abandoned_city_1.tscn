@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://kox5caaxhy55" path="res://Items/Scenes/ItemDrop.tscn" id="18_cua63"]
 [ext_resource type="PackedScene" uid="uid://6fh38pslhrr0" path="res://AreaMaps/AbandonedCity/Scenes/tree.tscn" id="19_1ae6q"]
 [ext_resource type="PackedScene" uid="uid://dpy24l01l1tkw" path="res://AreaMaps/AbandonedCity/Scenes/breakable_object.tscn" id="20_3bcan"]
-[ext_resource type="PackedScene" uid="uid://cgiujt0dmt7ww" path="res://test_npc_interaction.tscn" id="22_20alj"]
+[ext_resource type="PackedScene" uid="uid://s4k600bwo0ki" path="res://testrune.tscn" id="23_cafnu"]
 [ext_resource type="PackedScene" uid="uid://ehh6df13vw3h" path="res://Characters/NPCs/TestNPC/Scenes/test_npc.tscn" id="23_mokpp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h650h"]
@@ -467,16 +467,12 @@ item_name = "TestSword"
 [node name="Gate" parent="." instance=ExtResource("14_888pi")]
 position = Vector2(16909, -1569)
 
-[node name="testNPCinteraction" parent="." instance=ExtResource("22_20alj")]
-position = Vector2(10314, -1428)
-
-[node name="testNPCinteraction2" parent="." instance=ExtResource("22_20alj")]
-position = Vector2(10711, -1428)
-npc = false
-
 [node name="NPC" parent="." instance=ExtResource("23_mokpp")]
 position = Vector2(8079, -1509)
 is_moving = true
 patrol_speed = 80.0
 patrol_point_a = 8352.0
 patrol_point_b = 8880.0
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("23_cafnu")]
+position = Vector2(9987, -1480)

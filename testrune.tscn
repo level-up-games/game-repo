@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://s4k600bwo0ki"]
+
+[ext_resource type="Script" path="res://testrune.gd" id="1_o3vul"]
+
+[sub_resource type="Gradient" id="Gradient_wx600"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0m7j0"]
+gradient = SubResource("Gradient_wx600")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_427b4"]
+size = Vector2(319, 146)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_o3vul")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4.96875, 2.25)
+texture = SubResource("GradientTexture2D_0m7j0")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_427b4")

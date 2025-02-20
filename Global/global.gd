@@ -1,9 +1,11 @@
 extends Node
 
 
+##### Reference variables #####
 var player: CharacterBody2D = null
 var ui
 
+##### Player direction variables #####
 var player_facing_direction: int = 1
 var current_mouse_direction: float = 1.0
 var player_movement_direction: float = 0.0
@@ -24,7 +26,7 @@ const NUM_INVENTORY_SLOTS = 20
 var inventory = {}  #--> slot_index: [item_name, item_quantity]
 var accessories = {}  #--> slot_index: [item_name, item_quantity]
 
-##### Player health/combat variables #####
+##### Health/combat variables #####
 @export var player_max_health: int = 100
 @export var player_health: int = 100
 var spell_bar
@@ -32,8 +34,9 @@ var spell_bar
 ##### Camera variables #####
 var is_fullscreen: bool = false
 
-
+##### Dialogue variables #####
 var npc_dialogue_checkpoints: Dictionary = {}
+
 
 
 ##### Regular functions #####
@@ -80,7 +83,6 @@ func active_item_scroll_up() -> void:
 	else:
 		active_item_slot -= 1
 	emit_signal("active_item_updated")
-
 
 
 ##### Inventory functions #####
@@ -196,7 +198,6 @@ func load_data(file_path: String) -> Dictionary:
 		push_error("File does not exist or cannot be opened: %s".format(file_path))
 
 	return json_data
-
 
 
 ##### Player health/combat functions #####

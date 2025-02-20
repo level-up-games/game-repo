@@ -1,40 +1,28 @@
 extends Node
 
 
-############# test temp change to be based on individual npc later
-var npc
-
-
-
-
 var ui: CanvasLayer
 var active_dialogue_box: Control = null
 
 
 
+##### Dialogue functions #####
 func show_readable_dialogue(dialogue_data: Dictionary) -> void:
 	_clear_active_dialogue()
-	var box_scene = preload("res://Characters/TextStuff/Scenes/readable_dialogue_box.tscn")
+	var box_scene = preload("res://Characters/TextManagers/Scenes/readable_dialogue_box.tscn")
 	active_dialogue_box = box_scene.instantiate()
 	active_dialogue_box.setup(dialogue_data)
 	ui.add_child(active_dialogue_box)
 
 
-func show_npc_dialogue(json_path: String, npc_id: String) -> void:
+func show_npc_dialogue(json_path: String, npc_ref: Node) -> void:
 	_clear_active_dialogue()
 	var dialogue_data = load_json_dialogue(json_path)
-	var box_scene = preload("res://Characters/TextStuff/Scenes/npc_dialogue_box.tscn")
+	var box_scene = preload("res://Characters/TextManagers/Scenes/npc_dialogue_box.tscn")
 	active_dialogue_box = box_scene.instantiate()
-	var checkpoint = Global.npc_dialogue_checkpoints.get(npc_id, "start")
-	active_dialogue_box.setup(dialogue_data, checkpoint, npc_id)
+	var checkpoint = Global.npc_dialogue_checkpoints.get(npc_ref.npc_name, "start")
+	active_dialogue_box.setup(dialogue_data, checkpoint, npc_ref)
 	ui.add_child(active_dialogue_box)
-	
-	#once npc done, call a function like below in the json or whatever to add checkpoint
-	#Global.npc_dialogue_checkpoints[npc_id] = new_checkpoint_value
-
-
-func resume_movement():
-	npc.resume_movement("welcome")
 
 
 func _clear_active_dialogue() -> void:
@@ -43,6 +31,7 @@ func _clear_active_dialogue() -> void:
 	active_dialogue_box = null
 
 
+##### Data functions #####
 func load_json_dialogue(json_path: String) -> Dictionary:
 	var file = FileAccess.open(json_path, FileAccess.ModeFlags.READ)
 	

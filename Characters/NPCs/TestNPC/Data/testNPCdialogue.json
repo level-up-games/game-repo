@@ -8,7 +8,6 @@
 	"text": "Welcome to our village.",
 	"portrait": "res://Items/TestApple.png",
 	"checkpoint": "welcome",
-	"action": "",
 	"options": [
 	  {"text": "Tell me about this place.", "next": "about_village"},
 	  {"text": "Goodbye.", "next": "end"}
@@ -30,6 +29,9 @@
   "end": {
 	"text": "Safe travels, friend.",
 	"portrait": "res://Items/TestApple.png",
-	"action": "resume_movement",
+	"action": {
+		"name": "resume_movement",
+		"args": ["welcome"]
+	},
   }
 }

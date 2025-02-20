@@ -19,7 +19,7 @@ run/vsync/vsync_mode=1
 
 Global="*res://Global/global.gd"
 FadeScreen="*res://Global/fade_screen.tscn"
-DialogueManager="*res://Characters/TextStuff/Scripts/DialogueManager.gd"
+DialogueManager="*res://Characters/TextManagers/Scripts/DialogueManager.gd"
 
 [display]
 
@@ -39,6 +39,7 @@ folder_colors={
 "res://AreaMaps/AbandonedCity/Scenes/": "green",
 "res://AreaMaps/AbandonedCity/Scripts/": "yellow",
 "res://Characters/NPCs/TestNPC/Assets/": "red",
+"res://Characters/NPCs/TestNPC/Data/": "purple",
 "res://Characters/NPCs/TestNPC/Scenes/": "green",
 "res://Characters/NPCs/TestNPC/Scripts/": "yellow",
 "res://Characters/Player/Body/Assets/": "red",
@@ -53,9 +54,9 @@ folder_colors={
 "res://Characters/Player/Inventory/Data/": "purple",
 "res://Characters/Player/Inventory/Scenes/": "green",
 "res://Characters/Player/Inventory/Scripts/": "yellow",
-"res://Characters/TextStuff/Assets/": "red",
-"res://Characters/TextStuff/Scenes/": "green",
-"res://Characters/TextStuff/Scripts/": "yellow",
+"res://Characters/TextManagers/Assets/": "red",
+"res://Characters/TextManagers/Scenes/": "green",
+"res://Characters/TextManagers/Scripts/": "yellow",
 "res://Enemies/Bosses/AbandonedCity/WolfBoss/Assets/": "red",
 "res://Enemies/Bosses/AbandonedCity/WolfBoss/Data/": "purple",
 "res://Enemies/Bosses/AbandonedCity/WolfBoss/Scenes/": "green",

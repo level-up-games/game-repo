@@ -1,7 +1,7 @@
 extends Panel
 
 
-var npc_id: String = ""  # This should be set during setup.
+var npc_ref: Node = null  # This will store the active NPC reference.
 var dialogue_data: Dictionary = {}
 var current_node_key: String = "start"
 
@@ -11,13 +11,11 @@ var typewriter_timer: Timer = null
 
 
 
-func setup(data: Dictionary, checkpoint, npc) -> void:
-	npc_id = npc
+func setup(data: Dictionary, checkpoint: String, npc: Node) -> void:
+	npc_ref = npc
 	dialogue_data = data
 	current_node_key = checkpoint
 	_display_current_node()
-	# add checkpoints, where a global is used to check whether to go to start or a diff place (based on checkpoint).
-	# do a similar thing to the above, but checks location/progression to see where to talk from, as adjusted in the npc's scene (export?) i.e. if in_house == true...
 
 
 func _display_current_node() -> void:
@@ -28,16 +26,22 @@ func _display_current_node() -> void:
 	
 	var node_data = dialogue_data[current_node_key]
 	
-	
-	
-	 #   // **Update the checkpoint if defined:**
 	if node_data.has("checkpoint"):
-		Global.npc_dialogue_checkpoints[npc_id] = node_data["checkpoint"]
+		Global.npc_dialogue_checkpoints[npc_ref.npc_name] = node_data["checkpoint"]
 	
 	if node_data.has("action"):
-		var action_callable = Callable(DialogueManager, node_data["action"])
-		if action_callable.is_valid():
-			action_callable.call()
+		var action_value = node_data["action"]
+		
+		if action_value is Dictionary:
+			var func_name = action_value["name"]
+			var args = action_value.get("args", [])
+			var action_callable = Callable(npc_ref, func_name)
+			if action_callable.is_valid():
+				action_callable.callv(args)
+		else:
+			var action_callable = Callable(npc_ref, node_data["action"])
+			if action_callable.is_valid():
+				action_callable.call()
 	
 	if node_data.has("portrait"):
 		$NPCPortrait.texture = load(node_data["portrait"])
