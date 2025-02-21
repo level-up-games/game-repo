@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://fxnn0k1qd0wv"]
+
+[ext_resource type="Script" path="res://Items/Scripts/floating_text.gd" id="1_ho7v3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tpy71"]
+
+[node name="Label" type="Label"]
+top_level = true
+offset_right = 40.0
+offset_bottom = 22.3333
+text = "+1 Item"
+label_settings = SubResource("LabelSettings_tpy71")
+script = ExtResource("1_ho7v3")

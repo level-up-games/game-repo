@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://kox5caaxhy55"]
+[gd_scene load_steps=9 format=3 uid="uid://kox5caaxhy55"]
 
 [ext_resource type="Texture2D" uid="uid://bodkkg43oqvko" path="res://Items/Currency/Coins/Assets/gold-coin.png" id="1_1yn1v"]
 [ext_resource type="Script" path="res://Items/Scripts/item_drop.gd" id="1_8ptq6"]
@@ -44,6 +44,12 @@ _data = {
 "RESET": SubResource("Animation_ala4g")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ptyav"]
+radius = 36.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_afbeg"]
+font_size = 12
+
 [node name="ItemDrop" type="CharacterBody2D"]
 z_index = 1000
 collision_layer = 32
@@ -66,3 +72,22 @@ libraries = {
 "": SubResource("AnimationLibrary_xd31b")
 }
 autoplay = "Float"
+
+[node name="LabelDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LabelDetection"]
+shape = SubResource("CircleShape2D_ptyav")
+debug_color = Color(0.958794, 0, 0.525185, 0.42)
+
+[node name="Label" type="Label" parent="LabelDetection"]
+top_level = true
+offset_left = -13.0
+offset_top = -35.0
+offset_right = 13.0
+offset_bottom = -18.0
+text = "Coin"
+label_settings = SubResource("LabelSettings_afbeg")
+horizontal_alignment = 1
+
+[connection signal="mouse_entered" from="LabelDetection" to="." method="_on_label_detection_mouse_entered"]
+[connection signal="mouse_exited" from="LabelDetection" to="." method="_on_label_detection_mouse_exited"]
