@@ -21,7 +21,10 @@
 		"item_category": "Accessory",
 		"stack_size": 1,
 		"description": "Boots that make you 1.1x faster.",
-		"texture_path": "res://Items/Accessories/SonicBoots/Assets/sonic-boots.png"
+		"texture_path": "res://Items/Accessories/SonicBoots/Assets/sonic-boots.png",
+		"buffs": [
+			{"max_speed": 1.1},
+		],
 	},
 	"Wood": {
 		"item_category": "Resource",

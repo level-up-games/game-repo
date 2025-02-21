@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 signal Attack1
 signal Attack2
 signal Attack3
@@ -9,7 +8,6 @@ signal Attack1_released
 signal Attack2_released
 signal Attack3_released
 signal Attack4_released
-
 
 ##### General variables #####
 @onready var player_sprite = $Sprite
@@ -23,8 +21,8 @@ var suspend_movement_timer: float = 0.0
 @export var acceleration_time: float = 0.06
 @export var decceleration_time: float = 0.05
 @export var max_speed: float = 600.0
-@onready var acceleration: float = max_speed / acceleration_time
-@onready var decceleration: float = max_speed / decceleration_time
+var acceleration: float = max_speed / acceleration_time
+var decceleration: float = max_speed / decceleration_time
 
 ##### Dash variables #####
 var dash_countdown: float
@@ -32,8 +30,8 @@ var dash_cooldown_countdown: float = 0
 var is_dashing: bool = false
 @export var dash_cooldown: float = 1.0
 @export var dash_time: float = 0.2
-@export var dash_distance: float = 280
-@onready var dash_velocity: float = dash_distance / dash_time
+@export var dash_distance: float = 280.0
+var dash_velocity: float = dash_distance / dash_time
 
 ##### Jump variables #####
 var suspend_gravity: bool = false
@@ -42,14 +40,14 @@ var jump_buffer_countdown: float
 var coyote_countdown: float
 @export var coyote_time: float = 0.085
 @export var jump_buffer: float = 0.05
-@export var jump_height: float = 290
+@export var jump_height: float = 290.0
 @export var jump_peak_time: float = 0.45
 @export var jump_descend_time: float = 0.35
 @export var max_fall_speed: float = 1500
 @export var max_jumps: int = 1
-@onready var jump_velocity: float = -2.0 * jump_height / jump_peak_time
-@onready var jump_gravity: float = 2.0 * jump_height / (jump_peak_time * jump_peak_time)
-@onready var descend_gravity: float = 2.0 * jump_height / (jump_descend_time * jump_descend_time)
+var jump_velocity: float = -2.0 * jump_height / jump_peak_time
+var jump_gravity: float = 2.0 * jump_height / (jump_peak_time * jump_peak_time)
+var descend_gravity: float = 2.0 * jump_height / (jump_descend_time * jump_descend_time)
 
 ##### Health variables #####
 var invinc_timer: float = 1.0
@@ -70,15 +68,55 @@ var counter_active_timer: float = 0.0
 ##### Inventory variables #####
 var held_item = Global.get_held_item()
 
+# --- Dynamic Buff System Variables ---
+# These base values are used as the starting point for our stats.
+# You can add new keys here (for example, "damage") as needed.
+var base_stats = {
+	"max_speed": 600.0,
+	"jump_height": 290.0,
+	"dash_distance": 280.0,
+}
+# current_stats will hold the buffed values.
+var current_stats = {}
 
+# This function recalculates all player stats based on equipped accessory buffs.
+func update_accessory_buffs():
+	current_stats = base_stats.duplicate()
+	
+	for accessory in Global.accessories.values():
+		var item_name = accessory[0]
+		if Global.item_data.has(item_name):
+			var data = Global.item_data[item_name]
+			if data.has("buffs"):
+				for buff in data["buffs"]:
+					for stat in buff.keys():
+						if current_stats.has(stat):
+							current_stats[stat] *= buff[stat]
+						else:
+							current_stats[stat] = buff[stat]
+	
+	max_speed = current_stats["max_speed"]
+	acceleration = max_speed / acceleration_time
+	decceleration = max_speed / decceleration_time
+	
+	dash_distance = current_stats["dash_distance"]
+	dash_velocity = dash_distance / dash_time
+	
+	jump_height = current_stats["jump_height"]
+	jump_velocity = -2.0 * jump_height / jump_peak_time
+	jump_gravity = 2.0 * jump_height / (jump_peak_time * jump_peak_time)
+	descend_gravity = 2.0 * jump_height / (jump_descend_time * jump_descend_time)
+	
+	# print("Buffed Stats: ", current_stats)
 
 func _ready():
 	Global.player = self
 
-
 func _physics_process(delta):
 	Global.player = self
 	held_item = Global.get_held_item()
+	
+	update_accessory_buffs()
 	
 	##### Normal functions #####
 	handle_jump()
@@ -98,7 +136,6 @@ func _physics_process(delta):
 	handle_damage_timers(delta)
 	handle_counter_cooldowns(delta)
 	pickup()
-
 
 ##### Movement functions #####
 func handle_animation(anim: String):
@@ -120,7 +157,6 @@ func handle_animation(anim: String):
 			animation_player.play("Idle")
 			player_sprite.flip_h = false
 
-
 func get_movement_direction() -> float: # Gets the movement direction (not the facing direction).
 	var movement_direction = Input.get_axis("Move_Left", "Move_Right")
 	Global.player_movement_direction = movement_direction
@@ -128,7 +164,6 @@ func get_movement_direction() -> float: # Gets the movement direction (not the f
 		Global.player_last_movement_direction = movement_direction
 	
 	return movement_direction
-
 
 func handle_facing_direction() -> float:
 	if get_local_mouse_position().x > 0:
@@ -172,10 +207,9 @@ func handle_facing_direction() -> float:
 		Global.player_facing_direction = 1
 		return 1
 
-
 func handle_movement(delta): # Responsible for movement left and right.
 	if suspend_movement == false:
-		if not is_dashing:
+		if is_dashing == false:
 			if get_movement_direction() > 0:
 				handle_animation("Run")
 				if velocity.x < max_speed:
@@ -206,7 +240,6 @@ func handle_movement(delta): # Responsible for movement left and right.
 	else:
 		pass
 
-
 ##### Dash functions #####
 func countdown_dash(delta): # Counts down the dash_countdown variable.
 	if Input.is_action_just_pressed("Dash") and is_dashing == false and dash_cooldown_countdown < 0:
@@ -215,7 +248,6 @@ func countdown_dash(delta): # Counts down the dash_countdown variable.
 	else:
 		dash_countdown -= delta
 		dash_cooldown_countdown -= delta
-
 
 func handle_dash(): # Responsible for the dash mechanic.
 	if suspend_movement == false:
@@ -232,7 +264,6 @@ func handle_dash(): # Responsible for the dash mechanic.
 	else:
 		pass
 
-
 ##### Jump functions #####
 func countdown_jump_buffer(delta): # Counts down the jump_buffer_countdown variable.
 	if Input.is_action_just_pressed("Jump"):
@@ -240,13 +271,11 @@ func countdown_jump_buffer(delta): # Counts down the jump_buffer_countdown varia
 	else:
 		jump_buffer_countdown -= delta
 
-
 func countdown_coyote(delta): # Counts down the coyote_countdown variable.
 	if is_on_floor():
 		coyote_countdown = coyote_time
 	else:
 		coyote_countdown -= delta
-
 
 func handle_jump(): # Responsible for jump and double jump mechanics.
 	if suspend_movement == false:
@@ -260,7 +289,7 @@ func handle_jump(): # Responsible for jump and double jump mechanics.
 			velocity.y = jump_velocity
 			jump_counter += 1
 			jump_buffer_countdown = 0
-			player_sprite.modulate = Color(0, 1, 0,) #Below 3 lines are to see when double jump occurs (as we dont have anim yet)
+			player_sprite.modulate = Color(0, 1, 0) #Below 3 lines are to see when double jump occurs (as we dont have anim yet)
 			await get_tree().create_timer(0.3).timeout
 			player_sprite.modulate = Color(1, 1, 1)
 			
@@ -270,14 +299,12 @@ func handle_jump(): # Responsible for jump and double jump mechanics.
 		if Input.is_action_just_released("Jump"):
 			coyote_countdown = 0
 
-
 func handle_gravity(delta): # Controls gravities.
 	if suspend_gravity == false:
 		if velocity.y < 0:
 			velocity.y += jump_gravity * delta
 		elif velocity.y >= 0 and velocity.y < max_fall_speed:
 			velocity.y += descend_gravity * delta
-
 
 ##### Health functions #####
 func take_damage(damage, hitbox_position, knockback_speed):
@@ -319,13 +346,11 @@ func take_damage(damage, hitbox_position, knockback_speed):
 	else:
 		pass
 
-
 func handle_damage_timers(delta):
 	invinc_timer -= delta
 	suspend_movement_timer -= delta
 	if suspend_movement_timer <= 0:
 			suspend_movement = false
-
 
 ##### Attack functions #####
 func prepare_weapon() -> void:
@@ -351,7 +376,6 @@ func prepare_weapon() -> void:
 			current_weapon_instance.queue_free()
 			current_weapon_instance = null
 			current_weapon_name = ""
-
 
 func handle_attacks() -> void:
 	if can_attack and Input.is_action_just_pressed("Attack_1"):
@@ -406,7 +430,6 @@ func handle_attacks() -> void:
 		if not inv_rect.has_point(click_pos) and not hotbar_rect.has_point(click_pos):
 			emit_signal("Attack4_released")
 
-
 ##### Counter and parry functions #####
 func handle_counter_cooldowns(delta):
 	if counter_active_timer > -5:
@@ -424,7 +447,6 @@ func handle_counter_cooldowns(delta):
 	else:
 		can_counter = false
 
-
 func handle_counter():
 	if Input.is_action_just_pressed("Counter") and can_counter == true:
 		player_sprite.modulate = Color(1, 0, 0) # placeholder for anim
@@ -440,7 +462,6 @@ func handle_counter():
 	if counter_active_timer <= 0:
 		is_countering = false
 
-
 ##### Items/Inventory functions #####
 func has_item(item_name: String) -> bool:
 	var ui = $UserInterface
@@ -455,7 +476,6 @@ func has_item(item_name: String) -> bool:
 			return true
 	
 	return false
-
 
 func pickup() -> void:
 	if Input.is_action_pressed("Interact"):
