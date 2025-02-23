@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://cjwnd5fmbi3ir"]
+[gd_scene load_steps=40 format=4 uid="uid://cjwnd5fmbi3ir"]
 
 [ext_resource type="TileSet" uid="uid://r4hvwuq4btws" path="res://AreaMaps/Tiles/world_tileset.tres" id="1_bfjkg"]
 [ext_resource type="Script" path="res://AreaMaps/Tiles/world_collision_breakables.gd" id="2_a5ql5"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dpy24l01l1tkw" path="res://AreaMaps/AbandonedCity/Scenes/breakable_object.tscn" id="20_3bcan"]
 [ext_resource type="PackedScene" uid="uid://s4k600bwo0ki" path="res://testrune.tscn" id="23_cafnu"]
 [ext_resource type="PackedScene" uid="uid://ehh6df13vw3h" path="res://Characters/NPCs/TestNPC/Scenes/test_npc.tscn" id="23_mokpp"]
+[ext_resource type="PackedScene" uid="uid://gp60oumaestf" path="res://brieftest.tscn" id="24_thhon"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h650h"]
 size = Vector2(223.25, 255.25)
@@ -476,3 +477,6 @@ patrol_point_b = 8880.0
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("23_cafnu")]
 position = Vector2(9987, -1480)
+
+[node name="Area2D" parent="." instance=ExtResource("24_thhon")]
+position = Vector2(11101, -1146)

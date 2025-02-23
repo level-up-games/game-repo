@@ -33,5 +33,18 @@
 		"name": "resume_movement",
 		"args": ["welcome"]
 	},
-  }
+  },
+  "test1": {
+	"text": "What if I got racist?",
+	"portrait": "res://Items/TestApple.png",
+	"next": "test2"
+  },
+  "test2": {
+	"text": "You'll never know...",
+	"portrait": "res://Items/TestApple.png",
+	"action": {
+		"name": "resume_movement",
+		"args": ["test1"]
+	},
+  },
 }
