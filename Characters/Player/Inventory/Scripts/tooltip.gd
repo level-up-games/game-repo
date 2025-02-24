@@ -28,13 +28,14 @@ func show_tooltip(item_name: String):
 	$VBoxContainer/CategoryLabel.set_text("%s" % item_data.get("item_category", "Miscellaneous"))
 	$VBoxContainer/DescriptionLabel.set_text(item_data.get("description", ""))
 
-	visible = true
+	if not Global.ui.holding_item:
+		visible = true
 
 func hide_tooltip():
 	visible = false
 	current_item = ""
 
-func _process(delta):
+func _process(delta):  # TODO: could be performance impacting
 	if visible:
 		# Position tooltip relative to mouse
 		var mouse_pos = get_global_mouse_position()
